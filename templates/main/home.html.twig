@@ -1,22 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Hello TestController!{% endblock %}
 
 {% block body %}
 
-
-  <div class="mb-3 row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-    <div class="col-sm-10">
-      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <h1 class="text-center my-4">Test de Bootstrap</h1>
+            <a href="" class="btn btn-primary">test</a>
+        </div>
+        <div class="col-4"></div>
     </div>
-  </div>
-  <div class="mb-3 row">
-    <label for="inputPassword" class="col-sm-2 col-form-label text-primary" >Password</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" id="inputPassword">
-    </div>
-  </div>
-
-
+</div>
 {% endblock %}
