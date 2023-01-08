@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Transfert index{% endblock %}
+
+{% block body %}
+    <h1>Transfert index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Statut</th>
+                <th>CodeSecret</th>
+                <th>MontTransfert</th>
+                <th>MontBenef</th>
+                <th>FraisTransfert</th>
+                <th>ComTransfert</th>
+                <th>ComAgentLivreur</th>
+                <th>NomBenef</th>
+                <th>NumBenef</th>
+                <th>NumTelBenef</th>
+                <th>DateEnvoi</th>
+                <th>DatePrisCharge</th>
+                <th>DateLivr</th>
+                <th>Is_visible</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for transfert in transferts %}
+            <tr>
+                <td>{{ transfert.id }}</td>
+                <td>{{ transfert.statut }}</td>
+                <td>{{ transfert.codeSecret }}</td>
+                <td>{{ transfert.montTransfert }}</td>
+                <td>{{ transfert.montBenef }}</td>
+                <td>{{ transfert.fraisTransfert }}</td>
+                <td>{{ transfert.comTransfert }}</td>
+                <td>{{ transfert.comAgentLivreur }}</td>
+                <td>{{ transfert.nomBenef }}</td>
+                <td>{{ transfert.numBenef }}</td>
+                <td>{{ transfert.numTelBenef }}</td>
+                <td>{{ transfert.dateEnvoi ? transfert.dateEnvoi|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ transfert.datePrisCharge ? transfert.datePrisCharge|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ transfert.dateLivr ? transfert.dateLivr|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ transfert.isVisible ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_transfert_show', {'id': transfert.id}) }}">show</a>
+                    <a href="{{ path('app_transfert_edit', {'id': transfert.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="16">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_transfert_new') }}">Create new</a>
+{% endblock %}

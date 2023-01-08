@@ -6,10 +6,12 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -39,10 +41,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'agentLivreur', targetEntity: Transfert::class)]
     private Collection $agentLivreurs;
 
+    #[ORM\Column(length: 45)]
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 45)]
+    private ?string $prenom = null;
+
+    #[ORM\Column(length: 45)]
+    private ?string $mail = null;
+
     public function __construct()
     {
         $this->expediteurs = new ArrayCollection();
         $this->agentLivreurs = new ArrayCollection();
+    }
+
+
+    public function __toString()
+    {
+        return $this->username;
     }
 
     public function getId(): ?int
@@ -183,6 +200,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $agentLivreur->setAgentLivreur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getMail(): ?string
+    {
+        return $this->mail;
+    }
+
+    public function setMail(string $mail): self
+    {
+        $this->mail = $mail;
 
         return $this;
     }
