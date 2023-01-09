@@ -14,21 +14,21 @@ class TransfertType extends AbstractType
         $builder
             // ->add('statut')
             // ->add('codeSecret')
-            ->add('montTransfert')
+             ->add('montTransfert')
             // ->add('montBenef')
-            ->add('fraisTransfert')
+            // ->add('fraisTransfert')
             // ->add('comTransfert')
             // ->add('comAgentLivreur')
             ->add('nomBenef')
-            ->add('numBenef')
-            ->add('numTelBenef')
+            // ->add('numBenef')
+            // ->add('numTelBenef')
             // ->add('dateEnvoi')
             // ->add('datePrisCharge')
             // ->add('dateLivr')
             // ->add('is_visible')
             ->add('ville')
             ->add('expediteur')
-            // ->add('agentLivreur')
+            ->add('agentLivreur')
         ;
     }
 

@@ -15,7 +15,7 @@ class Transfert
     private ?int $id = null;
 
     #[ORM\Column(length: 45)]
-    private ?string $statut = Null;
+    private ?string $statut =Null;
 
     #[ORM\Column(length: 45)]
     private ?string $codeSecret = null;
