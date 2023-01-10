@@ -21,7 +21,7 @@ class TransfertRepository extends ServiceEntityRepository
         parent::__construct($registry, Transfert::class);
     }
 
-    public function save(Transfert $entity, bool $flush = false): void
+    public function save(Transfert $entity, bool $flush = true): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class TransfertRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Transfert $entity, bool $flush = false): void
+    public function remove(Transfert $entity, bool $flush = true): void
     {
         $this->getEntityManager()->remove($entity);
 

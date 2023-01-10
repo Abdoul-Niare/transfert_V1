@@ -3,32 +3,75 @@
 namespace App\Form;
 
 use App\Entity\Transfert;
+use phpDocumentor\Reflection\Types\Null_;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 class TransfertType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('statut')
-            // ->add('codeSecret')
-             ->add('montTransfert')
-            // ->add('montBenef')
-            // ->add('fraisTransfert')
-            // ->add('comTransfert')
-            // ->add('comAgentLivreur')
-            ->add('nomBenef')
-            // ->add('numBenef')
-            // ->add('numTelBenef')
+                ->add('nomBenef', TextType:: class ,[
+                    'label' => "Nom et Prenom de votre Bénéficiaire",
+                ])
+        
+            ->add('ville', Null, [
+                'required'   => true,
+                'empty_data' => 'agentLivreur',
+                'label' => "Ville de votre Bénéficiare",
+            ])
+
+            ->add('montTransfert', NumberType:: class ,[
+                'label' => 'Montant du transfert',
+            ])
+
+            ->add('montBenef', NumberType:: class ,[
+                'label' => 'Montant du Béneficiaire',
+            ])
+            
+            ->add('fraisTransfert', NumberType:: class ,[
+                'label' => "Frais d'envoi du Transfert",
+            ])
+            
+            ->add('numBenef', FileType::class, [
+                'label' => 'Photo de la pièce',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'application/pdf',
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                   
+                    ])
+                ],
+            ])
+
+            ->add('comTransfert')
+            ->add('numBenef')
+            ->add('numTelBenef')
+            ->add('comAgentLivreur')
+            ->add('expediteur')
+            ->add('agentLivreur')
+           
+            
+
+            // ->add('ville')
             // ->add('dateEnvoi')
             // ->add('datePrisCharge')
             // ->add('dateLivr')
             // ->add('is_visible')
-            ->add('ville')
-            ->add('expediteur')
-            ->add('agentLivreur')
+             // ->add('codeSecret')
+            // ->add('statut')
         ;
     }
 

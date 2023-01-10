@@ -35,10 +35,15 @@
                 <th>ComTransfert</th>
                 <td>{{ transfert.comTransfert }}</td>
             </tr>
+            
+            {# <?php if($this->getUser()->roles === "ROLE_AGENT"){ ?> #}
             <tr>
                 <th>ComAgentLivreur</th>
                 <td>{{ transfert.comAgentLivreur }}</td>
             </tr>
+
+            {# <?php } ?> #}
+
             <tr>
                 <th>NomBenef</th>
                 <td>{{ transfert.nomBenef }}</td>

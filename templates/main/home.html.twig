@@ -11,6 +11,27 @@
 
 <div class="example-wrapper">
 
+	
+
+
+		 {# <table class="home_continent">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>expediteur</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for transfert in transferts %}
+					<tr>
+						<td>{{ transfert.montTransfert }}</td>
+                	<td>{{ transfert.montBenef }}</td>
+
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table> #}
+
     {# {% if app.user %}
 		<div class="text-center mt-3">
 			<a href="{{ path('app_transfert_new')}}" class="btn btn-success text-center mt-3">Passer votre Transfert</a>

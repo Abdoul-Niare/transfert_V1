@@ -6,9 +6,11 @@ use App\Entity\Transfert;
 use App\Form\TransfertType;
 use App\Repository\TransfertRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/transfert')]
 class TransfertController extends AbstractController
@@ -22,17 +24,78 @@ class TransfertController extends AbstractController
     }
 
     #[Route('/new', name: 'app_transfert_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, TransfertRepository $transfertRepository): Response
+    public function new(Request $request, TransfertRepository $transfertRepository, SluggerInterface $slugger): Response
     {
         $transfert = new Transfert();
         $form = $this->createForm(TransfertType::class, $transfert);
         $form->handleRequest($request);
+        
 
+
+
+        $expediteur = $this->getUser();
+        $date = new \DateTime('@'.strtotime('now'));
+       
+        
+        
         if ($form->isSubmitted() && $form->isValid()) {
-            $transfertRepository->save($transfert, true);
 
+            $numBenef = $form->get('numBenef')->getData();
+
+            if ($numBenef) {
+                $originalFilename = pathinfo($numBenef->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $numBenef->guessExtension();
+                try {
+                    $numBenef->move(
+                        $this->getParameter('images_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+                $transfert->setNumBenef($newFilename);
+            }
+
+
+
+
+            $transfert->setExpediteur($expediteur);
+            $transfert->setStatut("envoyé");
+        
+            $transfert->setDateEnvoi($date);
+
+        // $dateEnvoi = $this->getUser();
+        // $dateEnvoi->(new \DateTimeZone('GMT'));
+
+        
+
+
+            // Tableau de lettre en majuscule
+            $lettres = range('A', 'Z');
+            // Je melange
+            shuffle($lettres);
+            // J"extrait le premier item du tableau
+             $lettre = array_shift($lettres);
+            // Je recommence pour la seconde lettre
+             shuffle($lettres);
+            // J'extrait la seconde lettre
+            $lettre .= array_shift($lettres);
+            // un nombre sur 4 digitau hazard
+             $nombre = mt_rand(1000, 9999);
+
+            $codeSecret = $lettre . $nombre;
+            $transfert->setCodeSecret($codeSecret);
+
+
+
+            $transfert->setIsVisible(true);
+            $transfertRepository->save($transfert, true);
             return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
         }
+
+        
 
         return $this->renderForm('transfert/new.html.twig', [
             'transfert' => $transfert,
