@@ -10,6 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
@@ -24,13 +25,13 @@ class TransfertType extends AbstractType
                 ])
                 ->add('numTelBenef', TelType:: class ,[ 
                     'label' => "Numero de telephone du Bénéficiaire",
+                   
                     'invalid_message' => 'Veuillez fournir un numéro de téléphone valide.',
                    
                 ])
         
             ->add('ville', Null, [
-                'required'   => true,
-                'empty_data' => 'agentLivreur',
+                
                 'label' => "Ville de votre Bénéficiare",
             ])
 
@@ -41,7 +42,8 @@ class TransfertType extends AbstractType
             ->add('montBenef', NumberType:: class ,[
                 'label' => 'Montant du Béneficiaire',
             ])
-            
+
+                     
             ->add('fraisTransfert', NumberType:: class ,[
                 'label' => "Frais d'envoi du Transfert",
             ])
