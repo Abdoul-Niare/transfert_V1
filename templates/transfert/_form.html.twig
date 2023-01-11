@@ -1,13 +1,16 @@
 
 {{ form_start(form) }}
+<h1>Adding a new send</h1>
 
-{{ form_widget(form) }}
+{# {{ form_widget(form) }} #}
 
  {# <div class="row">{{ form_row(form.expediteur) }}</div>
 <div class="row">{{ form_row(form.ville) }}</div>
 <div class="row">{{ form_row(form.montTransfert) }}</div>
 <div class="row">{{ form_row(form.nomBenef) }}</div>
 <div class="row">{{ form_row(form.agentLivreur) }}</div>  #}
+
+{# <div class="row">{{ form_row(form.numBenef) }}</div> #}
 
 <div class="d-flex justify-content-center mt-3">
 	<button class="btn btn-success">{{ button_label|default('Envoyez') }}</button>

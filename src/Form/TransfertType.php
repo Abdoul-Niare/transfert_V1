@@ -10,8 +10,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
+
 class TransfertType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -19,6 +21,11 @@ class TransfertType extends AbstractType
         $builder
                 ->add('nomBenef', TextType:: class ,[
                     'label' => "Nom et Prenom de votre Bénéficiaire",
+                ])
+                ->add('numTelBenef', TelType:: class ,[ 
+                    'label' => "Numero de telephone du Bénéficiaire",
+                    'invalid_message' => 'Veuillez fournir un numéro de téléphone valide.',
+                   
                 ])
         
             ->add('ville', Null, [
@@ -57,14 +64,13 @@ class TransfertType extends AbstractType
             ])
 
             ->add('comTransfert')
-            ->add('numBenef')
-            ->add('numTelBenef')
+            // ->add('numTelBenef')
             ->add('comAgentLivreur')
-            ->add('expediteur')
+        
             ->add('agentLivreur')
            
-            
-
+            // ->add('expediteur')
+            // ->add('numBenef')
             // ->add('ville')
             // ->add('dateEnvoi')
             // ->add('datePrisCharge')

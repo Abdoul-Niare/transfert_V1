@@ -26,18 +26,12 @@ class TransfertController extends AbstractController
     #[Route('/new', name: 'app_transfert_new', methods: ['GET', 'POST'])]
     public function new(Request $request, TransfertRepository $transfertRepository, SluggerInterface $slugger): Response
     {
+        $expediteur = $this->getUser();
         $transfert = new Transfert();
         $form = $this->createForm(TransfertType::class, $transfert);
         $form->handleRequest($request);
-        
 
 
-
-        $expediteur = $this->getUser();
-        $date = new \DateTime('@'.strtotime('now'));
-       
-        
-        
         if ($form->isSubmitted() && $form->isValid()) {
 
             $numBenef = $form->get('numBenef')->getData();
@@ -58,32 +52,29 @@ class TransfertController extends AbstractController
                 $transfert->setNumBenef($newFilename);
             }
 
-
-
-
             $transfert->setExpediteur($expediteur);
-            $transfert->setStatut("envoyé");
-        
+            
+           // Status du transfert à l'envoi 
+            $status="Envoyé";
+            $transfert->setStatut($status);
+
+            //Date d'envoie du transfert.
+            $date = new \DateTime('@' . strtotime('now'));
             $transfert->setDateEnvoi($date);
 
-        // $dateEnvoi = $this->getUser();
-        // $dateEnvoi->(new \DateTimeZone('GMT'));
-
-        
-
-
+            //Code secret du transfert.
             // Tableau de lettre en majuscule
             $lettres = range('A', 'Z');
             // Je melange
             shuffle($lettres);
             // J"extrait le premier item du tableau
-             $lettre = array_shift($lettres);
+            $lettre = array_shift($lettres);
             // Je recommence pour la seconde lettre
-             shuffle($lettres);
+            shuffle($lettres);
             // J'extrait la seconde lettre
             $lettre .= array_shift($lettres);
             // un nombre sur 4 digitau hazard
-             $nombre = mt_rand(1000, 9999);
+            $nombre = mt_rand(1000, 9999);
 
             $codeSecret = $lettre . $nombre;
             $transfert->setCodeSecret($codeSecret);
@@ -95,7 +86,7 @@ class TransfertController extends AbstractController
             return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        
+
 
         return $this->renderForm('transfert/new.html.twig', [
             'transfert' => $transfert,
@@ -132,7 +123,7 @@ class TransfertController extends AbstractController
     #[Route('/{id}', name: 'app_transfert_delete', methods: ['POST'])]
     public function delete(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$transfert->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $transfert->getId(), $request->request->get('_token'))) {
             $transfertRepository->remove($transfert, true);
         }
 
