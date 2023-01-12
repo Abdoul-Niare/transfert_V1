@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Transfert;
 use App\Form\TransfertType;
 use App\Repository\TransfertRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +23,8 @@ class TransfertController extends AbstractController
             'transferts' => $transfertRepository->findAll(),
         ]);
     }
+
+
 
     #[Route('/new', name: 'app_transfert_new', methods: ['GET', 'POST'])]
     public function new(Request $request, TransfertRepository $transfertRepository, SluggerInterface $slugger): Response
@@ -54,15 +57,15 @@ class TransfertController extends AbstractController
 
             $transfert->setExpediteur($expediteur);
             
-           // Status du transfert à l'envoi 
+        // Status du transfert à l'envoi 
             $status="Envoyé";
             $transfert->setStatut($status);
 
-            //Date d'envoie du transfert.
+        //Date d'envoie du transfert.
             $date = new \DateTime('@' . strtotime('now'));
             $transfert->setDateEnvoi($date);
 
-            //Code secret du transfert.
+        //Gestion du code secret du transfert.
             // Tableau de lettre en majuscule
             $lettres = range('A', 'Z');
             // Je melange
@@ -80,13 +83,11 @@ class TransfertController extends AbstractController
             $transfert->setCodeSecret($codeSecret);
 
 
-
+         // Visibilité du transfert
             $transfert->setIsVisible(true);
             $transfertRepository->save($transfert, true);
             return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
         }
-
-
 
         return $this->renderForm('transfert/new.html.twig', [
             'transfert' => $transfert,
@@ -95,8 +96,15 @@ class TransfertController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_transfert_show', methods: ['GET'])]
-    public function show(Transfert $transfert): Response
+    public function show(ManagerRegistry $doctrine, Transfert $transfert): Response
     {
+        $entityManager = $doctrine->getManager();
+        $transfert->setDatePrisCharge(new \DateTime('@' . strtotime('now')));
+        $entityManager->persist($transfert);
+        
+        // actually executes the queries (i.e. the INSERT query)
+        $entityManager->flush();
+
         return $this->render('transfert/show.html.twig', [
             'transfert' => $transfert,
         ]);
@@ -110,7 +118,6 @@ class TransfertController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $transfertRepository->save($transfert, true);
-
             return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -129,4 +136,7 @@ class TransfertController extends AbstractController
 
         return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    
 }

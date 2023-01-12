@@ -20,34 +20,49 @@ class TransfertType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-                ->add('nomBenef', TextType:: class ,[
-                    'label' => "Nom et Prenom de votre Bénéficiaire",
-                ])
-                ->add('numTelBenef', TelType:: class ,[ 
-                    'label' => "Numero de telephone du Bénéficiaire",
-                   
-                    'invalid_message' => 'Veuillez fournir un numéro de téléphone valide.',
-                   
-                ])
-        
+
             ->add('ville', Null, [
-                
-                'label' => "Ville de votre Bénéficiare",
-            ])
-
-            ->add('montTransfert', NumberType:: class ,[
-                'label' => 'Montant du transfert',
-            ])
-
-            ->add('montBenef', NumberType:: class ,[
-                'label' => 'Montant du Béneficiaire',
-            ])
-
-                     
-            ->add('fraisTransfert', NumberType:: class ,[
-                'label' => "Frais d'envoi du Transfert",
+                'label' => "Ville de votre Bénéficiare:",
             ])
             
+            ->add('nomBenef', TextType::class, [
+                'label' => "Nom et Prenom de votre Bénéficiaire:",
+                'attr' => [
+                    'placeholder' => 'Nom et Prenom'
+            ]
+            ])
+            
+            ->add('numTelBenef', TelType::class, [
+                'label' => "Numero Tel:",
+
+                'invalid_message' => 'Veuillez fournir un numéro de téléphone valide.',
+                'attr' => [
+                    'placeholder' => 'Entrez le numero de votre bénéficiare'
+            ]])
+
+
+            ->add('montTransfert', NumberType::class, [
+                'label' => 'Montant du transfert:',
+            ])
+
+            ->add('fraisTransfert', NumberType::class, [
+                'label' => "Frais d'envoi du Transfert:",
+            ])
+
+            ->add('montBenef', NumberType::class, [
+                'label' => 'Le bénéficiaire recevra:',
+            ])
+
+            ->add('comTransfert', NumberType::class, [
+                'label' => " Commission de l'appli: ",
+            ])
+            ->add('comAgentLivreur', NumberType::class, [
+                'label' => " Commission de l'agent livreur:",
+            ])
+
+            ->add('agentLivreur')
+            ->add('is_visible')
+
             ->add('numBenef', FileType::class, [
                 'label' => 'Photo de la pièce',
                 'mapped' => false,
@@ -60,25 +75,21 @@ class TransfertType extends AbstractType
                             'application/x-pdf',
                         ],
                         'mimeTypesMessage' => 'Please upload a valid PDF document',
-                   
+
                     ])
                 ],
             ])
 
-            ->add('comTransfert')
+             // ->add('comTransfert')
             // ->add('numTelBenef')
-            ->add('comAgentLivreur')
-        
-            ->add('agentLivreur')
-           
+            // ->add('comAgentLivreur')
             // ->add('expediteur')
             // ->add('numBenef')
             // ->add('ville')
             // ->add('dateEnvoi')
             // ->add('datePrisCharge')
             // ->add('dateLivr')
-            // ->add('is_visible')
-             // ->add('codeSecret')
+            // ->add('codeSecret')
             // ->add('statut')
         ;
     }

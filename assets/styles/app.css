@@ -1,4 +1,5 @@
 body {
+	width: 100%;
     background-color: lightgray;
 	position: relative;
 	margin: 0;
@@ -11,10 +12,8 @@ h1{
     color: #a86566;
 }
 
-
-
-
 table {
+	width: 40px;
 	margin: 20px 10px 10px 10px;
 	border-collapse: collapse;
 	border: solid 2px;
@@ -29,3 +28,6 @@ tr td:last-child {
 	text-align: end;
 }
 
+.navbar{
+	width: 100vw;
+}
