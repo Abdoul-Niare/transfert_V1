@@ -14,8 +14,8 @@ class MainController extends AbstractController
     {
         return $this->render('main/home.html.twig', [
             'controller_name' => 'MainController',
-            'transferts'=> $transfertRepository->findAll([
-                'is_visible'=>false
+            'transferts'=> $transfertRepository->findBy([
+                'is_visible'=>true
             ])
         ]);
     }

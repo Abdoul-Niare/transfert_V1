@@ -4,11 +4,13 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Transfert index</h1>
+
 	<div class="container-fluid">
-		<table class="table">
+
+		<h1 class="text-center">Liste de tous les Transferts</h1>
+
+		<table class="home_continent mt-5">
 			<thead>
-				
 				<tr>
 
 					<th>Id</th>
@@ -49,19 +51,22 @@
 						<td>{{ transfert.dateLivr ? transfert.dateLivr|date('Y-m-d H:i:s') : '' }}</td>
 						<td>{{ transfert.isVisible ? 'Yes' : 'No' }}</td>
 						<td>
-							<a href="{{ path('app_transfert_show', {'id': transfert.id}) }}">show</a>
-							<a href="{{ path('app_transfert_edit', {'id': transfert.id}) }}">edit</a>
+							<a class="btn btn-primary p-1 m-1" href="{{ path('app_transfert_show', {'id': transfert.id}) }}">Afficher</a>
+							<a class="btn btn-warning p-1 m-1" href="{{ path('app_transfert_edit', {'id': transfert.id}) }}">Modifier</a>
 						</td>
 					</tr>
 				{% else %}
 					<tr>
-						<td colspan="16">no records found</td>
+						<td colspan="16">Aucun Transfert n'a été créée</td>
 					</tr>
 				{% endfor %}
 			</tbody>
 		</table>
 
-		<a href="{{ path('app_transfert_new') }}">Create new</a>
+ <div class="text-center">
+            <a class="btn btn-success" href="{{ path('app_transfert_new') }}">Créer un New Transfert</a>
+        </div>
+		
 
 	</div>
 {% endblock %}

@@ -1,32 +1,31 @@
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="/">Accueil</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	<a class="navbar-brand" href="{{path('app_home')}}">Accueil</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
+	   <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
 		
-			<div class="navbar-nav d-flex justify-start" >
-				{% if app.user %}
-					<li class="nav-item">
-						<a class="nav-link " href="{{path('app_logout')}}">se deconnecter</a>
-					</li>
-					<li class="nav-item">
-					<a class="nav-link text-primary" href="{{ path('app_transfert_new')}}">Passer votre Transfert</a>
-					</li>
-				{% else %}
-					<li class="nav-item">
-						<a class="nav-link" href="{{path('app_register')}}">s'inscrire</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{path('app_login')}}">se connecter</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{path('app_login')}}" >Envoyer de l'argent</a>
-					</li>
+		<div class="navbar-nav">
+			{% if app.user %}
 
-				{% endif %}
+				<a class="nav-link " href="{{path('app_logout')}}">se deconnecter</a>
 
-			</div>
-		
+				<a class="nav-link text-primary" href="{{ path('app_transfert_new')}}">Passer votre Transfert</a>
+			{% else %}
+				<a class="nav-link" href="{{path('app_register')}}">s'inscrire</a>
+
+				<a class="nav-link" href="{{path('app_login')}}">se connecter</a>
+
+				<a class="nav-link" href="{{path('app_login')}}">Envoyer de l'argent</a>
+
+			{% endif %}
+
+		</div>
+
+
 	</div>
 </nav>

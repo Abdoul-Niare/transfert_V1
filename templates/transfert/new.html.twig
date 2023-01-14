@@ -8,24 +8,24 @@
 
 	{{ include('transfert/_form.html.twig') }}
 
-
 	<a href="{{ path('app_transfert_index') }}">Retour à la liste</a>
 
 
- <script type="text/javascript">
-	document.getElementById("transfert_montTransfert").addEventListener("change", myFunction);
+    <script type="text/javascript">
+		document.getElementById("transfert_montTransfert").addEventListener("change", myFunction);
 
-    function myFunction() {
+        function myFunction() {
         var transfert = document.getElementById("transfert_montTransfert");
         var frais = document.getElementById("transfert_fraisTransfert");
 
         if (isNaN(transfert.value)) {
-            transfert.value = '';
-            frais.value = '';
+        transfert.value = '';
+        frais.value = '';
+
         } else {
-            frais.value = transfert.value * 0.010;
+        frais.value = transfert.value * 0.010;
         }
-    }
- </script>
+        
+	</script>
 
 {% endblock %}

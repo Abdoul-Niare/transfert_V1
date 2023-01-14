@@ -1,7 +1,6 @@
 body {
-	width: 100%;
+	width: 100vw;
     background-color: lightgray;
-	position: relative;
 	margin: 0;
 	padding: 0;
 	font-family: arial, sans-serif;
@@ -13,7 +12,7 @@ h1{
 }
 
 table {
-	width: 40px;
+
 	margin: 20px 10px 10px 10px;
 	border-collapse: collapse;
 	border: solid 2px;
@@ -30,4 +29,18 @@ tr td:last-child {
 
 .navbar{
 	width: 100vw;
+	position:relative;
+	
+}
+
+label {
+    display: block;
+}
+
+input {
+    width: 15rem;
+}
+
+textarea{
+    width: 155rem;
 }
