@@ -65,7 +65,7 @@ class Transfert
     private ?User $expediteur = null;
 
     #[ORM\ManyToOne(inversedBy: 'agentLivreurs')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?User $agentLivreur = null;
 
     public function getId(): ?int

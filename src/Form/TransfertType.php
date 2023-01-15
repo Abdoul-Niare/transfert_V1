@@ -49,18 +49,18 @@ class TransfertType extends AbstractType
                 'label' => "Frais d'envoi du Transfert:",
             ])
 
-            ->add('comTransfert', NumberType::class, [
-                'label' => " Commission de l'appli: ",
-            ])
-            ->add('comAgentLivreur', NumberType::class, [
-                'label' => " Commission de l'agent livreur:",
-            ])
+            // ->add('comTransfert', NumberType::class, [
+            //     'label' => " Commission de l'appli: ",
+            // ])
+            // ->add('comAgentLivreur', NumberType::class, [
+            //     'label' => " Commission de l'agent livreur:",
+            // ])
             ->add('montBenef', NumberType::class, [
                 'label' => 'Le bénéficiaire recevra:',
             ])
 
-            ->add('agentLivreur')
-            ->add('is_visible')
+            // ->add('agentLivreur')
+            // ->add('is_visible')
 
             ->add('numBenef', FileType::class, [
                 'label' => 'Photo de la pièce',

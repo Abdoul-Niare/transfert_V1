@@ -10,22 +10,35 @@
 
 	<a href="{{ path('app_transfert_index') }}">Retour à la liste</a>
 
+  
 
     <script type="text/javascript">
-		document.getElementById("transfert_montTransfert").addEventListener("change", myFunction);
+		 document.getElementById("transfert_montTransfert").addEventListener("change", myFunction);
 
         function myFunction() {
         var transfert = document.getElementById("transfert_montTransfert");
         var frais = document.getElementById("transfert_fraisTransfert");
+        // var commission = document.getElementById("transfert_comTransfert");
+        // var agent = document.getElementById("transfert_comAgentLivreur");
+        var benef = document.getElementById("transfert_montBenef");
 
         if (isNaN(transfert.value)) {
         transfert.value = '';
         frais.value = '';
+        // commission.value='';
+        // // agent.value='';
+        benef.value='';
 
         } else {
-        frais.value = transfert.value * 0.010;
+        frais.value = transfert.value * 0.025;
+        //commission.value= transfert.value*0.03;
+        // agent.value= transfert.value*0.07;
+         //benef.value= transfert.value*0.90;
+
+        benef.value= transfert.value - frais.value;
+
         }
-        
+        } 
 	</script>
 
 {% endblock %}

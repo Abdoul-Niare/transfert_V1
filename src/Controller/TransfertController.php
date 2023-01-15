@@ -89,7 +89,15 @@ class TransfertController extends AbstractController
 
             // Visibilité du transfert
             $transfert->setIsVisible(true);
+            //Gestion commission
+            $fraisTransfert =  $form->get('fraisTransfert')->getData();
+            $comAgent = $fraisTransfert * 0.70;
+            $comSite = $fraisTransfert - $comAgent;
+            
+            $transfert->setComAgentLivreur($comAgent);
+            $transfert->setComTransfert($comSite);
             $transfertRepository->save($transfert, true);
+
             return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -102,12 +110,18 @@ class TransfertController extends AbstractController
     #[Route('/{id}', name: 'app_transfert_show', methods: ['GET'])]
     public function show(ManagerRegistry $doctrine, Transfert $transfert): Response
     {
-        $entityManager = $doctrine->getManager();
-        $transfert->setDatePrisCharge(new \DateTime('@' . strtotime('now')));
-        $entityManager->persist($transfert);
+        // $entityManager = $doctrine->getManager();
+        //  $transfert->setDatePrisCharge(new \DateTime('@' . strtotime('now')));
+        // $entityManager->persist($transfert);
 
-        // actually executes the queries (i.e. the INSERT query)
-        $entityManager->flush();
+        // // actually executes the queries (i.e. the INSERT query)
+        // $entityManager->flush();
+        
+        // $form = $this->createFormBuilder($transfert)
+        //     ->add('id_transfert', HiddenType::class, [
+        //     'mapped' => false,
+        //     'attr' => ['class' => 'hidden-field', 'value' => $transfert->getId()]])
+        //     ->getForm();
 
         return $this->render('transfert/show.html.twig', [
             'transfert' => $transfert,
@@ -115,6 +129,7 @@ class TransfertController extends AbstractController
 
     }
 
+    
     #[Route('/{id}/edit', name: 'app_transfert_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
     {
@@ -126,7 +141,29 @@ class TransfertController extends AbstractController
             return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('transfert/edit.html.twig', [
+        return $this->render('transfert/edit.html.twig', [
+            'transfert' => $transfert,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}/prendre_en_charge', name: 'app_transfert_take', methods: ['POST'])]
+    public function prendre_en_charge(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
+    {
+
+        $agentLivreur = $this->getUser();
+        $transfert->setAgentLivreur($agentLivreur);
+
+        $form = $this->createForm(TransfertType::class, $transfert);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $transfert->setDatePrisCharge(new \DateTime('@' . strtotime('now')));
+            $transfertRepository->save($transfert, true);
+            return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('transfert/edit.html.twig', [
             'transfert' => $transfert,
             'form' => $form,
         ]);
