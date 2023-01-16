@@ -7,9 +7,7 @@
 	<div class="container mt-4">
 		<h1class="text-center mt-5">Édition Transfert</h1>
 
-        {# <h1 class="text-center mt-5">Édition {{ transfert.expediteur}} </h1> #}
-
-		{{ include('transfert/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+		{{ include('transfert/_form.html.twig', {'button_label': 'Confirmer'}) }}
 
 		<a href="{{ path('app_transfert_index') }}">back to list</a>
 

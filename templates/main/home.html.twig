@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Projet Utilisateurs
+{% block title %}home_index
 {% endblock %}
 
 {% block body %}
@@ -10,33 +10,34 @@
 
 		  {# {% if app.user %}
 		            <div class="text-center mt-3">
-		                <a class="btn btn-success" style="margin: 0 auto;" href="{{ path('app_transfert_new')}}">Ajouter un nouveau transfert d'ordinateur</a>
+		                <a class="btn btn-success" style="margin: 0 auto;" href="{{ path('app_transfert_new')}}">Ajouter un nouveau transfert</a>
 		            </div>
 		    {% endif %} #}
+
 		 <table class="home_continent">
 			<h1>Liste des transferts disponible</h1>
 			<thead>
 				<tr>
+					<th>Ville du bénéficiaire</th>
 					<th>Montant pour le bénéficiaire</th>
-					<th>Votre commission
-					</th>
+					<th>Votre commission</th>
 					<th>AgentLivreur</th>
 					<th>Transfert disponible</th>
 					<th>Action</th>
-
-
 				</tr>
 			</thead>
+
 			<tbody>
 				{% for transfert in transferts %}
 					<tr>
+						<td>{{ transfert.ville }}</td>
 						<td>{{ transfert.montBenef }}</td>
 						<td>{{ transfert.comAgentLivreur }}</td>
 						<td>{{ transfert.agentlivreur }}</td>
 						<td>{{ transfert.statut }}</td>
 						<td>
-							<a class="btn btn-primary" href="{{ path('app_transfert_show', {'id': transfert.id}) }}">show</a>
-							<a class="btn btn-warning" href="{{ path('app_transfert_edit', {'id': transfert.id}) }}">edit</a>
+							<a class="btn btn-primary" href="{{ path('app_transfert_show', {'id': transfert.id}) }}">Afficher</a>
+							<a class="btn btn-warning" href="{{ path('app_transfert_edit', {'id': transfert.id}) }}">Mettre à jour</a>
 						</td>
 
 
@@ -49,12 +50,12 @@
 			<div class="text-center mt-3">
 				<a class="btn btn-warning" style="margin: 0 auto;" href="{{ path('app_transfert_index')}}">Liste de tous les transferts</a>
 			</div>
-			<div class="text-center mt-3">
+			{# <div class="text-center mt-3">
 				<a href="{{ path('app_transfert_new')}}" class="btn btn-success text-center mt-3">Prendre en charge un Transfert</a>
 			</div>
 			<div class="text-center mt-3">
 				<a href="{{ path('app_transfert_new')}}" class="btn btn-success text-center mt-3">Transfert Livré</a>
-			</div>
+			</div> #}
 		{% endif %}
 	</div>
 {% endblock %}

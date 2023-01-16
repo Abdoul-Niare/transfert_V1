@@ -1,0 +1,15 @@
+
+{{ form_start(form) }}
+
+{{ form_widget(form) }}
+
+<div>
+<h1>vous etez sur le point de confirmer ce transfert</h1>
+</div>
+
+
+<div class="d-flex justify-content-start mt-3">
+	<button class="btn btn-success">{{ button_label|default('Envoyez') }}</button>
+</div>
+
+{{ form_end(form) }}

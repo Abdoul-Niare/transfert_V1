@@ -28,7 +28,7 @@ tr td:last-child {
 }
 
 .navbar{
-	width: 100vw;
+	width: 100% !important;
 	position:relative;
 	
 }

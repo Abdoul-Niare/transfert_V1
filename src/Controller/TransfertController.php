@@ -29,9 +29,10 @@ class TransfertController extends AbstractController
     #[Route('/new', name: 'app_transfert_new', methods: ['GET', 'POST'])]
     public function new(Request $request, TransfertRepository $transfertRepository, SluggerInterface $slugger): Response
     {
+        // Gestion de l'expéditeur.
         $expediteur = $this->getUser();
-       
         $transfert = new Transfert();
+        $transfert->setExpediteur($expediteur);
         $form = $this->createForm(TransfertType::class, $transfert);
         $form->handleRequest($request);
 
@@ -55,11 +56,6 @@ class TransfertController extends AbstractController
                 }
                 $transfert->setNumBenef($newFilename);
             }
-
-            $transfert->setExpediteur($expediteur);
-           
-
-         
 
             // Status du transfert à l'envoi 
             $status = "Envoyé";
@@ -89,6 +85,7 @@ class TransfertController extends AbstractController
 
             // Visibilité du transfert
             $transfert->setIsVisible(true);
+
             //Gestion commission
             $fraisTransfert =  $form->get('fraisTransfert')->getData();
             $comAgent = $fraisTransfert * 0.70;
@@ -128,8 +125,7 @@ class TransfertController extends AbstractController
         ]);
 
     }
-
-    
+        
     #[Route('/{id}/edit', name: 'app_transfert_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
     {
@@ -146,8 +142,17 @@ class TransfertController extends AbstractController
             'form' => $form,
         ]);
     }
+    #[Route('/{id}', name: 'app_transfert_delete', methods: ['POST'])]
+    public function delete(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $transfert->getId(), $request->request->get('_token'))) {
+            $transfertRepository->remove($transfert, true);
+        }
 
-    #[Route('/{id}/prendre_en_charge', name: 'app_transfert_take', methods: ['POST'])]
+        return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/prendre_en_charge', name: 'app_transfert_take', methods: ['GET','POST'])]
     public function prendre_en_charge(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
     {
 
@@ -162,6 +167,37 @@ class TransfertController extends AbstractController
             $transfertRepository->save($transfert, true);
             return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
         }
+        
+        // Status du transfert à l'envoi 
+        $status = "Pris en charge";
+        $transfert->setStatut($status);
+
+
+        return $this->render('transfert/confirm.html.twig', [
+            'transfert' => $transfert,
+            'form' => $form,
+        ]);
+    }
+
+
+    #[Route('/{id}/livraison', name: 'app_transfert_delivery', methods: ['GET','POST'])]
+    public function livrer(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
+    {
+        $agentLivreur = $this->getUser();
+        $transfert->setAgentLivreur($agentLivreur);
+
+        $form = $this->createForm(TransfertType::class, $transfert);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $transfert->setDateLivr(new \DateTime('@' . strtotime('now')));
+            $transfertRepository->save($transfert, true);
+            return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        // Status du transfert à l'envoi 
+        $status = "livré";
+        $transfert->setStatut($status);
 
         return $this->render('transfert/edit.html.twig', [
             'transfert' => $transfert,
@@ -169,13 +205,4 @@ class TransfertController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_transfert_delete', methods: ['POST'])]
-    public function delete(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $transfert->getId(), $request->request->get('_token'))) {
-            $transfertRepository->remove($transfert, true);
-        }
-
-        return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
-    }
 }
