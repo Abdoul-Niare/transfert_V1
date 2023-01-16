@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/transfert')]
@@ -27,6 +28,7 @@ class TransfertController extends AbstractController
 
 
     #[Route('/new', name: 'app_transfert_new', methods: ['GET', 'POST'])]
+    // #[IsGranted('ROLE_USER')]
     public function new(Request $request, TransfertRepository $transfertRepository, SluggerInterface $slugger): Response
     {
         // Gestion de l'expéditeur.

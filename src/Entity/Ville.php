@@ -19,14 +19,14 @@ class Ville
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'ville', targetEntity: Transfert::class)]
-    private Collection $villes;
+    private Collection $transferts;
 
     #[ORM\OneToMany(mappedBy: 'ville', targetEntity: User::class)]
     private Collection $users;
 
     public function __construct()
     {
-        $this->villes = new ArrayCollection();
+        $this->transferts = new ArrayCollection();
         $this->users = new ArrayCollection();
     }
 
@@ -55,15 +55,15 @@ class Ville
     /**
      * @return Collection<int, Transfert>
      */
-    public function getVilles(): Collection
+    public function getTransferts(): Collection
     {
-        return $this->villes;
+        return $this->transferts;
     }
 
     public function addVille(Transfert $ville): self
     {
-        if (!$this->villes->contains($ville)) {
-            $this->villes->add($ville);
+        if (!$this->transferts->contains($ville)) {
+            $this->transferts->add($ville);
             $ville->setVille($this);
         }
 
@@ -72,7 +72,7 @@ class Ville
 
     public function removeVille(Transfert $ville): self
     {
-        if ($this->villes->removeElement($ville)) {
+        if ($this->transferts->removeElement($ville)) {
             // set the owning side to null (unless already changed)
             if ($ville->getVille() === $this) {
                 $ville->setVille(null);

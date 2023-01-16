@@ -56,7 +56,7 @@ class Transfert
     #[ORM\Column]
     private ?bool $is_visible = null;
 
-    #[ORM\ManyToOne(inversedBy: 'villes')]
+    #[ORM\ManyToOne(inversedBy: 'transferts')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Ville $ville = null;
 
