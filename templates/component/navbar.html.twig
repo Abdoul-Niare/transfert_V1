@@ -11,7 +11,13 @@
 
 		<div class="navbar-nav ">
 			{% if app.user %}
-				<a class="nav-item nav-link" href="/profile">Mon Profil</a>
+				 
+				 	<p class="nav-item nav-link">Connecté: {{app.user.username}}</p>
+					<a class="nav-item nav-link" href="/profile"><i class="fa-solid fa-user"></i></a>
+					
+			
+
+				
 
 				<a class="nav-link " href="{{path('app_logout')}}">Déconnexion</a>
 

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmer la livraison du Transfert
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1class="text-center mt-5">Confirmation de livraison</h1>
+
+		{{ include('livraisons/_confirm.html.twig', {'button_label': 'Confirmer 1'}) }}
+			<a class="btn btn-success m-2" href="{{ path('app_transfert_index') }}">Annuler</a>
+		<div class="text-center">
+
+		</div>
+   
+	</div>
+{% endblock %}

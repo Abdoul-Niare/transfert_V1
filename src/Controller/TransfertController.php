@@ -92,7 +92,7 @@ class TransfertController extends AbstractController
             $fraisTransfert =  $form->get('fraisTransfert')->getData();
             $comAgent = $fraisTransfert * 0.70;
             $comSite = $fraisTransfert - $comAgent;
-            
+
             $transfert->setComAgentLivreur($comAgent);
             $transfert->setComTransfert($comSite);
             $transfertRepository->save($transfert, true);
@@ -109,25 +109,11 @@ class TransfertController extends AbstractController
     #[Route('/{id}', name: 'app_transfert_show', methods: ['GET'])]
     public function show(ManagerRegistry $doctrine, Transfert $transfert): Response
     {
-        // $entityManager = $doctrine->getManager();
-        //  $transfert->setDatePrisCharge(new \DateTime('@' . strtotime('now')));
-        // $entityManager->persist($transfert);
-
-        // // actually executes the queries (i.e. the INSERT query)
-        // $entityManager->flush();
-        
-        // $form = $this->createFormBuilder($transfert)
-        //     ->add('id_transfert', HiddenType::class, [
-        //     'mapped' => false,
-        //     'attr' => ['class' => 'hidden-field', 'value' => $transfert->getId()]])
-        //     ->getForm();
-
         return $this->render('transfert/show.html.twig', [
             'transfert' => $transfert,
         ]);
-
     }
-        
+
     #[Route('/{id}/edit', name: 'app_transfert_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
     {
@@ -154,57 +140,67 @@ class TransfertController extends AbstractController
         return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/{id}/prendre_en_charge', name: 'app_transfert_take', methods: ['GET','POST'])]
-    public function prendre_en_charge(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
-    {
 
+    // //dans le controller
+    // #[Route('/{id}', name: 'app_transfert_take', methods: ['POST'])]
+    // public function prendre_en_charge(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
+    // {
+    //     if ($this->isCsrfTokenValid('take' . $transfert->getId(), $request->request->get('_token'))) {
+    //         $agentLivreur = $this->getUser();
+    //         $transfert->setAgentLivreur($agentLivreur);
+
+    //         $transfert->setDatePrisCharge(new \DateTime('@' . strtotime('now')));
+    //         $transfertRepository->save($transfert, true);
+    //     }
+    //     return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
+
+    //     return $this->render('prisEnCharge/confirm.html.twig', [
+    //         'transfert' => $transfert
+            
+    //     ]);
+    // }
+
+
+    #[Route('/{id}/prendre_en_charge', name: 'app_transfert_take', methods: ['GET', 'POST'])]
+    public function PrisEnCharge(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
+    {
         $agentLivreur = $this->getUser();
         $transfert->setAgentLivreur($agentLivreur);
-
         $form = $this->createForm(TransfertType::class, $transfert);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($this->isCsrfTokenValid('take' . $transfert->getId(), $request->request->get('_token')))  {
             $transfert->setDatePrisCharge(new \DateTime('@' . strtotime('now')));
+            // Status du transfert à l'envoi 
+            $status = "Pris en charge";
+            $transfert->setStatut($status);
             $transfertRepository->save($transfert, true);
             return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
         }
-        
-        // Status du transfert à l'envoi 
-        $status = "Pris en charge";
-        $transfert->setStatut($status);
-
-
-        return $this->render('transfert/confirm.html.twig', [
+        return $this->render('prisEnCharge/confirm.html.twig', [
             'transfert' => $transfert,
             'form' => $form,
         ]);
     }
 
 
-    #[Route('/{id}/livraison', name: 'app_transfert_delivery', methods: ['GET','POST'])]
-    public function livrer(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
-    {
-        $agentLivreur = $this->getUser();
-        $transfert->setAgentLivreur($agentLivreur);
-
-        $form = $this->createForm(TransfertType::class, $transfert);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $transfert->setDateLivr(new \DateTime('@' . strtotime('now')));
-            $transfertRepository->save($transfert, true);
-            return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        // Status du transfert à l'envoi 
-        $status = "livré";
-        $transfert->setStatut($status);
-
-        return $this->render('transfert/edit.html.twig', [
-            'transfert' => $transfert,
-            'form' => $form,
-        ]);
-    }
-
+    // #[Route('/{id}/livraison', name: 'app_transfert_delivery', methods: ['GET', 'POST'])]
+    // public function livrer(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
+    // {
+    //     $agentLivreur = $this->getUser();
+    //     $transfert->setAgentLivreur($agentLivreur);
+    //     $form = $this->createForm(TransfertType::class, $transfert);
+    //     $form->handleRequest($request);
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $transfert->setDateLivr(new \DateTime('@' . strtotime('now')));
+    //         // Status du transfert à l'envoi 
+    //         $status = "livré";
+    //         $transfert->setStatut($status);
+    //         $transfertRepository->save($transfert, true);
+    //         return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
+    //     }
+    //     return $this->render('livraisons/confirm.html.twig', [
+    //         'transfert' => $transfert,
+    //         'form' => $form,
+    //     ]);
+    // }
 }
