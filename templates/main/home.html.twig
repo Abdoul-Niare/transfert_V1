@@ -9,10 +9,10 @@
 		class="container mt-5">
 
 		{# {% if app.user %}
-										            <div class="text-center mt-3">
-										                <a class="btn btn-success" style="margin: 0 auto;" href="{{ path('app_transfert_new')}}">Ajouter un nouveau transfert</a>
-										            </div>
-										    {% endif %} #}
+												            <div class="text-center mt-3">
+												                <a class="btn btn-success" style="margin: 0 auto;" href="{{ path('app_transfert_new')}}">Ajouter un nouveau transfert</a>
+												            </div>
+												    {% endif %} #}
 
 		<table class="home_continent">
 			<h1>Liste des transferts disponible</h1>
@@ -47,29 +47,28 @@
 		</table>
 
 		{% if app.user %}
-			<div class="text-center mt-3">
+			<div class=" list-group text-center mt-3">
 				<a class="btn btn-warning" style="margin: 0 auto;" href="{{ path('app_transfert_index')}}">Liste de tous les transferts</a>
 			</div>
 			{# <div class="text-center mt-3">
-			<a href="{{ path('app_transfert_new')}}" class="btn btn-success text-center mt-3">Prendre en charge un Transfert</a>
-			</div>
-			<div class="text-center mt-3">
-				<a href="{{ path('app_transfert_new')}}" class="btn btn-success text-center mt-3">Transfert Livré</a>
-			</div> #}
+						<a href="{{ path('app_transfert_new')}}" class="btn btn-success text-center mt-3">Prendre en charge un Transfert</a>
+						</div>
+						<div class="text-center mt-3">
+							<a href="{{ path('app_transfert_new')}}" class="btn btn-success text-center mt-3">Transfert Livré</a>
+						</div> #}
 		{% endif %}
 
-			<div>
-			<h2 class="m-5">Toutes les Villes
-			</h2>
-			{% for ville in villes %}
-			<a class="btn btn-secondary p-2 m-1 " href="{{path('tab', {id:ville.id})}}">{{ville.name}}</a>
+	
+				<div class="list-group">
+					<h2 class="m-5">Toutes les Villes</h2>
+					<ul class="nav nav-tabs justify-content-center">
+						{% for ville in villes %}
+							<li class="nav-item">
+								<a class=" nav-link  {% if app.request.uri|split('/')|last == ville.id %} active{% endif %} " href="{{path('tab', {id:ville.id})}}">{{ville.name}}</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
 
-			{% endfor %}
-			
 
-
-		
-
-
-	</div>
-{% endblock %}
+	{% endblock %}
