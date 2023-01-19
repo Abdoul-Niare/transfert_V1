@@ -72,8 +72,10 @@
 		</tbody>
 	</table>
 	<div class="text-center">
+		{% if is_granted('ROLE_ADMIN') %}
 		<a class="btn btn-warning p-1" href="{{ path('app_transfert_take', {'id': transfert.id}) }}">Prendre en charge</a>
 		<a class="btn btn-warning p-1" href="{{ path('app_transfert_delivery', {'id': transfert.id}) }}">Livrer le transfert</a>
+		{% endif %}
 		<a class="btn btn-primary p-1 " href="{{ path('app_transfert_index') }}">Retour à la liste</a>
 		{# <a class="btn btn-secondary p-1 " href="{{ path('app_transfert_edit', {'id': transfert.id}) }}">Modifier</a> #}
 	</div>

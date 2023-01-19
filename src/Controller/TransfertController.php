@@ -115,6 +115,7 @@ class TransfertController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_transfert_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
     {
         $form = $this->createForm(TransfertType::class, $transfert);
@@ -131,6 +132,7 @@ class TransfertController extends AbstractController
         ]);
     }
     #[Route('/{id}', name: 'app_transfert_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $transfert->getId(), $request->request->get('_token'))) {
@@ -139,27 +141,6 @@ class TransfertController extends AbstractController
 
         return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
     }
-
-
-    // //dans le controller
-    // #[Route('/{id}', name: 'app_transfert_take', methods: ['POST'])]
-    // public function prendre_en_charge(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
-    // {
-    //     if ($this->isCsrfTokenValid('take' . $transfert->getId(), $request->request->get('_token'))) {
-    //         $agentLivreur = $this->getUser();
-    //         $transfert->setAgentLivreur($agentLivreur);
-
-    //         $transfert->setDatePrisCharge(new \DateTime('@' . strtotime('now')));
-    //         $transfertRepository->save($transfert, true);
-    //     }
-    //     return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
-
-    //     return $this->render('prisEnCharge/confirm.html.twig', [
-    //         'transfert' => $transfert
-            
-    //     ]);
-    // }
-
 
     #[Route('/{id}/prendre_en_charge', name: 'app_transfert_take', methods: ['GET', 'POST'])]
     public function PrisEnCharge(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
@@ -181,7 +162,6 @@ class TransfertController extends AbstractController
             'form' => $form,
         ]);
     }
-
 
     #[Route('/{id}/livraison', name: 'app_transfert_delivery', methods: ['GET', 'POST'])]
     public function livrer(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response

@@ -22,11 +22,10 @@
 					<th>Montant pour le bénéficiaire</th>
 					<th>Votre commission</th>
 					<th>AgentLivreur</th>
-					<th>Transfert disponible</th>
+					<th>Status des Transferts</th>
 					<th>Action</th>
 				</tr>
 			</thead>
-
 			<tbody>
 				{% for transfert in transferts %}
 					<tr>
@@ -39,8 +38,6 @@
 							<a class="btn btn-primary" href="{{ path('app_transfert_show', {'id': transfert.id}) }}">Afficher</a>
 							<a class="btn btn-warning" href="{{ path('app_transfert_edit', {'id': transfert.id}) }}">Mettre à jour</a>
 						</td>
-
-
 					</tr>
 				{% endfor %}
 			</tbody>
