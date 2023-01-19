@@ -1,98 +1,93 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Transfert_Show
+{% block title %}Transfert
 {% endblock %}
 
 {% block body %}
-	<h1> Transfert {{ transfert.statut }}</h1>
+	<h1>Transfert</h1>
 
 	<table class="table">
 		<tbody>
 			<tr>
-				<th>Transfert: {{ transfert.codeSecret }}</th>
+				<th>Id</th>
 				<td>{{ transfert.id }}</td>
 			</tr>
 			<tr>
-				<th>Status</th>
+				<th>Statut</th>
 				<td>{{ transfert.statut }}</td>
 			</tr>
 			<tr>
-				<th>Code secret</th>
+				<th>CodeSecret</th>
 				<td>{{ transfert.codeSecret }}</td>
 			</tr>
 			<tr>
-				<th>Montant du transfert</th>
+				<th>MontTransfert</th>
 				<td>{{ transfert.montTransfert }}</td>
 			</tr>
 			<tr>
-				<th>Montant pour le Bénéficiaire</th>
+				<th>MontBenef</th>
 				<td>{{ transfert.montBenef }}</td>
 			</tr>
 			<tr>
-				<th>Frais de transfert</th>
+				<th>FraisTransfert</th>
 				<td>{{ transfert.fraisTransfert }}</td>
 			</tr>
 			<tr>
-				<th>Commission du site</th>
+				<th>ComTransfert</th>
 				<td>{{ transfert.comTransfert }}</td>
 			</tr>
 
 			{# <?php if($this->getUser()->roles === "ROLE_AGENT"){ ?> #}
 			<tr>
-				<th>Commission de l'Agent_Livreur</th>
+				<th>ComAgentLivreur</th>
 				<td>{{ transfert.comAgentLivreur }}</td>
 			</tr>
 
 			{# <?php } ?> #}
 
 			<tr>
-				<th>Nom du bénéficiaire</th>
+				<th>NomBenef</th>
 				<td>{{ transfert.nomBenef }}</td>
 			</tr>
 			<tr>
-				<th>Cate d'identité du bénéficiaire</th>
+				<th>NumBenef</th>
 				<td>{{ transfert.numBenef }}</td>
 			</tr>
 			<tr>
-				<th>Telephone du bénéficiaire</th>
+				<th>NumTelBenef</th>
 				<td>{{ transfert.numTelBenef }}</td>
 			</tr>
 			<tr>
-				<th>Date d'envoi</th>
+				<th>DateEnvoi</th>
 				<td>{{ transfert.dateEnvoi ? transfert.dateEnvoi|date('Y-m-d H:i:s') : '' }}</td>
 			</tr>
 			<tr>
-				<th>Date de pris en charge</th>
+				<th>DatePrisCharge</th>
 				<td>{{ transfert.datePrisCharge ? transfert.datePrisCharge|date('Y-m-d H:i:s') : '' }}</td>
 			</tr>
 			<tr>
-				<th>Date de livraison</th>
+				<th>DateLivr</th>
 				<td>{{ transfert.dateLivr ? transfert.dateLivr|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Is_visible</th>
+				<td>{{ transfert.isVisible ? 'Yes' : 'No' }}</td>
 			</tr>
 		</tbody>
 	</table>
+
+	<a class="btn btn-secondary p-1 " href="{{ path('app_transfert_index') }}">Retour à la liste</a>
+	<br>
 	<div class="text-center">
-		<a class="btn btn-warning p-1" href="{{ path('app_transfert_take', {'id': transfert.id}) }}">Prendre en charge</a>
-		<a class="btn btn-warning p-1" href="{{ path('app_transfert_delivery', {'id': transfert.id}) }}">Livrer le transfert</a>
-		<a class="btn btn-primary p-1 " href="{{ path('app_transfert_index') }}">Retour à la liste</a>
+		{# <a class="btn btn-warning p-1 m-1" href="{{ path('app_transfert_take', {'id': transfert.id}) }}">Prendre en charge</a> #}
+		{{ include('livraison/_confirm_take_form.html.twig') }}
 		{# <a class="btn btn-secondary p-1 " href="{{ path('app_transfert_edit', {'id': transfert.id}) }}">Modifier</a> #}
 	</div>
-    
     
 	{# <div class="text-center">
 		<a class="btn btn-warning p-1 m-1" href="{{ path('app_transfert_delivery', {'id': transfert.id}) }}">transfert livré</a>
 	</div> #}
 
-	
-	{# {{ include('transfert/_confirm_take_form.html.twig') }} #}
-
 	{# {{ include('transfert/_delete_form.html.twig') }} #}
-
-{# {{ include('transfert/_form.html.twig', {'button_label': 'Confirmer'}) }} #}
-	{# // <script>
-	    // function fun() {
-	    //     (confirm("Confirmez-vous le transfert?"));
-	    // }</script>
-	
-	    // onclick="fun()" #}
 {% endblock %}
+

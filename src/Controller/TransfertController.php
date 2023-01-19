@@ -183,24 +183,24 @@ class TransfertController extends AbstractController
     }
 
 
-    // #[Route('/{id}/livraison', name: 'app_transfert_delivery', methods: ['GET', 'POST'])]
-    // public function livrer(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
-    // {
-    //     $agentLivreur = $this->getUser();
-    //     $transfert->setAgentLivreur($agentLivreur);
-    //     $form = $this->createForm(TransfertType::class, $transfert);
-    //     $form->handleRequest($request);
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $transfert->setDateLivr(new \DateTime('@' . strtotime('now')));
-    //         // Status du transfert à l'envoi 
-    //         $status = "livré";
-    //         $transfert->setStatut($status);
-    //         $transfertRepository->save($transfert, true);
-    //         return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
-    //     }
-    //     return $this->render('livraisons/confirm.html.twig', [
-    //         'transfert' => $transfert,
-    //         'form' => $form,
-    //     ]);
-    // }
+    #[Route('/{id}/livraison', name: 'app_transfert_delivery', methods: ['GET', 'POST'])]
+    public function livrer(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
+    {
+        $agentLivreur = $this->getUser();
+        $transfert->setAgentLivreur($agentLivreur);
+        $form = $this->createForm(TransfertType::class, $transfert);
+        $form->handleRequest($request);
+        if ($this->isCsrfTokenValid('take' . $transfert->getId(), $request->request->get('_token'))) {
+            $transfert->setDateLivr(new \DateTime('@' . strtotime('now')));
+            // Status du transfert à l'envoi 
+            $status = "livré";
+            $transfert->setStatut($status);
+            $transfertRepository->save($transfert, true);
+            return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render('livraison/confirm.html.twig', [
+            'transfert' => $transfert,
+            'form' => $form,
+        ]);
+    }
 }

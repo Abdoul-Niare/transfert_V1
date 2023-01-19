@@ -1,4 +1,5 @@
 <form method="post" action="{{ path('app_transfert_take', {'id': transfert.id}) }}" onsubmit="return confirm('Etes-vous sûre de vouloir prendre en charge ce transfert ?');">
     <input type="hidden" name="_token" value="{{ csrf_token('take' ~ transfert.id) }}">
-    <button class="btn btn-danger">Prendre en charge</button>
+    <button class="btn btn-danger">Confirmer 1</button>
+
 </form>
