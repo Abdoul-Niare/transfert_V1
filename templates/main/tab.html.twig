@@ -6,31 +6,39 @@
 {% block body %}
 
 <div class="container">
-	<h1 class="title next-center nt-4 text-dark">transfert appartenant au ville :
+	<h1 class="title next-center nt-4 text-dark">transfert appartenant à :
 		{{vil.name}}</h1>
 	<table class="table nt-4 text-muted">
 		<thead>
 			<tr>
-				<th colspan="12" class="text-info">Transfert de
-					{{vil.name}}</th>
+				<th class="text-info text-center">EXPEDITEUR</th>
+				<th class="text-info text-center">AGENTS</th>
+				<th class="text-info text-center">TRANSFERTS
+					{# {{vil.name}}</th> #}
+				</th>
 			</tr>
 		</thead>
 		{% for transfert in vil.transferts %}
 			<tbody>
 				<tr>
 					{# <td> <a href="{{transfert.id}}"></a></td>
-					                    {{path('tab', {id:ville.id})}} #}
+					{{path('tab', {id:ville.id})}} #}
+
 					<td>
-						Expediteur:
-						{{transfert.expediteur}}
-                    </td>
+						<a class="btn btn-outline-success" href="/profile">
+							<i class="fa-solid fa-user">
+								{{transfert.expediteur}}</i>
+						</a>
+					</td>
 					<td>
-						Agent_Livreur:
-						{{transfert.agentlivreur}}
-                    </td>
-                        
-					<td>Transfert:
-						<a class="btn btn-primary p-1 m-1" href="{{ path('app_transfert_show', {'id': transfert.id}) }}">{{transfert.id}}</a>
+						<a class="btn btn-outline-success" href="/profile">
+							<i class="fa-solid fa-user">
+								{{transfert.agentlivreur}}</i>
+						</a>
+					</td>
+
+					<td>numéro:
+						<a class="btn btn-outline-success p-1 m-1" href="{{ path('app_transfert_show', {'id': transfert.id}) }}">{{transfert.id}}</a>
 					</td>
 				</tr>
 			</tbody>
@@ -39,8 +47,8 @@
 				<td colspan="12">Pas de transfert disponible pour cette Ville</td>
 			</tr>
 			{# <tr>
-				<td colspan="12">Pas d'agent disponible</td>
-			</tr> #}
+										<td colspan="12">Pas d'agent disponible</td>
+									</tr> #}
 			{%endfor%}
 
 		</table>

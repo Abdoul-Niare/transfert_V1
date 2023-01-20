@@ -24,6 +24,14 @@ class TransfertType extends AbstractType
             ->add('ville', Null, [
                 'label' => "Ville de votre Bénéficiare:",
             ])
+
+            // ->add('marque', EntityType::class, [
+            //     'choice_label'=> 'name',
+            //     'class'=> Marque::class,
+            //     'label'=>'Choix de la marque',
+            //     'multiple' => false,
+            //     'expanded' => true,
+            // ])
             
             ->add('nomBenef', TextType::class, [
                 'label' => "Nom et Prenom de votre Bénéficiaire:",

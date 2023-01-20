@@ -63,4 +63,9 @@ class TransfertRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    // public function findAllExceptDelivered(): array
+    // {
+        
+    // }
 }

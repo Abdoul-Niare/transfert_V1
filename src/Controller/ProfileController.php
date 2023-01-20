@@ -16,9 +16,9 @@ class ProfileController extends AbstractController
     {  
          $id = $this->getUser();
         return $this->render('profile/index.html.twig', [
-            'controller_name' => 'ProfileController',
             'transferts'=> $transfertRepository->findBy(
-                    ['agentLivreur'=>$id]
+                    ['agentLivreur'=>$id],
+                 
             ),
         ]);
     }

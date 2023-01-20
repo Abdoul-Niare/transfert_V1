@@ -1,0 +1,46 @@
+body {
+	width: 100vw;
+    background-color: lightgray;
+	margin: 0;
+	padding: 0;
+	font-family: arial, sans-serif;
+	color:#333;
+}
+
+h1{
+    color: #a86566;
+}
+
+table {
+
+	margin: 20px 10px 10px 10px;
+	border-collapse: collapse;
+	border: solid 2px;
+}
+
+th, td {
+	padding: 10px;
+	border: solid 1px;
+}
+
+tr td:last-child {
+	text-align: end;
+}
+
+.navbar{
+	width: 100% !important;
+	position:relative;
+	
+}
+
+label {
+    display: block;
+}
+
+input {
+    width: 15rem;
+}
+
+textarea{
+    width: 155rem;
+}

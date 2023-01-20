@@ -13,6 +13,14 @@ class VilleType extends AbstractType
     {
         $builder
             ->add('name')
+
+            // ->add('marque', EntityType::class, [
+            //     'choice_label'=> 'name',
+            //     'class'=> Marque::class,
+            //     'label'=>'Choix de la marque',
+            //     'multiple' => false,
+            //     'expanded' => true,
+            // ])
         ;
     }
 

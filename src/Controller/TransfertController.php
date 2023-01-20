@@ -80,11 +80,9 @@ class TransfertController extends AbstractController
             $lettre .= array_shift($lettres);
             // un nombre sur 4 digitau hazard
             $nombre = mt_rand(1000, 9999);
-
             $codeSecret = $lettre . $nombre;
             $transfert->setCodeSecret($codeSecret);
-
-
+            
             // Visibilité du transfert
             $transfert->setIsVisible(true);
 
@@ -136,7 +134,8 @@ class TransfertController extends AbstractController
     public function delete(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $transfert->getId(), $request->request->get('_token'))) {
-            $transfertRepository->remove($transfert, true);
+            $transfert->setIsVisible(false);
+            $transfertRepository->save($transfert);
         }
 
         return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);

@@ -11,31 +11,23 @@
 
 		<div class="navbar-nav ">
 			{% if app.user %}
-				 
-				 	<p class="nav-item nav-link">Connecté: {{app.user.username}}</p>
-					<a class="nav-item nav-link" href="/profile"><i class="fa-solid fa-user"></i></a>
-					
-			
-
-				
-
+				<p class="nav-item nav-link text-success">Connecté:
+					{{app.user.username}}</p>
+				<a class="nav-item nav-link" href="/profile">
+					<i class="fa-solid fa-user"></i>
+				</a>
 				<a class="nav-link " href="{{path('app_logout')}}">Déconnexion</a>
 
-				<a class="nav-link text-primary" href="{{ path('app_transfert_new')}}">Envoyer de l'argent</a>
+				<a class="nav-link" style="color:rgb(186,124,51)" href="{{ path('app_transfert_new')}}">Envoyer de l'argent</a>
+
 			{% else %}
-				<a class="nav-link" href="{{path('app_register')}}">Inscription</a>
+				<a class="btn btn-outline-success me-2" href="{{path('app_register')}}">Inscription</a>
 
-				<a class="nav-link" href="{{path('app_login')}}">Connexion</a>
+				<a class="btn btn-outline-success" href="{{path('app_login')}}">Connexion</a>
 
-				<a class="nav-link" href="{{path('app_login')}}">Envoyer de l'argent</a>
+				<a class="btn btn-outline-light ms-2 me-2"style="color:rgb(186,124,51)" href="{{path('app_login')}}">Envoyer de l'argent</a>
 
 			{% endif %}
-
 		</div>
-
-
-
-	
-
 	</div>
 </nav>
