@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Transfert;
+use App\Entity\Ville;
 use phpDocumentor\Reflection\Types\Null_;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,16 +24,8 @@ class TransfertType extends AbstractType
         $builder
 
             ->add('ville', Null, [
-                'label' => "Ville de votre Bénéficiare:",
+                'label' => "Ville Bénéficiare:",
             ])
-
-            // ->add('marque', EntityType::class, [
-            //     'choice_label'=> 'name',
-            //     'class'=> Marque::class,
-            //     'label'=>'Choix de la marque',
-            //     'multiple' => false,
-            //     'expanded' => true,
-            // ])
             
             ->add('nomBenef', TextType::class, [
                 'label' => "Nom et Prenom de votre Bénéficiaire:",
@@ -45,20 +39,31 @@ class TransfertType extends AbstractType
 
                 'invalid_message' => 'Veuillez fournir un numéro de téléphone valide.',
                 'attr' => [
-                    'placeholder' => 'Entrez le numero de votre bénéficiare'
+                    'placeholder' => '+223 00 00 00 00'
             ]])
 
 
             ->add('montTransfert', NumberType::class, [
-                'label' => 'Montant du transfert:',
+                'label' => 'Montant en euro:',
+                'attr' => [
+                    'placeholder' => 'Montant envoyé']
             ])
 
+            // ->add('comTransfert', NumberType::class, [
+            //     'label' => 'adresse du transfert:',
+            // ])
+          
+
             ->add('fraisTransfert', NumberType::class, [
-                'label' => "Frais d'envoi du Transfert:",
+                'label' => "Frais en euro:",
+                'attr' => [
+                    'placeholder' => 'frais d\'envoi']
             ])
 
             ->add('montBenef', NumberType::class, [
-                'label' => 'Le bénéficiaire recevra:',
+                'label' => 'Montant en CFA:',
+                'attr' => [
+                    'placeholder' => 'Le bénéficiaire réçoit']
             ])
             
             ->add('numBenef', FileType::class, [
@@ -78,8 +83,6 @@ class TransfertType extends AbstractType
                 ],
             ])
 
-
-            
                 // ->add('comTransfert', NumberType::class, [
             //     'label' => " Commission de l'appli: ",
             // ])

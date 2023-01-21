@@ -5,24 +5,29 @@ mettre à jour= primary
 liste= info
 envoie =rgb(186,124,51)
 
+couleur= RGBA(13,110,253,0.25)
+
 **/
 
 body {
 	width: 100vw;
-	min-height: 100vh;
+	max-height: 100vh;
     background-color:white;
 	margin: 0;
 	padding: 0;
 	font-family: arial, sans-serif;
-	color:black;
+	color:black;	
 }
-#container{
-	background-color: rgb(222,89,111);
+.container{
+	max-width: 50vw;
+	padding-top: 20px;
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(186,124,51);
+	border-radius: 40px;
+	
 }
 
-h1{
-    color: black;
-}
 
 .table {
 	max-width: 80vw !important;
@@ -39,30 +44,47 @@ th, td {
 tr td:last-child {
 	text-align: end;
 }
-
-.navbar{
+.navbar .footer{
 	width: 100% !important;
 	position:relative;
 	
 }
-
 label {
     display: block;
+	line-height:20px !important;
+	/* margin-left: 50px; */
+	
 }
+/* input, select{
+    width: 80% !important;
+	margin: 0 !important;
+	padding: 0% !important;
 
-input{
-    width: 50% !important;
-}
-
-select{
-	width: 25% !important;
-}
-
-textarea{
-    width: 155rem;
-}
-
+} */
+/* select{
+	width: 80% !important;
+	display: block;
+	line-height:20px !important;
+	margin-left: 50px;
+	
+} */
 #registration_form_agreeTerms{
-	width: 10px !important;
-	height: 10px;
+	width: 15px !important;
+	height: 15px;
+	margin: 0;
+	padding: 0;
+}
+.form-control {
+	display: block;
+	line-height:20px !important;
+	margin-left:auto;
+	border: 1px solid #ced4da;
+}
+.content_new{
+	float: left;
+	width: 100%; 
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	
 }

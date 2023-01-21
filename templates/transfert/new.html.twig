@@ -5,40 +5,40 @@
 
 {% block body %}
 	<div class="container_new">
-    <h1>Commencer un nouveau Transfert</h1>
+		<h2>Commencer un nouveau Transfert</h2>
 
-	{{ include('transfert/_form.html.twig') }}
-	<a href="{{ path('app_transfert_index') }}">Retour à la liste</a>
+		{{ include('transfert/_form.html.twig', {'button_label': 'Valider'}) }}
 
-    </div>
+		{# <a href="{{ path('app_transfert_index') }}">Retour à la liste</a> #}
+	</div>
 
-    <script type="text/javascript">
-		 document.getElementById("transfert_montTransfert").addEventListener("change", myFunction);
-         
-        function myFunction() {
-        var transfert = document.getElementById("transfert_montTransfert");
-        var frais = document.getElementById("transfert_fraisTransfert");
-        // var commission = document.getElementById("transfert_comTransfert");
-        // var agent = document.getElementById("transfert_comAgentLivreur");
-        var benef = document.getElementById("transfert_montBenef");
+	<script type="text/javascript">
+		document.getElementById("transfert_montTransfert").addEventListener("change", myFunction);
 
-        if (isNaN(transfert.value)) {
-        transfert.value = '';
-        frais.value = '';
-        // commission.value='';
-        // // agent.value='';
-        benef.value='';
+function myFunction() {
+var transfert = document.getElementById("transfert_montTransfert");
+var frais = document.getElementById("transfert_fraisTransfert");
+// var commission = document.getElementById("transfert_comTransfert");
+// var agent = document.getElementById("transfert_comAgentLivreur");
+var benef = document.getElementById("transfert_montBenef");
 
-        } else {
-        frais.value = transfert.value * 0.025;
-        //commission.value= transfert.value*0.03;
-        // agent.value= transfert.value*0.07;
-         //benef.value= transfert.value*0.90;
+if (isNaN(transfert.value)) {
+transfert.value = '';
+frais.value = '';
+// commission.value='';
+// // agent.value='';
+benef.value = '';
 
-        benef.value= transfert.value - frais.value;
+} else {
+frais.value = transfert.value * 0.025;
+// commission.value= transfert.value*0.03;
+// agent.value= transfert.value*0.07;
+// benef.value= transfert.value*0.90;
 
-        }
-        } 
+benef.value = transfert.value - frais.value;
+
+}
+}
 	</script>
 
 {% endblock %}
