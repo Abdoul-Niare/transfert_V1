@@ -5,30 +5,61 @@
 
 {% block body %}
 
-	<div class="container style="background-color:rgb(222,89,111)">
+	<section class="vh-100 bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+		<div class="container py-5 h-100">
+			<div class="row justify-content-center align-items-center h-100">
+				<div class="col-12 col-lg-9 col-xl-7">
+					<div
+						class="card shadow-2-strong card-registration" style="border-radius: 30px; height: 80vh">
+						<h3 class="mb-4 pb-2 pb-md-0 md-5 text-center">Page d'inscription</h3>
+						{{ form_start(registrationForm )}}
+						<div class="row m-2">
+							<div
+								class="col-6 mb-4">
+								{{ form_row(registrationForm.nom) }}
+							</div>
+							<div
+								class="col-6 mb-4">
+								{{ form_row(registrationForm.prenom) }}
+							</div>
+						</div>
+						<div class="row m-2">
+							<div
+								class="col-md-6 mb-4">
+								{{ form_row(registrationForm.username) }}
+							</div>
+							<div
+								class="col-md-6 mb-4">
+								{{ form_row(registrationForm.ville) }}
+							</div>
+						</div>
+						<div class="row m-2">
+							<div
+								class="col-md-6 mb-4">
+								{{ form_row(registrationForm.mail) }}
+							</div>
+							<div
+								class="col-md-6 mb-4">
+								{{ form_row(registrationForm.plainPassword, {label: 'Password'}) }}
+							</div>
+              <div class="text-center>
+                {{ form_row(registrationForm.agreeTerms) }}
+                </div>
+              	<div class=" text-center">
+									<button type="submit" class="btn btn-primary p-1 href=" {{path('app_login')}} ">S'enregister</button>
+								</div>
+						</div>
+						<div class="row m-5">
+							<div class="col-md-6 mb-4">
+							</div>
 
-		<h1 class="text-center">Page d'inscription</h1>
-		{{ form_start(registrationForm) }}
-		{{ form_row(registrationForm.nom) }}
+						</div>
+						{{ form_end(registrationForm) }}
 
-		{{ form_row(registrationForm.prenom) }}
-		{{ form_row(registrationForm.mail) }}
-		{{ form_row(registrationForm.ville) }}
-		{{ form_row(registrationForm.username) }}
-		{{ form_row(registrationForm.plainPassword, {
-				label: 'Password'}) }}
-		<div class="text-center>
-			{{ form_row(registrationForm.agreeTerms) }}
+
+					</div>
+				</div>
+			</div>
 		</div>
-
-		<div class=" text-center">
-			<button type="submit" class="btn btn-primary p-1 href=" {{path('app_login')}} ">S'enregister</button>
-		</div>
-
-		{{ form_end(registrationForm) }}
-
 	</div>
-
-
-	
-{% endblock %}
+</section>{% endblock %}

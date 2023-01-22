@@ -22,17 +22,14 @@ class TransfertType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-
             ->add('ville', Null, [
                 'label' => "Ville Bénéficiare:",
             ])
-            
             ->add('nomBenef', TextType::class, [
                 'label' => "Nom et Prenom de votre Bénéficiaire:",
                 'attr' => [
                     'placeholder' => 'Nom et Prenom'
-            ]
-            ])
+            ]])
             
             ->add('numTelBenef', TelType::class, [
                 'label' => "Numero Tel:",
@@ -42,17 +39,11 @@ class TransfertType extends AbstractType
                     'placeholder' => '+223 00 00 00 00'
             ]])
 
-
             ->add('montTransfert', NumberType::class, [
                 'label' => 'Montant en euro:',
                 'attr' => [
                     'placeholder' => 'Montant envoyé']
             ])
-
-            // ->add('comTransfert', NumberType::class, [
-            //     'label' => 'adresse du transfert:',
-            // ])
-          
 
             ->add('fraisTransfert', NumberType::class, [
                 'label' => "Frais en euro:",
@@ -82,7 +73,10 @@ class TransfertType extends AbstractType
                     ])
                 ],
             ])
-
+                   // ->add('comTransfert', NumberType::class, [
+            //     'label' => 'adresse du transfert:',
+            // ])
+          
                 // ->add('comTransfert', NumberType::class, [
             //     'label' => " Commission de l'appli: ",
             // ])

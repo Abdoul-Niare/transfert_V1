@@ -23,11 +23,13 @@ class RegistrationFormType extends AbstractType
             ->add('username')
             ->add('nom')
             ->add('prenom')
+            
             ->add('mail', TextType::class, [
                 'label' => 'Adresse mail',
                 'attr' => [
                     'placeholder' => 'votre email']
             ])
+
             ->add('ville')
            
             // ->add('email', TextType::class, [
