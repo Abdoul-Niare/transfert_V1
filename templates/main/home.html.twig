@@ -5,45 +5,47 @@
 
 {% block body %}
 
-	<div
-		class="container mt-5">
-
-		{# {% if app.user %}
-					<div class="text-center mt-3">
-						<a class="btn btn-success" style="margin: 0 auto;" href="{{ path('app_transfert_new')}}">Ajouter un nouveau transfert</a>
-				</div>
-					{% endif %} #}
-
-		<table class="home_continent">
-
-
-			<h1>Liste des transferts disponible</h1>
-			<thead>
-				<tr>
-					<th>Ville du bénéficiaire</th>
-					<th>Montant pour le bénéficiaire</th>
-					<th>Votre commission</th>
-					<th>AgentLivreur</th>
-					<th>Status des Transferts</th>
-					<th>Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for transfert in transferts %}
+	<div class="container mt-5">
+		<h3>Bienvenue sur Transfert...</h3>
+		<h4>
+			Notre site de transfert d'argent fiable rapide et sécurisé.</h4>
+		<h5>Notre politique se differencie de tous les autres canaux de transfert d'argent</h5>
+		<h6>Utilisez notre site pour envoyer de l'argent à vos proches nous nous engageons à les apporter sur place par l'intermediaire de l'un de nos agents</h6>
+	</div>
+	{# <div>
+				
+				<table class="home_continent">
+	
+	
+				<h1>Liste des transferts disponible</h1>
+				<thead>
 					<tr>
-						<td>{{ transfert.ville }}</td>
-						<td>{{ transfert.montBenef }}</td>
-						<td>{{ transfert.comAgentLivreur }}</td>
-						<td>{{ transfert.agentlivreur }}</td>
-						<td>{{ transfert.statut }}</td>
-						<td>
-							<a class="btn btn-info" href="{{ path('app_transfert_show', {'id': transfert.id}) }}">Afficher</a>
-							<a class="btn btn-primary" href="{{ path('app_transfert_edit', {'id': transfert.id}) }}">Mettre à jour</a>
-						</td>
+						<th>Ville du bénéficiaire</th>
+						<th>Montant pour le bénéficiaire</th>
+						<th>Votre commission</th>
+						<th>AgentLivreur</th>
+						<th>Status des Transferts</th>
+						<th>Action</th>
 					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					{% for transfert in transferts %}
+						<tr>
+							<td>{{ transfert.ville }}</td>
+							<td>{{ transfert.montBenef }}</td>
+							<td>{{ transfert.comAgentLivreur }}</td>
+							<td>{{ transfert.agentlivreur }}</td>
+							<td>{{ transfert.statut }}</td>
+							<td>
+								<a class="btn btn-info" href="{{ path('app_transfert_show', {'id': transfert.id}) }}">Afficher</a>
+								<a class="btn btn-primary" href="{{ path('app_transfert_edit', {'id': transfert.id}) }}">Mettre à jour</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+				</div> #}
+	<div>
 
 		{% if is_granted('ROLE_ADMIN') %}
 			<div class=" list-group d-flex text-center mt-3">
@@ -51,13 +53,6 @@
 				<br>
 				<a class="btn btn-primary" style="margin: 0 auto" href="{{ path('app_user_index') }}">Liste des agents livreur</a>
 			</div>
-			{# <div class="text-center mt-3">
-										<a href="{{ path('app_transfert_new')}}" class="btn btn-success text-center mt-3">Prendre en charge un Transfert</a>
-										</div>
-										<div class="text-center mt-3">
-											<a href="{{ path('app_transfert_new')}}" class="btn btn-success text-center mt-3">Transfert Livré</a>
-										</div> #}
-
 
 			<div class="list-group">
 				<h2 class="m-5">Toutes les Villes</h2>
@@ -68,9 +63,6 @@
 						</li>
 					{% endfor %}
 				</ul>
-      {% endif %}
-
-			</div>
-
-
-		{% endblock %}
+			{% endif %}
+		</div>
+	{% endblock %}

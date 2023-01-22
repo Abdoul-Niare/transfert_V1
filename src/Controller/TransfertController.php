@@ -15,20 +15,35 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/transfert')]
+#[IsGranted('ROLE_USER')]
 class TransfertController extends AbstractController
 {
     #[Route('/', name: 'app_transfert_index', methods: ['GET'])]
     public function index(TransfertRepository $transfertRepository): Response
     {
+
+        $liste_transferts = null; 
+        if ($this->isGranted('ROLE_ADMIN')) {
+
+            $liste_transferts = $transfertRepository->findAll();
+        }
+        elseif($this->isGranted('ROLE_PARTNER')){
+            $liste_transferts = $transfertRepository->findByAgentLivreurId($this->getUser()->getId());     
+        }
+        elseif($this->isGranted('ROLE_USER')){
+            // $liste_transferts = $transfertRepository->findBy(['is_visible' => true,'expediteur_id'=>$this->getUser()->getId()]);     
+            $liste_transferts = $transfertRepository->findByExpediteurId($this->getUser()->getId());
+        }
         return $this->render('transfert/index.html.twig', [
-            'transferts' => $transfertRepository->findAll(),
+            'transferts' => $liste_transferts,
         ]);
+
     }
 
 
 
     #[Route('/new', name: 'app_transfert_new', methods: ['GET', 'POST'])]
-    // #[IsGranted('ROLE_USER')]
+    #[IsGranted('ROLE_USER')]
     public function new(Request $request, TransfertRepository $transfertRepository, SluggerInterface $slugger): Response
     {
         // Gestion de l'expéditeur.
@@ -41,23 +56,25 @@ class TransfertController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $numBenef = $form->get('numBenef')->getData();
+            // $numBenef = $form->get('numBenef')->getData();
 
-            if ($numBenef) {
-                $originalFilename = pathinfo($numBenef->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $numBenef->guessExtension();
-                try {
-                    $numBenef->move(
-                        $this->getParameter('images_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-                $transfert->setNumBenef($newFilename);
-            }
+            // if ($numBenef) {
+            //     $originalFilename = pathinfo($numBenef->getClientOriginalName(), PATHINFO_FILENAME);
+            //     // this is needed to safely include the file name as part of the URL
+            //     $safeFilename = $slugger->slug($originalFilename);
+            //     $newFilename = $safeFilename . '-' . uniqid() . '.' . $numBenef->guessExtension();
+            //     try {
+            //         $numBenef->move(
+            //             $this->getParameter('images_directory'),
+            //             $newFilename
+            //         );
+            //     } catch (FileException $e) {
+            //         // ... handle exception if something happens during file upload
+            //     }
+            //     $transfert->setNumBenef($newFilename);
+            // }
+
+            $transfert->setNumBenef('newFilename');
 
             // Status du transfert à l'envoi 
             $status = "Envoyé";
@@ -113,7 +130,7 @@ class TransfertController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_transfert_edit', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('ROLE_PARTNER')]
     public function edit(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
     {
         $form = $this->createForm(TransfertType::class, $transfert);
@@ -129,6 +146,7 @@ class TransfertController extends AbstractController
             'form' => $form,
         ]);
     }
+
     #[Route('/{id}', name: 'app_transfert_delete', methods: ['POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
@@ -142,6 +160,7 @@ class TransfertController extends AbstractController
     }
 
     #[Route('/{id}/prendre_en_charge', name: 'app_transfert_take', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_PARTNER')]
     public function PrisEnCharge(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
     {
         $agentLivreur = $this->getUser();
@@ -163,6 +182,7 @@ class TransfertController extends AbstractController
     }
 
     #[Route('/{id}/livraison', name: 'app_transfert_delivery', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_PARTNER')]
     public function livrer(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
     {
         $agentLivreur = $this->getUser();

@@ -39,6 +39,48 @@ class TransfertRepository extends ServiceEntityRepository
         }
     }
 
+
+ /**
+    * @return Transfert[] Returns an array of Transfert objects
+    */
+    public function findByAgentLivreurId($value): array
+    {
+         $mesTransferts = $this->createQueryBuilder('t')
+         ->andWhere('t.agentLivreur = :val or t.agentLivreur is NULL')
+         ->setParameter('val', $value)
+         ->orderBy('t.id', 'ASC')
+         //->setMaxResults(10)
+         ->getQuery()
+         ->getResult(); 
+ 
+         // $transfertsDispo =  $this->createQueryBuilder('t')
+         // ->andWhere('t.agentLivreur is null')
+         // ->setParameter('val', NULL)
+         // ->orderBy('t.id', 'ASC')
+         // ->setMaxResults(10)
+         // ->getQuery()
+         // ->getResult(); 
+ 
+        return $mesTransferts;
+    }
+ 
+     /**
+     * @return Transfert[] Returns an array of Transfert objects
+     */
+     public function findByExpediteurId($value): array
+     {
+         return $this->createQueryBuilder('t')
+             ->andWhere('t.expediteur = :val')
+             ->setParameter('val', $value)
+             ->orderBy('t.id', 'ASC')
+             //->setMaxResults(10)
+             ->getQuery()
+             ->getResult()
+         ;
+     }
+
+
+
 //    /**
 //     * @return Transfert[] Returns an array of Transfert objects
 //     */

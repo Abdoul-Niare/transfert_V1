@@ -31,6 +31,11 @@ class MainController extends AbstractController
             
 
         ]);
+
+        return $this->render('main/home.html.twig', [
+            'nav_activ' => "home"
+        ]);
+
     }
 
     #[Route('/tab/{id}', name: 'tab', methods: ['GET'])]
@@ -41,7 +46,7 @@ class MainController extends AbstractController
             'nav_activ' => $ville->getName(),
             'vil' => $ville,
             'transferts' => $transfertRepository->findAll(),
-            // 'villes' => $villeRepository->findAll(),
+            'villes' => $villeRepository->findAll(),
         ]);
     }
 }

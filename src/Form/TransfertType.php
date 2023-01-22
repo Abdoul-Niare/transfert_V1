@@ -56,23 +56,33 @@ class TransfertType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Le bénéficiaire réçoit']
             ])
-            
-            ->add('numBenef', FileType::class, [
-                'label' => 'Photo de la pièce',
-                'mapped' => false,
-                'required' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'application/pdf',
-                            'application/x-pdf',
-                        ],
-                        'mimeTypesMessage' => 'Please upload a valid PDF document',
 
-                    ])
-                ],
-            ])
+
+            ->add('numBenef', TextType::class, [
+                'label' => "Type pièce:",
+                'attr' => [
+                    'placeholder' => 'Numero de pièce identité'
+            ]])
+            
+            // ->add('numBenef', FileType::class, [
+            //     'label' => 'Photo de la pièce',
+            //     'mapped' => false,
+            //     'required' => false,
+            //     'constraints' => [
+            //         new File([
+            //             'maxSize' => '1024k',
+            //             'mimeTypes' => [
+            //                 'application/pdf',
+            //                 'application/x-pdf',
+            //             ],
+            //             'mimeTypesMessage' => 'Please upload a valid PDF document',
+
+            //         ])
+            //     ],
+            // ])
+
+
+            
                    // ->add('comTransfert', NumberType::class, [
             //     'label' => 'adresse du transfert:',
             // ])
