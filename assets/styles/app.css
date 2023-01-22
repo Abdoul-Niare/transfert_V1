@@ -59,7 +59,15 @@ tr td:last-child {
 label {
   display: block;
   line-height: 20px !important;
-  /* margin-left: 50px; */
+
+}
+
+/*** image carte du monde**/
+
+.img-fluid{
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+
+
 }
 /* input, select{
     width: 80% !important;
@@ -80,17 +88,25 @@ label {
   margin: 0;
   padding: 0;
 }
-/* .form-control {
-  display: block;
-  line-height: 20px !important;
-  margin-left: auto;
-  border: 1px solid #ced4da;
-} */
-/* .content_new{
-	float: left;
-	width: 100%; 
+
+/** formulaire d'envoi**/
+.content_new{
+	width: 60%; 
+  height: 50%;
 	display: flex;
 	justify-content: center;
-	align-content: center;
+	align-items: center;
+ background-color: rgb(186,124,51);
+ border-radius: 15px;
+ padding: 40px;
+ margin-left: 20%;
 	
-} */
+}
+
+/**Inscription et Connexion*/
+.card{
+border-radius: 30px;
+height: 80vh;
+box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+
+}
