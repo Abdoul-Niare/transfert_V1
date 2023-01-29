@@ -1,0 +1,49 @@
+{{ form_start(form) }}
+
+      {{ form_widget(form) }}
+
+
+
+	
+
+
+        <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
+
+{# <div class="container ">
+	<div class="content_new">
+		{{ form_start(form) }}
+
+		<div class="row ">
+			<div class="col-6">
+
+				{{ form_row(registrationForm.user.nom) }}
+			{{ form_row(registrationForm.prenom) }}
+
+			</div>
+
+			<div class="col-6">
+
+				{{ form_row(form.user.username) }}
+				{{ form_row(form.user.roles ? user.roles|json_encode : '' ) }}
+
+			</div>
+
+			{{ form_row(form.user.mail) }}
+			{{ form_row(form.user.password) }}
+      {{ form_row(form.ville) }}
+
+		</div>
+		<div class="d-flex justify-content-center mt-3">
+			<div class=" m-5 ">
+				<button class="btn btn-success">{{ button_label|default('Enrigistrer') }}</button>
+				<a class="btn btn-info m-1" href="/">Annuler</a>
+
+			</div>
+		</div>
+		{{ form_end(form) }}
+	</div>
+
+
+</div> #}

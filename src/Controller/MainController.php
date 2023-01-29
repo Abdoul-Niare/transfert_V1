@@ -25,6 +25,7 @@ class MainController extends AbstractController
                 'statut' => [
                     'Pris en charge',
                     'envoyé'
+                    
                 ],
             ]),
             'villes' => $villeRepository->findAll(),

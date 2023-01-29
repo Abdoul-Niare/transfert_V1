@@ -31,12 +31,14 @@ class TransfertController extends AbstractController
             $liste_transferts = $transfertRepository->findByAgentLivreurId($this->getUser()->getId());     
         }
         elseif($this->isGranted('ROLE_USER')){
-            // $liste_transferts = $transfertRepository->findBy(['is_visible' => true,'expediteur_id'=>$this->getUser()->getId()]);     
+            // $liste_transferts = $transfertRepository->findBy(['is_visible' => true,'expediteur'=>$this->getUser()->getId()]);     
             $liste_transferts = $transfertRepository->findByExpediteurId($this->getUser()->getId());
         }
         return $this->render('transfert/index.html.twig', [
             'transferts' => $liste_transferts,
         ]);
+
+        
 
     }
 
@@ -130,7 +132,7 @@ class TransfertController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_transfert_edit', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_PARTNER')]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Transfert $transfert, TransfertRepository $transfertRepository): Response
     {
         $form = $this->createForm(TransfertType::class, $transfert);

@@ -18,9 +18,9 @@
 					<a class="nav-link" style="color:rgb(186,124,51)" href="{{ path('app_ville_index')}}">Gestion des villes</a>
 					<a class="nav-link" style="color:rgb(186,124,51)" href="{{ path('app_transfert_index')}}">Statistiques</a>
 				{% else %} 
-					<a class="nav-link" style="color:rgb(186,124,51)" href="{{ path('app_transfert_index')}}">Mes transfert</a>
+					<a class="nav-link" style="color:rgb(186,124,51)" href="{{ path('app_transfert_index')}}">Mes transferts</a>
 				{% endif %}	
-				<p class="nav-item nav-link text-success">Connecté: {{app.user}}</p>
+				<p class="nav-item nav-link text-success">Connecté: {{app.user.nom}} {{app.user.prenom}}</p>
 					<a class="nav-item nav-link" href="/profile">
 						<i class="fa-solid fa-user"></i>
 					</a>
