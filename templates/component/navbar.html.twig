@@ -21,7 +21,7 @@
 					<a class="nav-link" style="color:rgb(186,124,51)" href="{{ path('app_transfert_index')}}">Mes transferts</a>
 				{% endif %}	
 				<p class="nav-item nav-link text-success">Connecté: {{app.user.nom}} {{app.user.prenom}}</p>
-					<a class="nav-item nav-link" href="/profile">
+					<a class="nav-item nav-link" href="{{ path('user_profile_modifier')}}">
 						<i class="fa-solid fa-user"></i>
 					</a>
 					<a class="nav-link " href="{{path('app_logout')}}">Déconnexion</a>

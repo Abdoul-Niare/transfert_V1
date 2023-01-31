@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile Utilisateur
+{% endblock %}
+
+{% block body %}
+	<h1>Profile Utilisateur</h1>
+
+
+	<div class="grix xs4 container">
+
+
+
+    {{ include('profile/_profile_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_profile') }}">back to list</a>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		{# <div class="col-xs4">
+			<h1>Profil de
+				{{(app.user.nom) }}
+				{{(app.user.prenom) }}</h1>
+		</div>
+
+		<div class="col-xs1">Nom:
+		</div>
+		<div class="col-xs3">{{(app.user.nom) }}</div>
+		<div class="col-xs1">Prenom:
+		</div>
+		<div class="col-xs3">{{(app.user.prenom) }}</div>
+		<div class="col-xs1">Email</div>
+		<div class="col-xs3">{{(app.user.mail) }}</div> #}
+
+		{# <a href="{{path ('user_profile_modifier')}}" class="btn btn blue">Modifier mon profil</a> #}
+		
+		</div>
+	{% endblock %}

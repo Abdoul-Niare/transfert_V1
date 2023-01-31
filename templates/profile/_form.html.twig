@@ -1,14 +1,16 @@
-{{ form_start(form) }}
+{# {{ form_start(form) }}
 
       {{ form_widget(form) }}
 
 
-
+		  {{ form_row(form.app.user.username)}}
+        {{ (app.user.nom) }}
+        {{ (app.user.mail) }}
 	
 
 
         <button class="btn">{{ button_label|default('Save') }}</button>
-    {{ form_end(form) }}
+    {{ form_end(form) }} #}
 
 
 {# <div class="container ">

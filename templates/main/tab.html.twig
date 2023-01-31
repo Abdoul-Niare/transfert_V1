@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ville
+{% block title %}Villes
 {% endblock %}
 
 {% block body %}
@@ -13,24 +13,24 @@
 			<tr>
 				<th class="text-info text-center">EXPEDITEUR</th>
 				<th class="text-info text-center">AGENTS</th>
-				<th class="text-info text-center">TRANSFERTS
-					{# {{vil.name}}</th> #}
-				</th>
+				<th class="text-info text-center">TRANSFERTS</th>
+				
 			</tr>
 		</thead>
 		{% for transfert in vil.transferts %}
 			<tbody>
 				<tr>
-					{# <td> <a href="{{transfert.id}}"></a></td>
-															{{path('tab', {id:ville.id})}} #}
-
 					<td>
 						<a class="btn btn-outline-success" href="/profile">
 							<i class="fa-solid fa-user">
 								{{transfert.expediteur}}</i>
 						</a>
-					</td>
+					</td> 
+
 					<td>
+					{% if (transfert.agentlivreur) == null%}
+						<p>pas d'agent pour l'instant</p>
+					{% endif %}
 						<a class="btn btn-outline-success" href="/profile">
 							<i class="fa-solid fa-user">
 								{{transfert.agentlivreur}}</i>
@@ -46,11 +46,7 @@
 			<tr>
 				<td colspan="12">Pas de transfert disponible pour cette Ville</td>
 			</tr>
-			{# <tr>
-        <td colspan="12">Pas d'agent disponible</td>
-      </tr> #}
 			{%endfor%}
-
 		</table>
 	</div>
 	{%endblock%}

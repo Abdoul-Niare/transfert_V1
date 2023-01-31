@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(TransfertRepository $transfertRepository, VilleRepository $villeRepository): Response
+    public function index(TransfertRepository $transfertRepository, VilleRepository $villeRepository, UserRepository $userRepository): Response
     {
         //var_dump('erer');exit;
         return $this->render('main/home.html.twig', [
