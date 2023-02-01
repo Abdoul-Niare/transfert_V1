@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Villes
+{% block title %}Villes disponible
 {% endblock %}
 
 {% block body %}
@@ -28,13 +28,15 @@
 					</td> 
 
 					<td>
-					{% if (transfert.agentlivreur) == null%}
+					{% if (transfert.agentlivreur == null) %}
 						<p>pas d'agent pour l'instant</p>
-					{% endif %}
+
+					{% elseif (transfert.agentlivreur != null) %}
 						<a class="btn btn-outline-success" href="/profile">
 							<i class="fa-solid fa-user">
 								{{transfert.agentlivreur}}</i>
 						</a>
+					{% endif %}
 					</td>
 
 					<td>numéro:

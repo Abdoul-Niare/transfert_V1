@@ -41,12 +41,10 @@ class UserController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-
-
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword('plainPassword');
             $userRepository->save($user, true);
-
+    
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -95,28 +93,27 @@ class UserController extends AbstractController
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/user/profile/modifier', name: 'user_profile_modifier', methods: ['GET', 'POST'])]
+    #[Route('/profile/modifier', name: 'user_profile_modifier', methods: ['GET', 'POST'])]
     // #[IsGranted('ROLE_USER')]
     public function EditProfile(Request $request, TransfertRepository $transfertRepository, UserRepository $userRepository): Response
     {
         $user = $this->getUser();
+
         $form = $this->createForm(EditProfileType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        // if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->addFlash('success', 'Profil modifié avec succès.');
+            
 
-            $userRepository->save($user, true);
-
-            return $this->render('user/_profile_form.html.twig', [
-                'user' => $user,
-                'form' => $form->createView(),
-            ]);
-        }
+        //     $userRepository->save($user, true);
+        //     $this->addFlash('success', 'Profil modifié avec succès.');
+        //     return $this->redirectToRoute('user_profile_modifier', [], Response::HTTP_SEE_OTHER);
+        // }
 
         return $this->render('user/_profile_form.html.twig', [
             'user' => $user,
+            'transferts'=>$transfertRepository->findAll(),
             'form' => $form->createView(),
 
         ]);

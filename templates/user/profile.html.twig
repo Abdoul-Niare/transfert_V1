@@ -1,27 +1,81 @@
-{% extends 'base.html.twig' %}
+ {% extends 'base.html.twig' %}
 
 {% block title %}Profile Utilisateur
 {% endblock %}
 
-{% block body %}
+{% block body %} 
+
+<div class="container">
+
 	<h1>Profile Utilisateur</h1>
 
 
-	<div class="grix xs4 container">
+	
+
+    {{ include('user/_profile_form.html.twig', {'button_label': 'Validé'}) }}
+
+{# {{ include('user/_form.html.twig', {'button_label': 'Update'}) }} #}
+
+    {# <a href="{{ path('app_user_index') }}">back to list</a>
+
+    {{ include('user/_delete_form.html.twig') }}  #}
 
 
 
-    {{ include('user/_profile_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_user_index') }}">back to list</a>
-
-    {{ include('user/_delete_form.html.twig') }}
 
 
 
+{# <h2 class="text-center mt-4">Details des Transferts de l'utilisateur </h2>
+ 
+    <div class="registerForm m-5">
 
+   
+ 
+		<table>
+			<thead>
+				<tr>
+					
+					<th>Status</th>
+					<th>Expediteur</th>
+					<th>Agent_Livreur</th>
+					<th>Bénéficiaire</th>
+					<th>Montant transfert</th>
+					<th>Frais du transfert</th>
+					<th>Date d'envoi</th>
+					<th>Date pris charge</th>
+					<th>Date livraison</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for transfert in transferts %}
+					<tr>
+						
+						<td>{{ transfert.statut }}</td>
+						<td>{{ transfert.expediteur }}</td>
+						<td>{{ transfert.agentLivreur }}</td>
+						<td>{{ transfert.nomBenef }}</td>
+						<td>{{ transfert.montTransfert }}</td>
+						<td>{{ transfert.fraisTransfert }}</td>
+						<td>{{ transfert.dateEnvoi ? transfert.dateEnvoi|date('Y-m-d H:i:s') : '' }}</td>
+						<td>{{ transfert.datePrisCharge ? transfert.datePrisCharge|date('Y-m-d H:i:s') : '' }}</td>
+						<td>{{ transfert.dateLivr ? transfert.dateLivr|date('Y-m-d H:i:s') : '' }}</td>
+						<td>
+							<a href="{{ path('app_transfert_show', {'id': transfert.id}) }}" class="btn btn-success">Voir le transfert</a>
+							
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="16">Vous n'avez aucun Transfert</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 
+		 </div>
 
+		 </div> #}
 
 
 
@@ -48,5 +102,5 @@
 
 		{# <a href="{{path ('user_profile_modifier')}}" class="btn btn blue">Modifier mon profil</a> #}
 		
-		</div>
-	{% endblock %}
+		{# </div>
+	{% endblock %} #}

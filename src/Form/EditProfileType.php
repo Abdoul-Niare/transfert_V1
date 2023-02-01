@@ -23,9 +23,9 @@ class EditProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('username')
+            ->add('username')
             // ->add('roles')
-            // ->add('password')
+            ->add('password')
             ->add('nom', TextType::class, [
                 'label' => "Nom :",
                 'attr' => [
@@ -41,9 +41,9 @@ class EditProfileType extends AbstractType
                 'attr' => [
                     'placeholder' => 'email'
             ] ])
-            ->add('valider', SubmitType::class)
+            // ->add('valid', SubmitType::class)
             // ->add('mail')
-            // ->add('ville')
+            ->add('ville')
         ;
     }
 
