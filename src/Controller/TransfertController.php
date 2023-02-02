@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Transfert;
 use App\Form\TransfertType;
 use App\Repository\TransfertRepository;
+use App\Form\ConfirmTransfertType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -58,7 +59,7 @@ class TransfertController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // $numBenef = $form->get('numBenef')->getData();
+            //  $numBenef = $form->get('numBenef')->getData();
 
             // if ($numBenef) {
             //     $originalFilename = pathinfo($numBenef->getClientOriginalName(), PATHINFO_FILENAME);
@@ -75,9 +76,76 @@ class TransfertController extends AbstractController
             //     }
             //     $transfert->setNumBenef($newFilename);
             // }
-
+                
             $transfert->setNumBenef('newFilename');
 
+
+            // //Date d'envoie du transfert.
+            // $date = new \DateTime('@' . strtotime('now'));
+            // $transfert->setDateEnvoi($date);
+
+            // //Gestion du code secret du transfert.
+            // // Tableau de lettre en majuscule
+            // $lettres = range('A', 'Z');
+            // // Je melange
+            // shuffle($lettres);
+            // // J"extrait le premier item du tableau
+            // $lettre = array_shift($lettres);
+            // // Je recommence pour la seconde lettre
+            // shuffle($lettres);
+            // // J'extrait la seconde lettre
+            // $lettre .= array_shift($lettres);
+            // // un nombre sur 4 digitau hazard
+            // $nombre = mt_rand(1000, 9999);
+            // $codeSecret = $lettre . $nombre;
+            // $transfert->setCodeSecret($codeSecret);
+            
+            // // Visibilité du transfert
+            // $transfert->setIsVisible(true);
+
+            //Gestion commission
+            $fraisTransfert =  $form->get('fraisTransfert')->getData();
+            $comAgent = $fraisTransfert * 0.70;
+            $comSite = $fraisTransfert - $comAgent;
+
+            $transfert->setComAgentLivreur($comAgent);
+            $transfert->setComTransfert($comSite);
+            // $transfertRepository->save($transfert, true);
+
+            // return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
+       
+                // Status du transfert à l'envoi 
+            // $status = "Envoyé";
+            // $transfert->setStatut($status);
+       
+            $confirmForm = $this->createForm(ConfirmTransfertType::class, $transfert);
+
+            $_SESSION['transfert'] = $transfert;
+
+            return $this->render('transfert/_confirm_form.html.twig', [
+                'confirm_token' => $transfert->getExpediteur()->getId(),
+                'transfert' => $transfert,
+                'form' => $form,
+            ]);
+
+                
+       
+        }
+
+
+        return $this->render('transfert/new.html.twig', [
+            'transfert' => $transfert,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/confirmation-paiement', name: 'app_transfert_confirm', methods: ['POST'])]
+    public function confirm(Request $request, TransfertRepository $transfertRepository): Response
+    {
+        $transfert = $_SESSION['transfert'];
+        $expediteur = $this->getUser();
+        if($transfert != null && $this->isCsrfTokenValid('confirm' . $expediteur->getId(), $request->request->get('_token'))){
+    
             // Status du transfert à l'envoi 
             $status = "Envoyé";
             $transfert->setStatut($status);
@@ -101,23 +169,24 @@ class TransfertController extends AbstractController
             $nombre = mt_rand(1000, 9999);
             $codeSecret = $lettre . $nombre;
             $transfert->setCodeSecret($codeSecret);
-            
-            // Visibilité du transfert
+
+            $transfert->setNumBenef('newFilename');
+            $transfert->setStatut("Envoyé");
+            $transfert->setExpediteur($expediteur);
             $transfert->setIsVisible(true);
-
-            //Gestion commission
-            $fraisTransfert =  $form->get('fraisTransfert')->getData();
-            $comAgent = $fraisTransfert * 0.70;
-            $comSite = $fraisTransfert - $comAgent;
-
-            $transfert->setComAgentLivreur($comAgent);
-            $transfert->setComTransfert($comSite);
+            echo $transfert->getVille()->getId();
+            
+            //Enregistrement supplementaire eventuellement
             $transfertRepository->save($transfert, true);
 
             return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
         }
+        
+        $confirmForm = $this->createForm(TransfertType::class, $transfert);
 
-        return $this->renderForm('transfert/new.html.twig', [
+        $_SESSION['transfert'] = $transfert;
+
+        return $this->renderForm('transfert/_confirm_form.html.twig', [
             'transfert' => $transfert,
             'form' => $form,
         ]);

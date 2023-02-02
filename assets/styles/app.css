@@ -4,6 +4,8 @@ afficher = info
 mettre à jour= primary
 liste= info
 envoie =rgb(186,124,51)
+couleur F9F3E0 -> rgb(249,243,224)
+        F3FAFF -> rgb(243,250,255)
 
 couleur= RGBA(13,110,253,0.25)
 
@@ -13,6 +15,8 @@ body {
   width: 100vw;
   /* background-color:rgb(187, 59, 59); */
   max-height: 100vh;
+  margin: 0;
+	padding: 0;
   /* padding: 0;
   font-family: arial, sans-serif;
   color: black; */
@@ -54,8 +58,9 @@ tr td:last-child {
 }
 .navbar .footer {
   width: 100% !important;
-  position: relative;
+  position: fixed;
 }
+
 label {
   display: block;
   line-height: 20px !important;
@@ -96,7 +101,7 @@ label {
 	display: flex;
 	justify-content: center;
 	align-items: center;
- background-color: rgb(186,124,51);
+ background-color: #ffffff;
  border-radius: 15px;
  padding: 40px;
  margin-left: 20%;
