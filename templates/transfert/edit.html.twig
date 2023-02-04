@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+	<section class=" Edition_transfert ">
 	<div class="container mt-4">
 		<h1class="text-center mt-5">Édition Transfert</h1>
 		{{ include('transfert/_form.html.twig', {'button_label': 'Confirmer'}) }}
@@ -12,4 +13,6 @@
             {{ include('transfert/_delete_form.html.twig') }}
         </div>
 	</div>
+	</section>
+	
 {% endblock %}

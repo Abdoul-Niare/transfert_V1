@@ -5,21 +5,13 @@
 {% block body %}
 
 
-
-{# <div class="container-fluid vh-80 mt-4 vw-60"> #}
-
 <section class="vh-60 bg-image">
     <h2 class=" mt-3 text-center ">Modification de l'utilisateur</h2>
 
 	<div class="container-fluid vh-80 mt-4 vw-60">
-
     {{ include('user/_form.html.twig', {'button_label': 'Enrégistrer'}) }}
     	
-
     {# <a href="{{ path('app_user_index') }}">back to list</a> #}
-
-
-    
 
     </div>
  {{ include('user/_delete_form.html.twig') }}
