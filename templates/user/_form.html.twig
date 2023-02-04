@@ -1,6 +1,35 @@
-{{ form_start(form) }}
+<div class="container ">
+	<div class="content_userForm">
+		{{ form_start(form) }}
+		<div class="row d-flex justify-content-center justify-content ">
+			<div class="col-3">
 
-      {{ form_widget(form) }}
+				{{ form_row(form.nom) }}
+				{{ form_row(form.mail) }}
 
-        <button class="btn">{{ button_label|default('Save') }}</button>
-    {{ form_end(form) }}
+			</div>
+			<div class="col-3">
+				{{ form_row(form.Prenom) }}
+				{{ form_row(form.plainPassword) }}
+
+			</div>
+			<div class="col-3">
+
+				{{ form_row(form.username) }}
+				{{ form_row(form.ville) }}
+			</div>
+			{{ form_row(form.roles) }}
+		</div>
+		<div class="d-flex justify-content-center mt-3">
+			<div class=" m-5 ">
+				<button class="btn btn-success">{{ button_label|default('Enrigistrer') }}</button>
+				<a class="btn btn-info m-1" href="{{ path('app_user_index') }}">Annuler</a>
+			
+
+			</div>
+		</div>
+		{{ form_end(form) }}
+	</div>
+
+
+</div>

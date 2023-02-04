@@ -56,15 +56,15 @@ class Transfert
     #[ORM\Column]
     private ?bool $is_visible = null;
 
-    #[ORM\ManyToOne(inversedBy: 'transferts')]
+    #[ORM\ManyToOne(inversedBy: 'transferts',cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Ville $ville = null;
 
-    #[ORM\ManyToOne(inversedBy: 'expediteurs')]
+    #[ORM\ManyToOne(inversedBy: 'expediteurs',cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $expediteur = null;
 
-    #[ORM\ManyToOne(inversedBy: 'agentLivreurs')]
+    #[ORM\ManyToOne(inversedBy: 'agentLivreurs',cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: true)]
     private ?User $agentLivreur = null;
 

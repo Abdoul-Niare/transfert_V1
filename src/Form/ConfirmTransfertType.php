@@ -31,12 +31,13 @@ class ConfirmTransfertType extends AbstractType
             ->add('numBenef', HiddenType::class, [
                 'data' => '',
             ])
-            // ->add('ville', EntityType::class, [
-            //     'class' => Ville::class,
-            //     'choice_label' => 'name',
-            //     'choice_value' => 'id',
-            //     'label' => "Quelle destination ?",
-            // ])
+            ->add('ville', EntityType::class, [
+                'class' => Ville::class,
+                'choice_label' => 'name',
+                'choice_value' => 'id',
+                'label' => "Quelle destination ?",
+                'attr' => ['readonly' => true],
+            ])
             ->add('numTelBenef', TelType::class, [
                 'label' => "Tél bénéficiaire :",
                 'attr' => ['readonly' => true],

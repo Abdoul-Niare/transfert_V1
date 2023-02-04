@@ -1,60 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}User
+{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+	<div class="container-fluid vh-100 mt-5">
+		<h1>Utilisateur</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ user.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ user.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Mail</th>
-                <td>{{ user.mail }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ user.ville }}</td>
-            </tr>
-        </tbody>
-    </table>
-    {% if is_granted('ROLE_ADMIN') %}
-    
-    <a href="{{ path('app_user_index') }}">Retour à la liste</a>
-    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+		<table class="table text-center">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ user.id }}</td>
+				</tr>
+				<tr>
+					<th>Identifiant</th>
+					<td>{{ user.username }}</td>
+				</tr>
+				<tr>
+					<th>Roles</th>
+					<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+				</tr>
+				<tr>
+					<th>Mot de passe</th>
+					<td>{{ user.password }}</td>
+				</tr>
+				<tr>
+					<th>Nom</th>
+					<td>{{ user.nom }}</td>
+				</tr>
+				<tr>
+					<th>Prenom</th>
+					<td>{{ user.prenom }}</td>
+				</tr>
+				<tr>
+					<th>Mail</th>
+					<td>{{ user.mail }}</td>
+				</tr>
+				<tr>
+					<th>Ville</th>
+					<td>{{ user.ville }}</td>
+				</tr>
+			</tbody>
+		</table>
+		{% if is_granted('ROLE_ADMIN') %}
 
-    {{ include('user/_delete_form.html.twig') }}
+			<a class="btn btn-secondary m-2" href="{{ path('app_user_index') }}">Retour à la liste</a>
+			<a class="btn btn-primary" href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
 
-    {% elseif is_granted('ROLE_USER') %}
+			{{ include('user/_delete_form.html.twig') }}
 
-    <a class="btn btn-success" href="{{ path('app_profile', {'id': user.id}) }}">Modifier</a>
-    <a class="btn btn-primary" href="{{ path('user_profile_modifier') }}">Retour</a>
+		{% elseif is_granted('ROLE_USER') %}
 
-    {% endif %}
-    
+			<a class="btn btn-success" href="{{ path('app_profile', {'id': user.id}) }}">Modifier</a>
+			<a class="btn btn-primary" href="{{ path('user_profile_modifier') }}">Retour</a>
 
-    
+		{% endif %}
+
+
+	</div>
 {% endblock %}

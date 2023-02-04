@@ -41,14 +41,9 @@ body {
   border-radius: 40px;
 } */
 
-/* .table {
-  max-width: 80vw !important;
-  margin: 20px 10px 10px 10px;
-  border-collapse: collapse;
-  border: solid 3px;
-} */
 
 table {
+  max-width: 60vw !important;
   margin: 43px 0 10px 87px;
   border-collapse: revert;
   text-align: center;
@@ -61,10 +56,6 @@ table {
   padding: 0;
 
 }
-
-
-
-
 
 th,
 td {
@@ -126,6 +117,6 @@ label {
 /**Inscription et Connexion*/
 .card {
   border-radius: 30px;
-  height: 80vh;
+  height: auto;
   box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
 }

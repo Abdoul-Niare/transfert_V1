@@ -5,36 +5,39 @@
 
 {% block body %}
 
-	<h2 class="text-center mt-4">Modification du profil
-	</h2>
+	<section class="profil">
+		<h2 class="text-center mt-4">Modification du profil
+		</h2>
 
-	<div class="registerForm m-5">
+		<div class="container mt-4">
+			<div class="content_userForm">
+				{{ form_start(form) }}
 
-		{{ form_start(form) }}
+				<div class="row d-flex justify-content-center justify-content ">
+					<div class="col-3">
+						{{ form_row(form.nom) }}
+						{{ form_row(form.mail ) }}
+					</div>
+					<div class="col-3">
+						{{ form_row(form.prenom ) }}
+						{{ form_row(form.password ) }}
+					</div>
+					<div class="col-3">
+						{{ form_row(form.ville ) }}
+						{{ form_row(form.username ) }}
+					</div>
 
-		<div class="row">
-			{{ form_row(form.nom) }}
-		</div>
-		<div class="row">
-			{{ form_row(form.prenom ) }}
-		</div>
-		<div class="row">
-			{{ form_row(form.mail ) }}
-		</div>
-		<div class="row">
-			{{ form_row(form.password ) }}
-		</div>
-		<div class="row">
-			{{ form_row(form.ville ) }}
-		</div>
-		<div class="row">
-			{{ form_row(form.username ) }}
-		</div>
 
-		<button class="btn btn-success">{{ button_label|default('Confirmer') }}</button>
-		<a class="btn btn-primary" href="{{ path('user_profile_modifier') }}">Retour</a>
-	
-		{{ form_end(form) }}
+				</div>
+				<div class="d-flex justify-content-center mt-3">
+					<div class=" m-5 ">
+						<button class="btn btn-success">{{ button_label|default('Confirmer') }}</button>
+						<a class="btn btn-primary" href="{{ path('user_profile_modifier') }}">Retour</a>
 
-	</div>
+					</div>
+				</div>
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</section>
 {% endblock %}

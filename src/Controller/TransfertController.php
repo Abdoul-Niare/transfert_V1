@@ -7,6 +7,7 @@ use App\Form\TransfertType;
 use App\Repository\TransfertRepository;
 use App\Form\ConfirmTransfertType;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -175,6 +176,8 @@ class TransfertController extends AbstractController
             $transfert->setExpediteur($expediteur);
             $transfert->setIsVisible(true);
             echo $transfert->getVille()->getId();
+
+           
             
             //Enregistrement supplementaire eventuellement
             $transfertRepository->save($transfert, true);
@@ -186,9 +189,9 @@ class TransfertController extends AbstractController
 
         $_SESSION['transfert'] = $transfert;
 
-        return $this->renderForm('transfert/_confirm_form.html.twig', [
+        return $this->render('transfert/_confirm_form.html.twig', [
             'transfert' => $transfert,
-            'form' => $form,
+            'form' => $confirmForm,
         ]);
     }
 

@@ -21,7 +21,7 @@
 			<tbody>
 				<tr>
 					<td>
-						<a class="btn btn-outline-success" href="/profile">
+						<a class="btn btn-outline-success" href="{{ path('user_profile_modifier')}}">
 							<i class="fa-solid fa-user">
 								{{transfert.expediteur}}</i>
 						</a>
@@ -32,7 +32,7 @@
 						<p>pas d'agent pour l'instant</p>
 
 					{% elseif (transfert.agentlivreur != null) %}
-						<a class="btn btn-outline-success" href="/profile">
+						<a class="btn btn-outline-success" href="{{ path('user_profile_modifier')}}">
 							<i class="fa-solid fa-user">
 								{{transfert.agentlivreur}}</i>
 						</a>

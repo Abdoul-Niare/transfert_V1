@@ -1,4 +1,3 @@
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Edit Transfert
@@ -6,127 +5,124 @@
 
 {% block body %}
 
-<div class="container h-100 ">
-  <div class="row h-70 justify-content-center align-items-center">
-      <h1 class="text-center">Mon profil utilisateur</h1>
-      <div class="col-4">
-            <p>Nom et Prenom: {{app.user.nom}} {{app.user.prenom}}</p>
-            <p>Email: {{app.user.mail}}</p>
-            <p>Telephone: {{app.user.username}}</p>
-      </div>
+	<section class="vh-100">
+		<div class="container_profil vh-80 vw-80">
+			<div class="row h-70 justify-content-center align-items-center">
+				<a href="{{ path('app_transfert_index')}}" class="btn btn-success">Histotique de vos transfert</a>
 
-		<a class="btn btn-primary p-1 m-1" href="{{ path('app_user_show', {'id': user.id}) }}">Afficher</a>
-     <a class="btn btn-primary p-1 m-1" href="{{ path('app_profile', {'id': user.id}) }}">Modifier votre profil</a>
+				<h1 class="text-center">Mon profil utilisateur</h1>
+				<div class="col-4 text-center">
+					<p>Nom et Prenom:
+						{{app.user.nom}}
+						{{app.user.prenom}}</p>
+						<p>Adresse: 000 route de Praris</p>
+						<p>Code postale: 79000</p>
+					<p>Email:
+						{{app.user.mail}}</p>
+					<p>Telephone:
+						{{app.user.username}}</p>
 
-	<a href="{{ path('app_transfert_index')}}" class="btn btn-success">Histotique de vos transfert</a>
+					<a class="btn btn-primary p-1 m-1" href="{{ path('app_user_show', {'id': user.id}) }}">Afficher</a>
+					<a class="btn btn-primary p-1 m-1" href="{{ path('app_profile', {'id': user.id}) }}">Modifier votre profil</a>
 
-
-  </div>
-</div>
-{% endblock %}
-
-{# 
-<div class="container">
-  <div class=".col-xs-4 .col-md-offset-2">
-    <div class="panel panel-default panel-info Profile">
-      <div class="panel-body">
-        <div class="form-horizontal">
-					          <form>
-						            <div class="form-group">
-							              <label class="col-sm-2 control-label"></label>
-              							<div class="col-sm-4">
-                								<input class="form-control" type="text" name="nom"
-                  									placeholder="First Name" ng-model="me.firstName">
-              							</div>
-            						</div>
-						            <div class="form-group">
-							              <label class="col-sm-2 control-label"></label>
-              							<div class="col-sm-4">
-                								<input class="form-control" type="text" name="prenom"
-                  									placeholder="Last Name" ng-model="me.lastName">
-              							</div>
-            						</div>
-						            <div class="form-group">
-              							<label class="col-sm-2 control-label"></label>
-              							<div class="col-sm-4">
-                								<input class="form-control" type="text" name="email"
-                  									placeholder="Email" ng-model="me.email">
-              							</div>
-            						</div>
-            <div class="form-group">
-              							<label class="col-sm-2 control-label"></label>
-              							<div class="col-sm-4">
-                								<input class="form-control" type="text" name="department"
-                  									placeholder="Department" ng-model="me.email">
-              							</div>
-            						</div>
-          
-            <div class="form-group">
-              							<label class="col-sm-2 control-label"></label> <br>
-              							<div class="col-sm-4">
-                								<input class="form-control" type="text" name="Adresse"
-                  									placeholder="Adresse" ng-model="me.email">
-              							</div>
-            						</div>            
-            <div class="form-group">
-              							<label class="col-sm-2 control-label"></label>
-              							<div class="col-sm-4">
-                								<input class="form-control" type="text" name="location"
-                  									placeholder="ville" ng-model="me.email">
-              							</div>
-            						</div>
-            <div class="form-group">
-              							<label class="col-sm-2 control-label">Phone</label>
-              							<div class="col-sm-4">
-                								<input class="form-control" type="text" name="phone"
-                  									placeholder="xxx-xxx-xxxx" ng-model="me.email">
-              							</div>
-            						</div>          
-						            <div class="form-group">
-              							<div class="col-sm-offset-2 col-sm-10">
-                								<button class="btn btn-primary" ng-click="updateMe()">Update</button>
-              							</div>
-            						</div>
-					          </form>
-        				</div> 
-      </div> 
-
-    </div> 
-    
-
-  </div>
-</div> 
- #}
+				</div>
 
 
-
-
-
-
-
-
-
-	{# {{ form_start(form) }}
-
-		<div class="row">
-			{{ form_row(form.nom) }}
+			</div>
 		</div>
-		<div class="row">
-			{{ form_row(form.prenom ) }}
-		</div>
-		<div class="row">
-			{{ form_row(form.mail ) }}
-		</div>
-		<div class="row">
-			{{ form_row(form.password ) }}
-		</div>
-		<div class="row">
-			{{ form_row(form.ville ) }}
-		</div>
-		<div class="row">
-			{{ form_row(form.username ) }}
-		</div>
+	</div>
+</section>{% endblock %}{# 
+		<div class="container">
+		  <div class=".col-xs-4 .col-md-offset-2">
+		    <div class="panel panel-default panel-info Profile">
+		      <div class="panel-body">
+		        <div class="form-horizontal">
+							          <form>
+								            <div class="form-group">
+									              <label class="col-sm-2 control-label"></label>
+		              							<div class="col-sm-4">
+		                								<input class="form-control" type="text" name="nom"
+		                  									placeholder="First Name" ng-model="me.firstName">
+		              							</div>
+		            						</div>
+								            <div class="form-group">
+									              <label class="col-sm-2 control-label"></label>
+		              							<div class="col-sm-4">
+		                								<input class="form-control" type="text" name="prenom"
+		                  									placeholder="Last Name" ng-model="me.lastName">
+		              							</div>
+		            						</div>
+								            <div class="form-group">
+		              							<label class="col-sm-2 control-label"></label>
+		              							<div class="col-sm-4">
+		                								<input class="form-control" type="text" name="email"
+		                  									placeholder="Email" ng-model="me.email">
+		              							</div>
+		            						</div>
+		            <div class="form-group">
+		              							<label class="col-sm-2 control-label"></label>
+		              							<div class="col-sm-4">
+		                								<input class="form-control" type="text" name="department"
+		                  									placeholder="Department" ng-model="me.email">
+		              							</div>
+		            						</div>
+		          
+		            <div class="form-group">
+		              							<label class="col-sm-2 control-label"></label> <br>
+		              							<div class="col-sm-4">
+		                								<input class="form-control" type="text" name="Adresse"
+		                  									placeholder="Adresse" ng-model="me.email">
+		              							</div>
+		            						</div>            
+		            <div class="form-group">
+		              							<label class="col-sm-2 control-label"></label>
+		              							<div class="col-sm-4">
+		                								<input class="form-control" type="text" name="location"
+		                  									placeholder="ville" ng-model="me.email">
+		              							</div>
+		            						</div>
+		            <div class="form-group">
+		              							<label class="col-sm-2 control-label">Phone</label>
+		              							<div class="col-sm-4">
+		                								<input class="form-control" type="text" name="phone"
+		                  									placeholder="xxx-xxx-xxxx" ng-model="me.email">
+		              							</div>
+		            						</div>          
+								            <div class="form-group">
+		              							<div class="col-sm-offset-2 col-sm-10">
+		                								<button class="btn btn-primary" ng-click="updateMe()">Update</button>
+		              							</div>
+		            						</div>
+							          </form>
+		        				</div> 
+		      </div> 
 		
-
-	
-		{{ form_end(form) }} #}
+		    </div> 
+		    
+		
+		  </div>
+		</div> 
+		 #}{# {{ form_start(form) }}
+		
+				<div class="row">
+					{{ form_row(form.nom) }}
+				</div>
+				<div class="row">
+					{{ form_row(form.prenom ) }}
+				</div>
+				<div class="row">
+					{{ form_row(form.mail ) }}
+				</div>
+				<div class="row">
+					{{ form_row(form.password ) }}
+				</div>
+				<div class="row">
+					{{ form_row(form.ville ) }}
+				</div>
+				<div class="row">
+					{{ form_row(form.username ) }}
+				</div>
+				
+		
+			
+				{{ form_end(form) }} #}
