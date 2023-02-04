@@ -16,7 +16,8 @@ body {
   /* background-color:rgb(187, 59, 59); */
   max-height: 100vh;
   margin: 0;
-	padding: 0;
+  padding: 0;
+  
   /* padding: 0;
   font-family: arial, sans-serif;
   color: black; */
@@ -30,7 +31,7 @@ body {
 	font-family: arial, sans-serif;
 	color:black;
 }	
-*/ 
+*/
 /* .content_form {
   max-width: 30vw;
   margin-top: 20px;
@@ -40,12 +41,30 @@ body {
   border-radius: 40px;
 } */
 
-.table {
+/* .table {
   max-width: 80vw !important;
   margin: 20px 10px 10px 10px;
   border-collapse: collapse;
   border: solid 3px;
+} */
+
+table {
+  margin: 43px 0 10px 87px;
+  border-collapse: revert;
+  text-align: center;
+  border: solid 1px;
 }
+
+/*text_logo**/
+.navbar-brand {
+  color: rgb(186,124,51);
+  padding: 0;
+
+}
+
+
+
+
 
 th,
 td {
@@ -64,15 +83,12 @@ tr td:last-child {
 label {
   display: block;
   line-height: 20px !important;
-
 }
 
 /*** image carte du monde**/
 
-.img-fluid{
-  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
-
-
+.img-fluid {
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
 }
 /* input, select{
     width: 80% !important;
@@ -95,23 +111,21 @@ label {
 }
 
 /** formulaire d'envoi**/
-.content_new{
-	width: 60%; 
+.content_new {
+  width: 60%;
   height: 50%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
- background-color: #ffffff;
- border-radius: 15px;
- padding: 40px;
- margin-left: 20%;
-	
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 40px;
+  margin-left: 20%;
 }
 
 /**Inscription et Connexion*/
-.card{
-border-radius: 30px;
-height: 80vh;
-box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
-
+.card {
+  border-radius: 30px;
+  height: 80vh;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
 }

@@ -14,10 +14,8 @@
 	</div>
 	{# <div>
 				
-				<table class="home_continent">
-	
-	
-				<h1>Liste des transferts disponible</h1>
+				<h1 class=" text-center mt-5">Liste des transferts disponible</h1>
+				<table >
 				<thead>
 					<tr>
 						<th>Ville du bénéficiaire</th>
@@ -44,8 +42,8 @@
 					{% endfor %}
 				</tbody>
 			</table>
-				</div> #}
-	<div>
+				</div>
+	 <div> #}
 
 		{% if is_granted('ROLE_ADMIN') %}
 			<div class=" list-group d-flex text-center mt-3">
@@ -64,5 +62,5 @@
 					{% endfor %}
 				</ul>
 			{% endif %}
-		</div>
+	 </div>
 	{% endblock %}
