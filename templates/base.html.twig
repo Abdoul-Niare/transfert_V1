@@ -34,7 +34,7 @@
                 <span class="block sm:inline">{{message}}</span>
             </div>
         {% endfor %}
-        {% for message in app.flashes('Succès') %}
+        {% for message in app.flashes('success') %}
             <div class="alert alert-success">
             <strong class="font-bold">Succès !</strong>
                 {{ message }}

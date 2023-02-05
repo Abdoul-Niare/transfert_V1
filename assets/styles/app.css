@@ -6,6 +6,7 @@ liste= info
 envoie =rgb(186,124,51)
 couleur F9F3E0 -> rgb(249,243,224)
         F3FAFF -> rgb(243,250,255)
+western -> couleur #EBECE7
 
 couleur= RGBA(13,110,253,0.25)
 
@@ -17,7 +18,7 @@ body {
   max-height: 100vh;
   margin: 0;
   padding: 0;
-  
+  background-color: #EBECE7;
   /* padding: 0;
   font-family: arial, sans-serif;
   color: black; */
@@ -54,6 +55,7 @@ table {
 .navbar-brand {
   color: rgb(186,124,51);
   padding: 0;
+  margin-right: 90px;
 
 }
 
