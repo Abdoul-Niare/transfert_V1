@@ -24,29 +24,25 @@
             {% endif %}
 
             <p class="text-center h1  mb-5 mx-1 mx-md-4 mt-4">Connexion</p>
-            <label for="inputUsername">Username</label>
-            <div><i class="fas fa-user fa-lg me-3 fa-fw"></i></i></div>
+            <label for="inputUsername"><i class="fas fa-user fa-lg me-3 fa-fw"></i> Nom d'utilisateur</label>
+           
             <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autoMail 
             
             {# <label for="inputEmail">Email</label>
             <div><i class="fas fa-envelope fa-lg me-3 fa-fw"></i></div>
             <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="mail" required autofocus> #}
            
-            <label for="inputPassword"> Password</label>
-            <div><i class="fas fa-lock fa-lg me-3 fa-fw"></i></div>
+            <label for="inputPassword"><i class="fas fa-lock fa-lg me-3 fa-fw"></i> Mot de passe</label>
             <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-           <div class="text-center mt-5">
+           <div class="mt-5">
             <button class="btn btn-lg btn-primary" type="submit">Se connecter</button>
     
         </div>
         </form>
-        
             </div>
-
               <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
                 <img src="https://www.wari.com/fileadmin/_processed_/9/5/csm_GettyImages-613258262_b4e89a7fa6.jpg"
                   class="img-fluid alt="Sample image">
 

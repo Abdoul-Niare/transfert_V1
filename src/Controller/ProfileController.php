@@ -38,4 +38,37 @@ class ProfileController extends AbstractController
 
         ]);
     }
+
+
+    // #[Route('/profile', name: 'app_profile', methods: ['GET', 'POST'])]
+    // // #[IsGranted('ROLE_USER')]
+    // public function EditProfile(Request $request, UserRepository $userRepository, EntityManagerInterface $manager , UserPasswordHasherInterface $hasher): Response
+    // {
+    //     $user = $this->getUser();
+
+    //     $form = $this->createForm(EditProfileType::class, $user);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         if($hasher->isPasswordValid($user, $form->getData()->getPlainPassword))
+    //         {
+    //             $user= $form->getData();
+    //             $manager-> persist($user);
+    //             $manager->flush();
+
+    //             $user->save($user, true);
+    //             $this->addFlash('success', 'Profil modifié avec succès.');
+    //             return $this->redirectToRoute('user_profile_modifier', [], Response::HTTP_SEE_OTHER);
+    //         }else
+    //          {
+    //             $this->addFlash('error', 'Mot de passe incorrect');
+    //         }
+    //     }
+
+    //     return $this->render('user/_profile_form.html.twig', [
+    //         'user' => $user,
+    //         'form' => $form->createView(),
+
+    //     ]);
+    // }
 }

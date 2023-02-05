@@ -31,6 +31,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+
+    
+
     #[ORM\ManyToOne(inversedBy: 'users')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Ville $ville = null;
@@ -49,6 +52,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 45)]
     private ?string $mail = null;
+
+   
 
     public function __construct()
     {
@@ -107,6 +112,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+
+    
+    // private ?string $painPassword = null;
+
+
+    //   /**
+    //  *  Get the value of Plainpassword.
+    //  */
+    // public function getPlainPassword()
+    // {
+    //     return $this->plainPassword;
+    // }
+
+    //  /**
+    //  *  Set the value of Plainpassword.
+    //  * @return self
+    //  */
+    // public function setPlainPassword(string $plainPassword): self
+    // {
+    //     $this->plainPassword = $plainPassword;
+
+    //     return $this;
+    // }
+
+
+
 
     /**
      * @see PasswordAuthenticatedUserInterface
