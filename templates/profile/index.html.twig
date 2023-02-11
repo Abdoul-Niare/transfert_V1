@@ -5,6 +5,13 @@
 
 {% block body %}
 	<section class="profil">
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success">
+				<strong class="font-bold">Succès !</strong>
+				{{ message }}
+			</div>
+		{% endfor %}
+
 		<h2 class="text-center mt-4">Modification du profil
 		</h2>
 		<div class="container mt-4">

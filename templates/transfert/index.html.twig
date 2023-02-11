@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Transfert index
+{% block title %}Gérer les transferts 
 {% endblock %}
 
 {% block body %}
@@ -13,13 +13,12 @@
 		{% endif %}
 
 		
-		{% for transfert in app.flashes('succes') %}
-		<div class="alert alert-succes">
-		{{message}}
-		
-		</div>
-			
-		{% endfor %}
+		 {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+            <strong class="font-bold">Succès !</strong>
+                {{ message }}
+            </div>
+        {% endfor %}
 
 
 		<table class="container-fluid">

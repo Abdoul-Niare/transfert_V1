@@ -181,6 +181,7 @@ class TransfertController extends AbstractController
             
             //Enregistrement supplementaire eventuellement
             $transfertRepository->save($transfert, true);
+            $this->addFlash('success', 'Profil modifié avec succès.');
 
             return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
         }
