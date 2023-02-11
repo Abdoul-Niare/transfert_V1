@@ -46,8 +46,11 @@
 				</div>
 	 <div> #}
 
-		{% if is_granted('ROLE_ADMIN') %}
+		
+
 			<div class=" list-group d-flex text-center mt-3">
+			<a class="btn btn-primary" style="margin: 3px auto; " href="{{ path('contact.index') }}">Nous contacter</a>
+		{% if is_granted('ROLE_ADMIN') %}
 				<a class="btn btn-info" style="margin:  auto" href="{{ path('app_transfert_index')}}">Liste de tous les transferts</a>
 				<br>
 				<a class="btn btn-primary" style="margin: 0 auto" href="{{ path('app_user_index') }}">Liste des agents livreur</a>

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SEND €-CFA Contact
+
+{% endblock %}
+
+{% block body %}
+	<div class="container h-100 mt-5">
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success mt-4">
+				<strong class="font-bold">Succès !</strong>
+				{{ message }}
+			</div>
+		{% endfor %}
+        
+		<h1>Formulaire de Contact</h1>
+		{{form(form)}}
+
+		</div>
+	{% endblock %}
