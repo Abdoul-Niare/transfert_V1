@@ -40,11 +40,7 @@ class TransfertController extends AbstractController
             'transferts' => $liste_transferts,
         ]);
 
-        
-
     }
-
-
 
     #[Route('/new', name: 'app_transfert_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]

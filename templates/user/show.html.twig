@@ -5,9 +5,9 @@
 
 {% block body %}
 	<div class="container-fluid vh-100 mt-5">
-		<h1>Utilisateur</h1>
+		<h1 class="ms-5 mb-3" >Utilisateur</h1>
 
-		<table class="table text-center">
+		<table class="table text-center ms-5">
 			<tbody>
 				<tr>
 					<th>Id</th>
@@ -21,10 +21,10 @@
 					<th>Roles</th>
 					<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
 				</tr>
-				<tr>
+				{# <tr>
 					<th>Mot de passe</th>
 					<td>{{ user.password }}</td>
-				</tr>
+				</tr> #}
 				<tr>
 					<th>Nom</th>
 					<td>{{ user.nom }}</td>
@@ -34,7 +34,7 @@
 					<td>{{ user.prenom }}</td>
 				</tr>
 				<tr>
-					<th>Mail</th>
+					<th>Email</th>
 					<td>{{ user.mail }}</td>
 				</tr>
 				<tr>
@@ -52,8 +52,8 @@
 
 		{% elseif is_granted('ROLE_USER') %}
 
-			<a class="btn btn-success" href="{{ path('app_profile', {'id': user.id}) }}">Modifier</a>
-			<a class="btn btn-primary" href="{{ path('user_profile_modifier') }}">Retour</a>
+			<a class="btn btn-success ms-5" href="{{ path('app_profile', {'id': user.id}) }}">Modifier</a>
+			<a class="btn btn-primary ms-3" href="{{ path('user_profile_modifier') }}">Retour</a>
 
 		{% endif %}
 

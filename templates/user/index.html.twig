@@ -13,8 +13,9 @@
 			<table class="container-fluid w-50">
 				<thead>
 					<tr>
-						<th>Utilisateur</th>
+						<th>Id</th>
 						<th>Nom utilisateur</th>
+						<th>Ville</th>
 						<th>Roles</th>
 						<th>Nom</th>
 						<th>Prenom</th>
@@ -27,6 +28,7 @@
 						<tr>
 							<td>{{ user.id }}</td>
 							<td>{{ user.username }}</td>
+							<td>{{ user.ville }}</td>
 							<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
 							<td>{{ user.nom }}</td>
 							<td>{{ user.prenom }}</td>

@@ -19,16 +19,15 @@ class MainController extends AbstractController
         //var_dump('erer');exit;
         return $this->render('main/home.html.twig', [
             'nav_activ' => "home",
-            // 'controller_name' => 'MainController',
             'transferts' => $transfertRepository->findBy([
                 'is_visible' => true,
                 'statut' => [
                     'Pris en charge',
                     'envoyé'
-                    
                 ],
             ]),
             'villes' => $villeRepository->findAll(),
+            'users' =>$userRepository->findAll(),
             
 
         ]);
@@ -41,13 +40,14 @@ class MainController extends AbstractController
 
     #[Route('/tab/{id}', name: 'tab', methods: ['GET'])]
 
-    public function tab(Ville $ville, TransfertRepository $transfertRepository, VilleRepository $villeRepository): Response
+    public function tab(Ville $ville, TransfertRepository $transfertRepository, VilleRepository $villeRepository, UserRepository $userRepository): Response
     {
         return $this->render('main/tab.html.twig', [
             'nav_activ' => $ville->getName(),
             'vil' => $ville,
             'transferts' => $transfertRepository->findAll(),
             'villes' => $villeRepository->findAll(),
+            'users' =>$userRepository->findAll(),
         ]);
     }
 }
