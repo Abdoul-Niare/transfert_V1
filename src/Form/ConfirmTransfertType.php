@@ -34,7 +34,7 @@ class ConfirmTransfertType extends AbstractType
             ->add('ville', EntityType::class, [
                 'class' => Ville::class,
                 'choice_label' => 'name',
-                'choice_value' => 'id',
+                 'choice_value' => 'id',
                 'label' => "Quelle destination ?",
                 'attr' => ['readonly' => true],
             ])

@@ -115,7 +115,7 @@ class TransfertController extends AbstractController
             // $status = "Envoyé";
             // $transfert->setStatut($status);
        
-            $confirmForm = $this->createForm(ConfirmTransfertType::class, $transfert);
+            $confirmForm = $this->createForm(TransfertType::class, $transfert);
 
             $_SESSION['transfert'] = $transfert;
 
@@ -141,6 +141,7 @@ class TransfertController extends AbstractController
     {
         $transfert = $_SESSION['transfert'];
         $expediteur = $this->getUser();
+        $confirmForm = $this->createForm(ConfirmTransfertType::class, $transfert);
         if($transfert != null && $this->isCsrfTokenValid('confirm' . $expediteur->getId(), $request->request->get('_token'))){
     
             // Status du transfert à l'envoi 
@@ -177,12 +178,15 @@ class TransfertController extends AbstractController
             
             //Enregistrement supplementaire eventuellement
             $transfertRepository->save($transfert, true);
-            $this->addFlash('success', 'Profil modifié avec succès.');
+            $this->addFlash('success', ' votre transfert a bien été envoyer.');
+
+            return $this->render('transfert/facture.html.twig');
 
             return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
         }
         
-        $confirmForm = $this->createForm(TransfertType::class, $transfert);
+        
+        
 
         $_SESSION['transfert'] = $transfert;
 
