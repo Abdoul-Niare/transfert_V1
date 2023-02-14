@@ -23,7 +23,7 @@ class TransfertType extends AbstractType
     {
         $builder
             ->add('ville', Null, [
-                'label' => "Ville Bénéficiare:",
+                'label' => "Vill Bénéficiare:",
            
             ])
             ->add('nomBenef', TextType::class, [
@@ -59,11 +59,11 @@ class TransfertType extends AbstractType
             ])
 
 
-            // ->add('numBenef', TextType::class, [
-            //     'label' => "Type pièce:",
-            //     'attr' => [
-            //         'placeholder' => 'Numero de pièce identité'
-            // ]])
+            ->add('numBenef', TextType::class, [
+                'label' => "Type pièce:",
+                'attr' => [
+                    'placeholder' => 'Numero de pièce identité'
+            ]])
             
             // ->add('numBenef', FileType::class, [
             //     'label' => 'Photo de la pièce',

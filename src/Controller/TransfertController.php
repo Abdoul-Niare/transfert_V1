@@ -74,7 +74,7 @@ class TransfertController extends AbstractController
             //     $transfert->setNumBenef($newFilename);
             // }
                 
-            $transfert->setNumBenef('newFilename');
+            // $transfert->setNumBenef('newFilename');
 
 
             // //Date d'envoie du transfert.
@@ -115,7 +115,7 @@ class TransfertController extends AbstractController
             // $status = "Envoyé";
             // $transfert->setStatut($status);
        
-            $confirmForm = $this->createForm(TransfertType::class, $transfert);
+            // $confirmForm = $this->createForm(TransfertType::class, $transfert);
 
             $_SESSION['transfert'] = $transfert;
 
@@ -168,26 +168,26 @@ class TransfertController extends AbstractController
             $codeSecret = $lettre . $nombre;
             $transfert->setCodeSecret($codeSecret);
 
-            $transfert->setNumBenef('newFilename');
+            // $transfert->setNumBenef('newFilename');
             $transfert->setStatut("Envoyé");
             $transfert->setExpediteur($expediteur);
             $transfert->setIsVisible(true);
             echo $transfert->getVille()->getId();
 
-           
-            
-            //Enregistrement supplementaire eventuellement
+            //Enregistrement supplementaire eventuellement.
             $transfertRepository->save($transfert, true);
-            $this->addFlash('success', ' votre transfert a bien été envoyer.');
+            
+            $this->addFlash('success', 'votre transfert a bien été envoyer.');
 
-            return $this->render('transfert/facture.html.twig');
+            // Details de la facture du transfert.
+            return $this->render('transfert/facture.html.twig', [
+                'transfert' => $transfert,
+            ]);
 
             return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
         }
         
-        
-        
-
+    
         $_SESSION['transfert'] = $transfert;
 
         return $this->render('transfert/_confirm_form.html.twig', [
@@ -195,6 +195,14 @@ class TransfertController extends AbstractController
             'form' => $confirmForm,
         ]);
     }
+
+    // #[Route('/details-facture', name: 'app_transfert_facture', methods: ['POST'])]
+    // public function facture(ManagerRegistry $doctrine, Transfert $transfert): Response
+    // {
+    //     return $this->render('transfert/facture.html.twig', [
+    //         'transfert' => $transfert,
+    //     ]);
+    // }
 
     #[Route('/{id}', name: 'app_transfert_show', methods: ['GET'])]
     public function show(ManagerRegistry $doctrine, Transfert $transfert): Response

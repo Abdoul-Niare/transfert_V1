@@ -31,7 +31,7 @@
 					<th>Date d'envoi</th>
 					<th>Date pris charge</th>
 					<th>Date livraison</th>
-					{# <th>Is_visible</th> #}
+					<th>Is_visible</th>
 					<th>actions</th>
 				</tr>
 			</thead>
@@ -55,7 +55,7 @@
 						<td>{{ transfert.dateEnvoi ? transfert.dateEnvoi|date('Y-m-d H:i:s') : '' }}</td>
 						<td>{{ transfert.datePrisCharge ? transfert.datePrisCharge|date('Y-m-d H:i:s') : '' }}</td>
 						<td>{{ transfert.dateLivr ? transfert.dateLivr|date('Y-m-d H:i:s') : '' }}</td>
-						{# <td>{{ transfert.isVisible ? 'Yes' : 'No' }}</td> #}
+						<td>{{ transfert.isVisible ? 'Yes' : 'No' }}</td>
 						<td>
 							<a class="btn btn-primary p-1 m-1" href="{{ path('app_transfert_show', {'id': transfert.id}) }}">Afficher</a>
 							{% if is_granted('ROLE_ADMIN') and (transfert.dateLivr == null) %}
@@ -65,7 +65,7 @@
 					</tr>
 				{% else %}
 					<tr>
-						<td colspan="16">Aucun Transfert n'a été créée</td>
+						<td colspan="16">Pas de transfert disponible pour l'instant</td>
 					</tr>
 				{% endfor %}
 			</tbody>

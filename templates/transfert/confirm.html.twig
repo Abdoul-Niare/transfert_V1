@@ -1,15 +1,10 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}Confirmation et paiement
 {% endblock %}
 
 {% block body %}
-	{% for message in app.flashes('success') %}
-		<div class="alert alert-success">
-			<strong class="font-bold">Succès !</strong>
-			{{ message }}
-		</div>
-	{% endfor %}
+
 	<h1>
 		Transfert
 		{{ transfert.statut }}</h1>
@@ -62,6 +57,10 @@
 				<td>{{ transfert.numTelBenef }}</td>
 			</tr>
 			<tr>
+				<th>Ville du bénéficiaire</th>
+				<td>{{ transfert.ville }}</td>
+			</tr>
+			<tr>
 				<th>Date d'envoi</th>
 				<td>{{ transfert.dateEnvoi ? transfert.dateEnvoi|date('Y-m-d H:i:s') : '' }}</td>
 			</tr>
@@ -87,4 +86,4 @@
 		{{ include('transfert/_delete_form.html.twig') }}
 	{% endif %}
 
-{% endblock %}
+{% endblock %} #}

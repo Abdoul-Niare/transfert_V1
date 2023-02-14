@@ -5,10 +5,81 @@
 
 {% block body %}
 	<div class="container h-100">
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success ">
+				<strong class="font-bold">Succès !</strong>
+				{{ message }}
+			</div>
+		{% endfor %}
+
 		<h2 class"text-center">
 			Details de votre transfert
 		</h2>
-		<a class="btn btn-primary p-1 m-4 " href="/">Retour</a>
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Transfert:
+						{{ transfert.codeSecret }}</th>
+					<td>{{ transfert.id }}</td>
+				</tr>
+				<tr>
+					<th>Status</th>
+					<td>{{ transfert.statut }}</td>
+				</tr>
+				<tr>
+					<th>Code secret</th>
+					<td>{{ transfert.codeSecret }}</td>
+				</tr>
+				<tr>
+					<th>Montant du transfert</th>
+					<td>{{ transfert.montTransfert }}</td>
+				</tr>
+				<tr>
+					<th>Montant pour le Bénéficiaire</th>
+					<td>{{ transfert.montBenef }}</td>
+				</tr>
+				<tr>
+					<th>Frais de transfert</th>
+					<td>{{ transfert.fraisTransfert }}</td>
+				</tr>
+				<tr>
+					<th>Commission du site</th>
+					<td>{{ transfert.comTransfert }}</td>
+				</tr>
+
+
+				<tr>
+					<th>Commission de l'Agent_Livreur</th>
+					<td>{{ transfert.comAgentLivreur }}</td>
+				</tr>
+
+				<tr>
+					<th>Nom du bénéficiaire</th>
+					<td>{{ transfert.nomBenef }}</td>
+				</tr>
+                <tr>
+					<th>Ville du bénéficiaire</th>
+					<td>{{ transfert.ville }}</td>
+				</tr>
+				<tr>
+					<th>Cate d'identité du bénéficiaire</th>
+					<td>{{ transfert.numBenef }}</td>
+				</tr>
+				<tr>
+					<th>Telephone du bénéficiaire</th>
+					<td>{{ transfert.numTelBenef }}</td>
+				</tr>
+				<tr>
+					<th>Date d'envoi</th>
+					<td>{{ transfert.dateEnvoi ? transfert.dateEnvoi|date('Y-m-d H:i:s') : '' }}</td>
+				</tr>
+
+			</tbody>
+		</table>
+		<a class="btn btn-primary p-1 mt-0 " href="/">Retour</a>
+
+
 	</div>
 
 

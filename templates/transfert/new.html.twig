@@ -5,6 +5,8 @@
 
 {% block body %}
 <section class="vh-50 bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+	
+
 	<div class="container_new">
 		<h2 class="text-center mt-3 mb-5">Commencer un nouveau transfert</h2>
 
@@ -37,7 +39,7 @@ frais.value = transfert.value * 0.025;
 // agent.value= transfert.value*0.07;
 // benef.value= transfert.value*0.90;
 
-benef.value = transfert.value - frais.value;
+benef.value = (transfert.value - frais.value)*655.13;
 
 }
 }
