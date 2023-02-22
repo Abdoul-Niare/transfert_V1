@@ -1,35 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gérer la ville{% endblock %}
+{% block title %}Gestion des villes
+{% endblock %}
 
 {% block body %}
-    <h1>Ville index</h1>
+	<section class="list_utilisateur">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for ville in villes %}
-            <tr>
-                <td>{{ ville.id }}</td>
-                <td>{{ ville.name }}</td>
-                <td>
-                    <a href="{{ path('app_ville_show', {'id': ville.id}) }}">show</a>
-                    <a href="{{ path('app_ville_edit', {'id': ville.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <h2 class="text-center m-4">Liste de toutes les villes</h2>
 
-    <a href="{{ path('app_ville_new') }}">Create new</a>
+		<div class="container">
+    <a class="btn btn-primary text-center mb-3" href="{{ path('app_ville_new') }}"><i class="fa fa-earth-africa"></i> Add Ville</a>
+
+			<table class="container-fluid w-50">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for ville in villes %}
+						<tr>
+							<td>{{ ville.id }}</td>
+							<td>{{ ville.name }}</td>
+							<td>
+
+								
+							<a class="btn btn-info p-1 m-1" href="{{ path('app_ville_show', {'id': ville.id}) }}"><i class="fa fa-eye"></i> Afficher</a>
+
+								<a class="btn btn-warning p-1 m-1" href="{{ path('app_ville_edit', {'id': ville.id}) }}"><i class="fa fa-edit"></i> Modifier</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="3">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		
+		</div>
+
+</section>
 {% endblock %}

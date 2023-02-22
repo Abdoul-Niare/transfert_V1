@@ -36,17 +36,17 @@ class ContactController extends AbstractController
             $manager->persist($contact);
             $manager->flush();
 
-            //Envoi de l'email
-            $email = (new TemplatedEmail())
-            ->from($contact->getMail())
-            ->to('abdoulniare@yahoo.fr')
-            ->subject($contact->getSubject())
-            ->htmlTemplate('emails/contact.html.twig')
-            // pass variables (name => value) to the template
-            ->context([
-                'contact' => $contact,    
-            ]);
-            $mailer->send($email);
+            // //Envoi de l'email
+            // $email = (new TemplatedEmail())
+            // ->from($contact->getMail())
+            // ->to('abdoulniare@yahoo.fr')
+            // ->subject($contact->getSubject())
+            // ->htmlTemplate('emails/contact.html.twig')
+            // // pass variables (name => value) to the template
+            // ->context([
+            //     'contact' => $contact,    
+            // ]);
+            // $mailer->send($email);
 
             $this->addFlash(
                 'success',

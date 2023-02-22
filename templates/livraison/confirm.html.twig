@@ -4,9 +4,9 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Transfert</h1>
+	<h2 class="text-center mt-3">Transfert</h2>
 
-	<table class="table">
+	<table class="table " style="margin:0 auto">
 		<tbody>
 			<tr>
 				<th>Id</th>
@@ -37,13 +37,10 @@
 				<td>{{ transfert.comTransfert }}</td>
 			</tr>
 
-			{# <?php if($this->getUser()->roles === "ROLE_AGENT"){ ?> #}
 			<tr>
 				<th>ComAgentLivreur</th>
 				<td>{{ transfert.comAgentLivreur }}</td>
 			</tr>
-
-			{# <?php } ?> #}
 
 			<tr>
 				<th>NomBenef</th>
@@ -75,8 +72,8 @@
 			</tr>
 		</tbody>
 	</table>
-
-	<a class="btn btn-secondary p-1 " href="{{ path('app_transfert_index') }}">Retour à la liste</a>
+	<div class="text-center d-flex justify-content-center">
+	<a class="btn btn-primary p-1 m-3" href="{{ path('app_transfert_index') }}">Retour à la liste</a>
 	<br>
 	<div class="text-center">
 		{# <a class="btn btn-warning p-1 m-1" href="{{ path('app_transfert_take', {'id': transfert.id}) }}">Prendre en charge</a> #}
@@ -89,5 +86,6 @@
 	</div> #}
 
 	{# {{ include('transfert/_delete_form.html.twig') }} #}
+	</div>
 {% endblock %}
 

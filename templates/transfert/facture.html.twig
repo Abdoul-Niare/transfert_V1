@@ -12,11 +12,10 @@
 			</div>
 		{% endfor %}
 
-		<h2 class"text-center">
-			Details de votre transfert
-		</h2>
+		<h2 class"mb-3" style= "text-align:center">Details de votre transfert</h2>
 
-		<table class="table">
+		<table class="table" style="margin:0 auto">
+
 			<tbody>
 				<tr>
 					<th>Transfert:
@@ -58,7 +57,7 @@
 					<th>Nom du bénéficiaire</th>
 					<td>{{ transfert.nomBenef }}</td>
 				</tr>
-                <tr>
+				<tr>
 					<th>Ville du bénéficiaire</th>
 					<td>{{ transfert.ville }}</td>
 				</tr>
@@ -77,8 +76,10 @@
 
 			</tbody>
 		</table>
-		<a class="btn btn-primary p-1 mt-0 " href="/">Retour</a>
 
+		<div class="text-center d-flex justify-content-center">
+			<a class="btn btn-primary p-2 m-3 " href="/">Retour</a>
+		</div>
 
 	</div>
 

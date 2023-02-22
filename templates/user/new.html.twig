@@ -3,9 +3,11 @@
 {% block title %}Nouveau utilisateur{% endblock %}
 
 {% block body %}
-    <h2 class="text-center mt-3 mb-5" >Création d'agent livreur</h2>
+  <div class="container">
+    <h2 class="text-center mt-3 mb-5" >Ajout d'agent livreur</h2>
 
     {{ include('user/_new_form.html.twig') }}
 
     {# <a href="{{ path('app_user_index') }}">back to list</a> #}
+  </div>
 {% endblock %}

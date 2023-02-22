@@ -1,70 +1,83 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}home_index
+{% block title %}Page d'Accueil!
 {% endblock %}
 
 {% block body %}
-
-	<div class="container mt-5">
-		<h3>Bienvenue sur SEND-€-CFA...</h3>
-		<h4>
-			Notre site de transfert d'argent fiable rapide et sécurisé.</h4>
-		<h5>Notre politique se differencie de tous les autres canaux de transfert d'argent</h5>
-		<h6>Utilisez notre site pour envoyer de l'argent à vos proches nous nous engageons à les apporter sur place par l'intermediaire de l'un de nos agents</h6>
-		<h6>Pour commencer, rendez-vous sur la page d'inscription pour utiliser l'application</h6>
-	</div>
-	{# <div>
-				
-				<h1 class=" text-center mt-5">Liste des transferts disponible</h1>
-				<table >
-				<thead>
-					<tr>
-						<th>Ville du bénéficiaire</th>
-						<th>Montant pour le bénéficiaire</th>
-						<th>Votre commission</th>
-						<th>AgentLivreur</th>
-						<th>Status des Transferts</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for transfert in transferts %}
-						<tr>
-							<td>{{ transfert.ville }}</td>
-							<td>{{ transfert.montBenef }}</td>
-							<td>{{ transfert.comAgentLivreur }}</td>
-							<td>{{ transfert.agentlivreur }}</td>
-							<td>{{ transfert.statut }}</td>
-							<td>
-								<a class="btn btn-info" href="{{ path('app_transfert_show', {'id': transfert.id}) }}">Afficher</a>
-								<a class="btn btn-primary" href="{{ path('app_transfert_edit', {'id': transfert.id}) }}">Mettre à jour</a>
-							</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-				</div>
-	 <div> #}
-
+	
+		<div class="container ml-5 mt-4">
+			<h3>Bienvenue sur SEND-€-CFA...</h3>
+			<h4>
+				Notre site de transfert d'argent fiable rapide et sécurisé.</h4>
+			<h5>Notre politique se differencie de tous les autres canaux de transfert d'argent</h5>
+			<h6>Utilisez notre site pour envoyer de l'argent à vos proches nous nous engageons à les apporter sur place par l'intermediaire de l'un de nos agents</h6>
+			<h6>Pour commencer, rendez-vous sur la page d'inscription pour utiliser l'application</h6>
+		</div>
+		{# <div>
+						
+						<h1 class=" text-center mt-5">Liste des transferts disponible</h1>
+						<table >
+						<thead>
+							<tr>
+								<th>Ville du bénéficiaire</th>
+								<th>Montant pour le bénéficiaire</th>
+								<th>Votre commission</th>
+								<th>AgentLivreur</th>
+								<th>Status des Transferts</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for transfert in transferts %}
+								<tr>
+									<td>{{ transfert.ville }}</td>
+									<td>{{ transfert.montBenef }}</td>
+									<td>{{ transfert.comAgentLivreur }}</td>
+									<td>{{ transfert.agentlivreur }}</td>
+									<td>{{ transfert.statut }}</td>
+									<td>
+										<a class="btn btn-info" href="{{ path('app_transfert_show', {'id': transfert.id}) }}">Afficher</a>
+										<a class="btn btn-primary" href="{{ path('app_transfert_edit', {'id': transfert.id}) }}">Mettre à jour</a>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+						</div>
+			 <div> #}
+		 	
+		{# <div class=" list-group d-flex text-center mt-3">
 		
+			<a class="btn btn-info" style="margin:  auto" href="{{ path('app_transfert_index')}}">Liste de tous les transferts</a>
+			<br>
+			<a class="btn btn-primary" style="margin: 0 auto" href="{{ path('app_user_index') }}">Liste des agents livreur</a>
+		</div> #}
 
-			<div class=" list-group d-flex text-center mt-3">
-			<a class="btn btn-primary" style="margin: 3px auto; " href="{{ path('contact.index') }}">Nous contacter</a>
-		{% if is_granted('ROLE_ADMIN') %}
-				<a class="btn btn-info" style="margin:  auto" href="{{ path('app_transfert_index')}}">Liste de tous les transferts</a>
-				<br>
-				<a class="btn btn-primary" style="margin: 0 auto" href="{{ path('app_user_index') }}">Liste des agents livreur</a>
+		<section class="agent d-flex mb-5 h-75">
+			<div class="agent_text bg-danger" style=" width: 50vw" >
+				<h2> je te suis </h2>
+				<h3>je ne t'abandonnerai jamais </h3>
+				<h4>on fera tout ensemble</h4>
+				<p>fsdjyfukggggluiflfuyl</p>
+				<h5>dgwhtwwsnursus u n-rsusrj</h5>
 			</div>
 
-			<div class="list-group">
-				<h2 class="m-5">Toutes les Villes</h2>
-				<ul class="nav nav-tabs justify-content-center">
-					{% for ville in villes %}
-						<li class="nav-item">
-							<a class=" nav-link  {% if app.request.uri|split('/')|last == ville.id %} active{% endif %} " href="{{path('tab', {id:ville.id})}}">{{ville.name}}</a>
-						</li>
-					{% endfor %}
-				</ul>
-			{% endif %}
-	 </div>
-	{% endblock %}
+			{# <div class="agent_image" style=" width: 50vw">
+				<img src="{{asset('img/livraison.webp')}}" alt="photo livraison" >
+			</div> #}
+
+		</section>
+
+		<div class="list-group">
+		{% if is_granted('ROLE_ADMIN') %}
+			<h2 class="m-5">Toutes les Villes</h2>
+			<ul class="nav nav-tabs justify-content-center">
+				{% for ville in villes %}
+					<li class="nav-item">
+						<a class=" nav-link  {% if app.request.uri|split('/')|last == ville.id %} active{% endif %} " href="{{path('tab', {id:ville.id})}}">{{ville.name}}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+{% endblock %}

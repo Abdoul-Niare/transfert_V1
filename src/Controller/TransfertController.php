@@ -6,6 +6,7 @@ use App\Entity\Transfert;
 use App\Form\TransfertType;
 use App\Repository\TransfertRepository;
 use App\Form\ConfirmTransfertType;
+use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,38 +22,74 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class TransfertController extends AbstractController
 {
     #[Route('/', name: 'app_transfert_index', methods: ['GET'])]
-    public function index(TransfertRepository $transfertRepository): Response
+    public function index( TransfertRepository $transfertRepository): Response
     {
-
         $liste_transferts = null; 
-        if ($this->isGranted('ROLE_ADMIN')) {
 
+        if ($this->isGranted('ROLE_ADMIN')) {
             $liste_transferts = $transfertRepository->findAll();
-        }
-        elseif($this->isGranted('ROLE_PARTNER')){
-            $liste_transferts = $transfertRepository->findByAgentLivreurId($this->getUser()->getId());     
+
+        }elseif($this->isGranted('ROLE_PARTNER')){
+
+            // $liste_transferts = $transfertRepository->findByAgentLivreurId($this->getUser()->getId());
+
+            // Un agent ne peut voir qu'un transfert non supprimé et non pris en charge par d'autres agents.
+            $liste_transferts = $transfertRepository->findBy(['is_visible' => true, 'statut' => [
+                    'envoyé'
+                ],
+            ]);     
         }
         elseif($this->isGranted('ROLE_USER')){
-            // $liste_transferts = $transfertRepository->findBy(['is_visible' => true,'expediteur'=>$this->getUser()->getId()]);     
-            $liste_transferts = $transfertRepository->findByExpediteurId($this->getUser()->getId());
+            $liste_transferts = $transfertRepository->findBy(['is_visible' => true,'expediteur'=>$this->getUser()->getId()]);     
+            // $liste_transferts = $transfertRepository->findByExpediteurId($this->getUser()->getId());
+            // $liste_transferts = $transfertRepository->findByExpediteurId(['is_visible' => true ]);     
         }
         return $this->render('transfert/index.html.twig', [
             'transferts' => $liste_transferts,
         ]);
 
     }
+    
+    #[Route('/compte', name: 'app_transfert_compte', methods: ['GET'])]
+    public function compte( TransfertRepository $transfertRepository): Response
+    {
+        $liste_transferts = null;
+        $user = $this->getUser(); 
+        
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $liste_transferts = $transfertRepository->findBy($this->getUser()->getId());
+
+        }elseif($this->isGranted('ROLE_PARTNER')){
+
+            $liste_transferts = $transfertRepository->findByAgentLivreurId($this->getUser()->getId());        
+        }
+        elseif($this->isGranted('ROLE_USER')){
+            $liste_transferts = $transfertRepository->findByExpediteurId($this->getUser()->getId());
+        }
+
+        return $this->render('transfert/compte.html.twig', [
+            'transferts' => $liste_transferts,
+            'transferts' => $transfertRepository->findBy([
+                'agentLivreur' => $user,
+            ]),
+        ]);
+
+    }
+
+
 
     #[Route('/new', name: 'app_transfert_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
-    public function new(Request $request, TransfertRepository $transfertRepository, SluggerInterface $slugger): Response
+    public function new(Request $request, TransfertRepository $transfertRepository, SluggerInterface $slugger, UserRepository $userRepository): Response
     {
+
+
         // Gestion de l'expéditeur.
         $expediteur = $this->getUser();
         $transfert = new Transfert();
         $transfert->setExpediteur($expediteur);
         $form = $this->createForm(TransfertType::class, $transfert);
         $form->handleRequest($request);
-
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -99,7 +136,7 @@ class TransfertController extends AbstractController
             
             // // Visibilité du transfert
             // $transfert->setIsVisible(true);
-
+           
             //Gestion commission
             $fraisTransfert =  $form->get('fraisTransfert')->getData();
             $comAgent = $fraisTransfert * 0.70;
@@ -256,7 +293,8 @@ class TransfertController extends AbstractController
             $status = "Pris en charge";
             $transfert->setStatut($status);
             $transfertRepository->save($transfert, true);
-            return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_transfert_compte', [], Response::HTTP_SEE_OTHER);
+            
         }
         return $this->render('prisEnCharge/confirm.html.twig', [
             'transfert' => $transfert,
@@ -278,7 +316,7 @@ class TransfertController extends AbstractController
             $status = "livré";
             $transfert->setStatut($status);
             $transfertRepository->save($transfert, true);
-            return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_transfert_compte', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render('livraison/confirm.html.twig', [
             'transfert' => $transfert,

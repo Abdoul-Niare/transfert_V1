@@ -4,12 +4,14 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container h-100">
-		<div class="row h-100 w-50 justify-content-center align-items-center">
+	<div class="container h-100 w-100 d-flex justify-content-center align-items-center">
+		<div class="row h-75 w-50 p-5 d-flex justify-content-center align-items-center " style=" background-color: rgba(161, 47, 47, .5);
+ border-radius: 25px;
+ color: white;">
 
-			{{ form_start(form, {'action': path('app_transfert_confirm'), 'method': 'POST','attr': {'class': 'col-10'}}) }}
+			{{ form_start(form, {'action': path('app_transfert_confirm'), 'method': 'POST',}) }}
 
-			<h4>Confirmation et paiement</h4>
+			<h4 class="text-center" >Confirmation et paiement</h4>
 
 			<div class="form-control col-8">
 				{{ form_label(form.ville, 'Ville de destination') }}
@@ -42,12 +44,19 @@
 
 			<div class="d-flex justify-content-start mt-3">
 
-				<input type="submit" value="Confirmer">
-				<button class="btn btn-success">{{ button_label|default('Retour') }}</button>
+				<input type="submit" class="btn btn-primary p-1 m-3" value="Confirmer">
+				{# <button class="btn btn-secondary m-1  ">{{ button_label|default('Retour') }}</button> #}
+					<a class="btn btn-info p-1 m-3" href="{{ path('app_transfert_new') }}">Annuler</a>
 			</div>
 			<input type="hidden" name="_token" value="{{ csrf_token('confirm' ~ confirm_token) }}">
 			{{ form_rest(form) }}
 			{{ form_end(form) }}
+
+			{# <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                <img src="https://www.wari.com/fileadmin/_processed_/9/5/csm_GettyImages-613258262_b4e89a7fa6.jpg"
+                  class="img-fluid alt="Sample image">
+
+              </div> #}
 			
 		</div>
 	</div>

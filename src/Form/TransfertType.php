@@ -23,7 +23,7 @@ class TransfertType extends AbstractType
     {
         $builder
             ->add('ville', Null, [
-                'label' => "Vill Bénéficiare:",
+                'label' => "Ville Bénéficiare:",
            
             ])
             ->add('nomBenef', TextType::class, [

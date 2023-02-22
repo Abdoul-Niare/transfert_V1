@@ -35,13 +35,12 @@ class UserType extends AbstractType
                 'choices'  => [
                   'User' => 'ROLE_USER',
                   'Agent' => 'ROLE_PARTNER',
-                  'Admin' => 'ROLE_ADMIN',
                 ],
             ])
             ->add('nom', TextType::class, [
                 'label' => "Nom :",
                 'attr' => [
-                    'placeholder' => 'Nom Prenom'
+                    'placeholder' => 'Nom'
             ] ])
             ->add('Prenom', TextType::class, [
                 'label' => "Prenom :",
@@ -50,11 +49,11 @@ class UserType extends AbstractType
             ] ])
 
             ->add('ville', Null, [
-                'label' => "Ville de votre Bénéficiare:",
+                'label' => "Ville attribué:",
             ])
            
             ->add('mail', TextType::class, [
-                'label' => 'Adresse mail:',
+                'label' => 'Adresse email:',
                 'attr' => [
                     'placeholder' => 'Email'
             ] ])

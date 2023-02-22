@@ -1,5 +1,5 @@
 <form method="post" action="{{ path('app_transfert_delivery', {'id': transfert.id}) }}" onsubmit="return confirm('Etes-vous sûre de vouloir livrer ce transfert ?');">
     <input type="hidden" name="_token" value="{{ csrf_token('take' ~ transfert.id) }}">
-    <button class="btn btn-danger">Confirmer la livraison</button>
+    <button class="btn btn-success p-1 m-3">Confirmer la livraison</button>
 
 </form>

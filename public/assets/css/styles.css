@@ -1,0 +1,294 @@
+/**
+mes couleurs
+afficher = info
+mettre à jour= primary
+liste= info
+envoie =rgb(186,124,51)
+couleur F9F3E0 -> rgb(249,243,224)
+        F3FAFF -> rgb(243,250,255)
+        rgb(187, 59, 59)
+western -> couleur #EBECE7
+
+couleur= RGBA(13,110,253,0.25)
+
+**/
+
+/* Règles Générales */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+width: 100vw;
+min-width: 100vh;
+padding: 0;
+background-color: #9daa69;
+font-family: arial, sans-serif;
+/* padding: 0;
+color: black; */
+}
+
+/******* header **************/
+.home{
+background-color: aqua;
+width: 75%;
+min-height: 100vh;
+}
+
+.container{
+background-color: rgb(77, 40, 209) !important;
+width: 100vw;
+min-height: 80vh;
+padding: 18px 0 18px 0;
+
+
+}
+
+/** formulaire de contact */
+#contact{
+width: 55%;
+background-color: beige;
+border-radius: 20px;
+padding: 15px;
+margin: 0 auto;
+}
+
+/****** Message alert.***/
+.alert{
+width: 35vw;
+  margin-left: 29%;
+  margin-top: 10px;
+}
+
+/***Table de la gestion des villes ****/
+.ville{
+margin: 0 auto;
+  width: 50%;
+}
+
+/**************Navbar **************/
+.navbar  {
+width: 100% !important;
+
+position: relative;
+background:#0A146E !important;
+padding: 0;
+}
+
+.navbar-nav >a{
+padding: 11px !important;
+}
+
+.container-fluid{
+width: 90% !important;
+}
+
+.navbar > a:hover{
+color: rgb(189, 55, 55);
+}
+
+.fa-solid {
+color: rgb(189, 55, 55);
+}
+
+/***** footer **********/
+.footer{
+width: 100% !important;
+position: fixed;
+margin: 0;
+
+}
+
+.row {
+  margin-right: 0 !important;
+}
+
+
+
+/* .container{
+width: 100vw;
+max-height: 100vh;  
+margin: 0;
+padding: 0;
+font-family: arial, sans-serif;
+color:black;
+}	
+*/
+/* .content_form {
+max-width: 30vw;
+margin-top: 20px;
+display: flex;
+flex-direction: column;
+background-color: rgb(186, 124, 51);
+border-radius: 40px;
+} */
+
+#inscription{
+background-color: blue;
+
+}
+
+
+/******Nom du projet =>text_logo**********/
+
+/***Logo du site****/
+.navbar-brand {
+color: red;
+padding: 0;
+
+}
+
+/** icon profile **/
+#icone {
+color:red !important;
+}
+
+#icone:hover{
+transform: scale(1.8);
+}
+
+/*********tableaux********************/
+
+table {
+max-width: 60vw !important;
+border-collapse: revert;
+text-align: center;
+border: solid 1px;
+margin-left: 40px;
+}
+
+
+th,
+td {
+padding: 10px;
+border: solid 1px;
+}
+
+tr td:last-child {
+text-align: end;
+}
+
+label {
+display: block;
+line-height: 20px !important;
+}
+
+/****************Formulaire de connexion => image carte du monde**************/
+.img-fluid {
+box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
+}
+
+
+#registration_form_agreeTerms {
+width: 15px !important;
+height: 15px;
+margin: 0;
+padding: 0;
+}
+
+/** formulaire d'envoi**/
+.content_new {
+width: 60%;
+max-height: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color:rgba(243,250,255, .9);
+border-radius: 15px;
+padding: 30px;
+margin: 0 0 0 20%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* input, select{
+  width: 80% !important;
+margin: 0 !important;
+padding: 0% !important;
+
+} */
+/* select{
+width: 80% !important;
+display: block;
+line-height:20px !important;
+margin-left: 50px;
+
+} */
+
+/*** form registration**/
+
+/**Inscription et Connexion*/
+/* .card {
+border-radius: 30px;
+height: auto;
+box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
+} */
+
+
+/* Contact */
+/* #contact{
+width: 100vw;
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+} */
+/* .container-form{
+width: 50%;
+} */
+
+/* .form-control{
+border-top: 0!important;
+border-left: 0!important;
+border-right: 0!important;
+border-bottom: 1px solid rgb(217, 220, 223)!important;
+border-radius: 0!important;
+height: 40px!important;
+} */
+/* .form-floating > label{
+color: rgb(121, 121, 121)!important;
+} */
+
+/* .btn-contact{
+background-color: #1ABC9C!important;
+color: white!important;
+} */
+
+/* .icon-graphic{
+width: 350px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+} */
+/* .ig-white{
+color: rgb(255, 255, 255);
+} */
+/* .icon-graphic > hr{
+width: 40%;
+border: 2px solid white;
+border-radius: 2px;
+font-size: 30px;
+opacity: 1;
+} */
+/* .icon-graphic > i{
+font-size: 30px;
+} */

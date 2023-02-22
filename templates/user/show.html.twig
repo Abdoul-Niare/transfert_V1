@@ -4,58 +4,65 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container-fluid vh-100 mt-5">
-		<h1 class="ms-5 mb-3" >Utilisateur</h1>
+	<div class="container vh-100">
+		<h1 class="text-center m-3">Information personnelle</h1>
 
-		<table class="table text-center ms-5">
-			<tbody>
-				<tr>
-					<th>Id</th>
-					<td>{{ user.id }}</td>
-				</tr>
-				<tr>
-					<th>Identifiant</th>
-					<td>{{ user.username }}</td>
-				</tr>
-				<tr>
-					<th>Roles</th>
-					<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-				</tr>
-				{# <tr>
-					<th>Mot de passe</th>
-					<td>{{ user.password }}</td>
-				</tr> #}
-				<tr>
-					<th>Nom</th>
-					<td>{{ user.nom }}</td>
-				</tr>
-				<tr>
-					<th>Prenom</th>
-					<td>{{ user.prenom }}</td>
-				</tr>
-				<tr>
-					<th>Email</th>
-					<td>{{ user.mail }}</td>
-				</tr>
-				<tr>
-					<th>Ville</th>
-					<td>{{ user.ville }}</td>
-				</tr>
-			</tbody>
-		</table>
-		{% if is_granted('ROLE_ADMIN') %}
+		<div class="content_edit d-flex flex-column">
 
-			<a class="btn btn-secondary m-2" href="{{ path('app_user_index') }}">Retour à la liste</a>
-			<a class="btn btn-primary" href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+			<table class="table text-center" style="margin:0 auto">
+				<tbody>
+					{% if is_granted('ROLE_ADMIN')%}
+            <tr>
+              <th>Id</th>
+              <td>{{ user.id }}</td>
+            </tr>
+					{% endif %}
 
-			{{ include('user/_delete_form.html.twig') }}
-
-		{% elseif is_granted('ROLE_USER') %}
-
-			<a class="btn btn-success ms-5" href="{{ path('app_profile', {'id': user.id}) }}">Modifier</a>
-			<a class="btn btn-primary ms-3" href="{{ path('user_profile_modifier') }}">Retour</a>
-
-		{% endif %}
+					<tr>
+						<th>Nom utilisateur</th>
+						<td>{{ user.username }}</td>
+					</tr>
+          	{% if is_granted('ROLE_ADMIN')%}
+					<tr>
+						<th>Roles</th>
+						<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+					</tr>
+          	{% endif %}
+						{# <tr>
+							<th>Mot de passe</th>
+							<td>{{ user.password }}</td>
+						</tr> #}
+					<tr>
+						<th>Nom</th>
+						<td>{{ user.nom }}</td>
+					</tr>
+					<tr>
+						<th>Prenom</th>
+						<td>{{ user.prenom }}</td>
+					</tr>
+					<tr>
+						<th>Email</th>
+						<td>{{ user.mail }}</td>
+					</tr>
+					<tr>
+						<th>Ville</th>
+						<td>{{ user.ville }}</td>
+					</tr>
+				</tbody>
+			</table>
+			{% if is_granted('ROLE_ADMIN') %}
+				<div class="button" style="margin:0 auto">
+					<a class="btn btn-primary p-1 m-1" href="{{ path('app_user_index') }}">Retour à la liste</a>
+					<a class="btn btn-warning p-1 m-1 " href="{{ path('app_user_edit', {'id': user.id}) }}"><i class="fa fa-edit"></i> Modifier</a>
+					
+				</div>
+			{% elseif is_granted('ROLE_USER') %}
+				<div class="button" style="margin:0 auto">
+					<a class="btn btn-warning p-1 m-3" href="{{ path('app_profile', {'id': user.id}) }}"><i class="fa-solid fa-user-pen"></i> Modifier</a>
+					<a class="btn btn-primary p-1 m-3" href="{{ path('user_profile_modifier') }}">Retour</a>
+				</div>
+			{% endif %}
+		</div>
 
 
 	</div>
