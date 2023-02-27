@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Doctrine\DBAL\Types\TextType as TypesTextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -22,31 +23,39 @@ class RegistrationFormType extends AbstractType
             
             ->add('username', TextType::class, [
                 'label' => 'Identifiant',
+                'attr' => [
+                    'placeholder' => 'Votre identifiant']
             
             ])
-            ->add('nom')
-            ->add('prenom')
+            ->add('nom', TextType::class,[
+                'attr' => [
+                'placeholder' => 'votre nom']
+                
+             ])
+
+
+             ->add('prenom', TextType::class,[
+                'attr' => [
+                'placeholder' => 'votre prenom']
+                
+             ])
             
             ->add('mail', TextType::class, [
-                'label' => 'Adresse mail',
+                'label' => 'Adresse email',
                 'attr' => [
-                    'placeholder' => 'votre email']
+                    'placeholder' => 'votre e-mail']
             ])
 
             ->add('ville')
            
-            // ->add('email', TextType::class, [
-            //     'label' => 'Adresse mail',
-            // ])
-
-            // Note : use Symfony\Component\Form\Extension\Core\Type\TextType;
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => "Vous devez accepter les conditions générales d''utilisation."
                     ]),
                 ],
+                'label' => "Conditions générales",
             ])
 
             ->add('plainPassword', PasswordType::class, [
@@ -57,11 +66,11 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Votre mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),

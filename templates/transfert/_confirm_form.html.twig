@@ -19,15 +19,15 @@
 			</div>
 			<div class="form-control">
 				{{ form_label(form.nomBenef, 'Pour qui ?') }}
-				{{ form_widget(form.nomBenef, {'attr': {'class': 'task_field'}}) }}
+				{{ form_widget(form.nomBenef, {'attr': {'class': 'task_field','readonly' :true}}) }}
 			</div>
 			<div class="form-control">
 				{{ form_label(form.numTelBenef, 'N° de téléphone') }}
-				{{ form_widget(form.numTelBenef, {'attr': {'class': 'task_field'}}) }}
+				{{ form_widget(form.numTelBenef, {'attr': {'class': 'task_field','readonly' :true}}) }}
 			</div>
 			<div class="form-control">
 				{{ form_label(form.numBenef, 'N° de pièce d\'identité') }}
-				{{ form_widget(form.numBenef, {'attr': {'class': 'task_field'}}) }}
+				{{ form_widget(form.numBenef, {'attr': {'class': 'task_field','readonly' :true}}) }}
 			</div>
 			<div class="form-control">
 				{{ form_label(form.montBenef, 'Le beneficiaire reçoit') }}

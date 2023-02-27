@@ -12,29 +12,31 @@
 			<h2 class="text-center m-4">Historique</h2>
 		{% endif %}
 
-		<a class="btn btn-primary text-center mb-3" href="{{ path('app_transfert_new') }}">Passer un nouveau transfert <i class="fa fa-paper-plane"></i></a>
-
+		<a class="btn btn-primary text-center mb-3" style="margin-left: 61.8px" href="{{ path('app_transfert_new') }}">Passer un nouveau transfert <i class="fa fa-paper-plane"></i></a>
 		<table class="container-fluid">
 			<thead>
 				<tr>
 					<th>Transfert</th>
-					<th>Status</th>
+					<th>Statut</th>
+					<th>Ville du bénéficiaire</th>
 					{# <th>CodeSecret</th> #}
-					<th>Montant transfert</th>
-					<th>Montant bénéficiaire</th>
-					{% if is_granted('ROLE_ADMIN')%}
-						<th>Frais du transfert</th>
-					{% endif %}
-					{# <th>ComTransfert</th> #}
-					<th>Commission Agent</th>
+					{# <th>Commission Agent</th> #}
 					<th>Nom bénéficiaire</th>
-					{# <th>N° pièce bénéficiaire</th> #}
-					{# <th>Tel bénéficiaire</th> #}
+					<th>Montant bénéficiaire</th>
+					{# <th>N° pièce bénéficiaire</th>
+					<th>Tel bénéficiaire</th> #}
+
+					{# {% if is_granted('ROLE_ADMIN')%}
+						<th>Frais du transfert</th>
+						<th>Montant transfert</th>
+						<th>Commission du site</th>
+					{% endif %} #}
+
 					<th>Date d'envoi</th>
 					<th>Date pris charge</th>
 					<th>Date livraison</th>
 					<th>Is_visible</th>
-					<th>actions</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 
@@ -43,17 +45,22 @@
 					<tr>
 						<td>{{ transfert.id }}</td>
 						<td>{{ transfert.statut }}</td>
+						<td>{{transfert.ville}}</td>
 						{# <td>{{ transfert.codeSecret }}</td> #}
-						<td>{{ transfert.montTransfert }}</td>
-						<td>{{ transfert.montBenef }}</td>
-						{% if is_granted('ROLE_ADMIN')%}
-							<td>{{ transfert.fraisTransfert }}</td>
-						{% endif %}
-						{# <td>{{ transfert.comTransfert }}</td> #}
-						<td>{{ transfert.comAgentLivreur }}</td>
+						{# <td>{{ transfert.comAgentLivreur }}</td> #}
 						<td>{{ transfert.nomBenef }}</td>
-						{# <td>{{ transfert.numBenef }}</td> #}
-						{# <td>{{ transfert.numTelBenef }}</td> #}
+						<td>{{ transfert.montBenef }}</td>
+						{# <td>{{ transfert.numBenef }}</td>
+						<td>{{ transfert.numTelBenef }}</td> #}
+
+
+						{# {% if is_granted('ROLE_ADMIN')%}
+							<td>{{ transfert.fraisTransfert }}</td>
+							<td>{{ transfert.montTransfert }}</td>
+							<td>{{ transfert.comTransfert }}</td>
+						{% endif %} #}
+
+
 						<td>{{ transfert.dateEnvoi ? transfert.dateEnvoi|date('Y-m-d H:i:s') : '' }}</td>
 						<td>{{ transfert.datePrisCharge ? transfert.datePrisCharge|date('Y-m-d H:i:s') : '' }}</td>
 						<td>{{ transfert.dateLivr ? transfert.dateLivr|date('Y-m-d H:i:s') : '' }}</td>

@@ -8,9 +8,7 @@ use App\Repository\TransfertRepository;
 use App\Form\ConfirmTransfertType;
 use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,7 +33,7 @@ class TransfertController extends AbstractController
 
             // Un agent ne peut voir qu'un transfert non supprimé et non pris en charge par d'autres agents.
             $liste_transferts = $transfertRepository->findBy(['is_visible' => true, 'statut' => [
-                    'envoyé'
+                    'Envoyé'
                 ],
             ]);     
         }
@@ -93,50 +91,6 @@ class TransfertController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            //  $numBenef = $form->get('numBenef')->getData();
-
-            // if ($numBenef) {
-            //     $originalFilename = pathinfo($numBenef->getClientOriginalName(), PATHINFO_FILENAME);
-            //     // this is needed to safely include the file name as part of the URL
-            //     $safeFilename = $slugger->slug($originalFilename);
-            //     $newFilename = $safeFilename . '-' . uniqid() . '.' . $numBenef->guessExtension();
-            //     try {
-            //         $numBenef->move(
-            //             $this->getParameter('images_directory'),
-            //             $newFilename
-            //         );
-            //     } catch (FileException $e) {
-            //         // ... handle exception if something happens during file upload
-            //     }
-            //     $transfert->setNumBenef($newFilename);
-            // }
-                
-            // $transfert->setNumBenef('newFilename');
-
-
-            // //Date d'envoie du transfert.
-            // $date = new \DateTime('@' . strtotime('now'));
-            // $transfert->setDateEnvoi($date);
-
-            // //Gestion du code secret du transfert.
-            // // Tableau de lettre en majuscule
-            // $lettres = range('A', 'Z');
-            // // Je melange
-            // shuffle($lettres);
-            // // J"extrait le premier item du tableau
-            // $lettre = array_shift($lettres);
-            // // Je recommence pour la seconde lettre
-            // shuffle($lettres);
-            // // J'extrait la seconde lettre
-            // $lettre .= array_shift($lettres);
-            // // un nombre sur 4 digitau hazard
-            // $nombre = mt_rand(1000, 9999);
-            // $codeSecret = $lettre . $nombre;
-            // $transfert->setCodeSecret($codeSecret);
-            
-            // // Visibilité du transfert
-            // $transfert->setIsVisible(true);
-           
             //Gestion commission
             $fraisTransfert =  $form->get('fraisTransfert')->getData();
             $comAgent = $fraisTransfert * 0.70;
@@ -146,24 +100,14 @@ class TransfertController extends AbstractController
             $transfert->setComTransfert($comSite);
             // $transfertRepository->save($transfert, true);
 
-            // return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
-       
-                // Status du transfert à l'envoi 
-            // $status = "Envoyé";
-            // $transfert->setStatut($status);
-       
-            // $confirmForm = $this->createForm(TransfertType::class, $transfert);
-
             $_SESSION['transfert'] = $transfert;
 
             return $this->render('transfert/_confirm_form.html.twig', [
                 'confirm_token' => $transfert->getExpediteur()->getId(),
-                'transfert' => $transfert,
                 'form' => $form,
             ]);
 
                 
-       
         }
 
 
@@ -209,26 +153,22 @@ class TransfertController extends AbstractController
             $transfert->setStatut("Envoyé");
             $transfert->setExpediteur($expediteur);
             $transfert->setIsVisible(true);
-            echo $transfert->getVille()->getId();
-
+        
             //Enregistrement supplementaire eventuellement.
             $transfertRepository->save($transfert, true);
-            
+            $_SESSION['transfert'] = null;
             $this->addFlash('success', 'votre transfert a bien été envoyer.');
 
             // Details de la facture du transfert.
             return $this->render('transfert/facture.html.twig', [
                 'transfert' => $transfert,
             ]);
-
-            return $this->redirectToRoute('app_transfert_index', [], Response::HTTP_SEE_OTHER);
         }
         
     
-        $_SESSION['transfert'] = $transfert;
+        $_SESSION['transfert'] = null;
 
-        return $this->render('transfert/_confirm_form.html.twig', [
-            'transfert' => $transfert,
+        return $this->render('transfert/new.html.twig', [
             'form' => $confirmForm,
         ]);
     }
@@ -313,7 +253,7 @@ class TransfertController extends AbstractController
         if ($this->isCsrfTokenValid('take' . $transfert->getId(), $request->request->get('_token'))) {
             $transfert->setDateLivr(new \DateTime('@' . strtotime('now')));
             // Status du transfert à l'envoi 
-            $status = "livré";
+            $status = "Livré";
             $transfert->setStatut($status);
             $transfertRepository->save($transfert, true);
             return $this->redirectToRoute('app_transfert_compte', [], Response::HTTP_SEE_OTHER);

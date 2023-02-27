@@ -12,9 +12,12 @@
 		<table class="table" style="margin:0 auto">
 			<tbody>
 				<tr>
-					<th>Transfert:
-						{{ transfert.codeSecret }}</th>
-					<td>{{ transfert.id }}</td>
+					<th>Transfert</th>
+					<td>N°: {{ transfert.id }}</td>
+				</tr>
+				<tr>
+					<th>Expediteur du transfert</th>
+					<td>{{ transfert.expediteur }}</td>
 				</tr>
 				<tr>
 					<th>Status</th>
@@ -25,36 +28,43 @@
 					<td>{{ transfert.codeSecret }}</td>
 				</tr>
 				<tr>
-					<th>Montant du transfert</th>
-					<td>{{ transfert.montTransfert }}</td>
+					<th>Montant total du transfert</th>
+					<td>{{ transfert.montTransfert }} €</td>
 				</tr>
 				<tr>
 					<th>Montant pour le Bénéficiaire</th>
-					<td>{{ transfert.montBenef }}</td>
+					<td>{{ transfert.montBenef }} XOF (F.CFA)</td>
 				</tr>
+
+				{% if is_granted('ROLE_ADMIN')%}
 				<tr>
 					<th>Frais de transfert</th>
-					<td>{{ transfert.fraisTransfert }}</td>
+					<td>{{ transfert.fraisTransfert }} €</td>
 				</tr>
 				<tr>
 					<th>Commission du site</th>
-					<td>{{ transfert.comTransfert }}</td>
+					<td>{{ transfert.comTransfert }} € </td>
 				</tr>
+
+				{% endif %} 
+				
+				{% if is_granted('ROLE_PARTNER')%}
 				<tr>
-					<th>Commission de l'Agent_Livreur</th>
-					<td>{{ transfert.comAgentLivreur }}</td>
+					<th>Commission de l'Agent livreur</th>
+					<td>{{ transfert.comAgentLivreur }} €</td>
 				</tr>
+				{% endif %} 
 				<tr>
 					<th>Nom du bénéficiaire</th>
 					<td>{{ transfert.nomBenef }}</td>
 				</tr>
 				<tr>
-					<th>Cate d'identité du bénéficiaire</th>
-					<td>{{ transfert.numBenef }}</td>
+					<th>Numero d'identité du bénéficiaire</th>
+					<td>N°: {{ transfert.numBenef }}</td>
 				</tr>
 				<tr>
 					<th>Telephone du bénéficiaire</th>
-					<td>{{ transfert.numTelBenef }}</td>
+					<td>N°tel: {{ transfert.numTelBenef }}</td>
 				</tr>
 				<tr>
 					<th>Ville du bénéficiaire</th>

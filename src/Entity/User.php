@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
@@ -51,8 +50,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 45)]
     private ?string $mail = null;
-
-   
 
     public function __construct()
     {
@@ -111,33 +108,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-
-    
-    // private ?string $painPassword = null;
-
-
-    //   /**
-    //  *  Get the value of Plainpassword.
-    //  */
-    // public function getPlainPassword()
-    // {
-    //     return $this->plainPassword;
-    // }
-
-    //  /**
-    //  *  Set the value of Plainpassword.
-    //  * @return self
-    //  */
-    // public function setPlainPassword(string $plainPassword): self
-    // {
-    //     $this->plainPassword = $plainPassword;
-
-    //     return $this;
-    // }
-
-
-
 
     /**
      * @see PasswordAuthenticatedUserInterface

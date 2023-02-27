@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark ">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="{{path('app_home')}}">
 			<img src="{{asset('img/E-CFA.png')}}" alt="logo" style=" width: 45px; border-radius:50%; font-size: 30px;">
@@ -7,7 +7,7 @@
 
 		<div class="navbar-nav ">
 			<a class="btn btn-outline-success m-1 text-center" style="color:white; border:none" href="{{ path('app_transfert_new')}}">Envoyer de l'argent</a>
-			<a class="btn btn-outline-success m-1 text-center" style="color:white; border:none" href="{{ path('contact.index') }}">Devenir un agent</a>
+			<a class="btn btn-outline-success m-1 text-center" style="color:white; border:none" href="{{ path('contact.index') }}">Devenir agent livreur</a>
 
 			{% if app.user %}
 				{% if is_granted('ROLE_ADMIN') %}

@@ -4,53 +4,43 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container h-100">
+	<div class="container h-100 mb-5">
 		{% for message in app.flashes('success') %}
 			<div class="alert alert-success ">
 				<strong class="font-bold">Succès !</strong>
 				{{ message }}
 			</div>
 		{% endfor %}
+		<p class"mb-2" style= "text-align:center">Votre bénéficiaire sera bientôt contacté par un de nos agents pour lui donner le fonds jusqu"a son domicile. <br> Rassurez-vous qu'il obtient les détails de votre tranfert pour être en mesure de le réceptionniste! </p>
 
-		<h2 class"mb-3" style= "text-align:center">Details de votre transfert</h2>
+		<h2 class"mb-3" style= "text-align:center">Votre reçu</h2>
 
-		<table class="table" style="margin:0 auto">
+		<table class="table_reçu " style="margin:0 auto; border:none; border-collapse: none; width:60vw;">
 
 			<tbody>
 				<tr>
-					<th>Transfert:
-						{{ transfert.codeSecret }}</th>
-					<td>{{ transfert.id }}</td>
+					<th>Transfert</th>
+					<td>N° {{ transfert.id }}</td>
 				</tr>
 				<tr>
 					<th>Status</th>
 					<td>{{ transfert.statut }}</td>
 				</tr>
 				<tr>
-					<th>Code secret</th>
+					<th>Code secret à donner à l'agent par le bénéficiaire </th>
 					<td>{{ transfert.codeSecret }}</td>
 				</tr>
 				<tr>
-					<th>Montant du transfert</th>
-					<td>{{ transfert.montTransfert }}</td>
+					<th>Montant total que vous avez payé</th>
+					<td>{{ transfert.montTransfert}}€</td>
 				</tr>
 				<tr>
-					<th>Montant pour le Bénéficiaire</th>
-					<td>{{ transfert.montBenef }}</td>
+					<th>Total reçu par le Bénéficiaire</th>
+					<td>{{ transfert.montBenef }}XOF (Frans CFA)</td>
 				</tr>
 				<tr>
 					<th>Frais de transfert</th>
-					<td>{{ transfert.fraisTransfert }}</td>
-				</tr>
-				<tr>
-					<th>Commission du site</th>
-					<td>{{ transfert.comTransfert }}</td>
-				</tr>
-
-
-				<tr>
-					<th>Commission de l'Agent_Livreur</th>
-					<td>{{ transfert.comAgentLivreur }}</td>
+					<td>{{ transfert.fraisTransfert }}€</td>
 				</tr>
 
 				<tr>
@@ -63,11 +53,11 @@
 				</tr>
 				<tr>
 					<th>Cate d'identité du bénéficiaire</th>
-					<td>{{ transfert.numBenef }}</td>
+					<td>N°: {{ transfert.numBenef }}</td>
 				</tr>
 				<tr>
 					<th>Telephone du bénéficiaire</th>
-					<td>{{ transfert.numTelBenef }}</td>
+					<td>N° tel: {{ transfert.numTelBenef }}</td>
 				</tr>
 				<tr>
 					<th>Date d'envoi</th>
@@ -75,6 +65,7 @@
 				</tr>
 
 			</tbody>
+			
 		</table>
 
 		<div class="text-center d-flex justify-content-center">

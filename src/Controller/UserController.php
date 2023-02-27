@@ -39,7 +39,7 @@ class UserController extends AbstractController
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
 
-    public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher): Response
+    public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher, MailerInterface $mailer): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -184,7 +184,7 @@ class UserController extends AbstractController
         try {
             //Envoi de l'email
             $email = (new Email())
-                ->from("abdoulniare@yahoo.fr")
+                ->from("abdousamadouniare@gmail.com")
                 ->to($mail)
                 ->subject("Send€CFA : Réinitialisation de votre mot de passe")
                 ->html('Votre nouveau mot de passe est : ' . $password);

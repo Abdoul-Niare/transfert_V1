@@ -23,7 +23,7 @@ class TransfertRepository extends ServiceEntityRepository
 
     public function save(Transfert $entity, bool $flush = true): void
     {
-        $this->getEntityManager()->persist($entity);
+        $this->getEntityManager()->merge($entity);
 
         if ($flush) {
             $this->getEntityManager()->flush();

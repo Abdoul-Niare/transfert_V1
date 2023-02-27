@@ -6,72 +6,78 @@
 {% block body %}
 	<h2 class="text-center mt-3">Transfert</h2>
 
-	<table class="table " style="margin:0 auto">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ transfert.id }}</td>
-			</tr>
-			<tr>
-				<th>Statut</th>
-				<td>{{ transfert.statut }}</td>
-			</tr>
-			<tr>
-				<th>CodeSecret</th>
-				<td>{{ transfert.codeSecret }}</td>
-			</tr>
-			<tr>
-				<th>MontTransfert</th>
-				<td>{{ transfert.montTransfert }}</td>
-			</tr>
-			<tr>
-				<th>MontBenef</th>
-				<td>{{ transfert.montBenef }}</td>
-			</tr>
-			<tr>
-				<th>FraisTransfert</th>
-				<td>{{ transfert.fraisTransfert }}</td>
-			</tr>
-			<tr>
-				<th>ComTransfert</th>
-				<td>{{ transfert.comTransfert }}</td>
-			</tr>
+	<table class="table" style="margin:0 auto">
+			<tbody>
+				<tr>
+					<th>Transfert</th>
+					<td>N°: {{ transfert.id }}</td>
+				</tr>
+				<tr>
+					<th>Expediteur du transfert</th>
+					<td>{{ transfert.expediteur }}</td>
+				</tr>
+				<tr>
+					<th>Status</th>
+					<td>{{ transfert.statut }}</td>
+				</tr>
+				<tr>
+					<th>Code secret</th>
+					<td>{{ transfert.codeSecret }}</td>
+				</tr>
+				<tr>
+					<th>Montant total du transfert</th>
+					<td>{{ transfert.montTransfert }} €</td>
+				</tr>
+				<tr>
+					<th>Montant pour le Bénéficiaire</th>
+					<td>{{ transfert.montBenef }} XOF (F.CFA)</td>
+				</tr>
 
-			<tr>
-				<th>ComAgentLivreur</th>
-				<td>{{ transfert.comAgentLivreur }}</td>
-			</tr>
+				{% if is_granted('ROLE_ADMIN')%}
+				<tr>
+					<th>Frais de transfert</th>
+					<td>{{ transfert.fraisTransfert }} €</td>
+				</tr>
+				<tr>
+					<th>Commission du site</th>
+					<td>{{ transfert.comTransfert }} € </td>
+				</tr>
 
-			<tr>
-				<th>NomBenef</th>
-				<td>{{ transfert.nomBenef }}</td>
-			</tr>
-			<tr>
-				<th>NumBenef</th>
-				<td>{{ transfert.numBenef }}</td>
-			</tr>
-			<tr>
-				<th>NumTelBenef</th>
-				<td>{{ transfert.numTelBenef }}</td>
-			</tr>
-			<tr>
-				<th>DateEnvoi</th>
-				<td>{{ transfert.dateEnvoi ? transfert.dateEnvoi|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>DatePrisCharge</th>
-				<td>{{ transfert.datePrisCharge ? transfert.datePrisCharge|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>DateLivr</th>
-				<td>{{ transfert.dateLivr ? transfert.dateLivr|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Is_visible</th>
-				<td>{{ transfert.isVisible ? 'Yes' : 'No' }}</td>
-			</tr>
-		</tbody>
-	</table>
+				{% endif %} 
+				<tr>
+					<th>Commission de l'Agent livreur</th>
+					<td>{{ transfert.comAgentLivreur }} €</td>
+				</tr>
+				<tr>
+					<th>Nom du bénéficiaire</th>
+					<td>{{ transfert.nomBenef }}</td>
+				</tr>
+				<tr>
+					<th>Numero d'identité du bénéficiaire</th>
+					<td>N°: {{ transfert.numBenef }}</td>
+				</tr>
+				<tr>
+					<th>Telephone du bénéficiaire</th>
+					<td>N°tel: {{ transfert.numTelBenef }}</td>
+				</tr>
+				<tr>
+					<th>Ville du bénéficiaire</th>
+					<td>{{ transfert.ville }}</td>
+				</tr>
+				<tr>
+					<th>Date d'envoi</th>
+					<td>{{ transfert.dateEnvoi ? transfert.dateEnvoi|date('Y-m-d H:i:s') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Date de pris en charge</th>
+					<td>{{ transfert.datePrisCharge ? transfert.datePrisCharge|date('Y-m-d H:i:s') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Date de livraison</th>
+					<td>{{ transfert.dateLivr ? transfert.dateLivr|date('Y-m-d H:i:s') : '' }}</td>
+				</tr>
+			</tbody>
+		</table>
 	<div class="text-center d-flex justify-content-center">
 	<a class="btn btn-primary p-1 m-3" href="{{ path('app_transfert_index') }}">Retour à la liste</a>
 	<br>
@@ -82,7 +88,7 @@
 	</div>
     
 	{# <div class="text-center">
-		<a class="btn btn-warning p-1 m-1" href="{{ path('app_transfert_delivery', {'id': transfert.id}) }}">transfert livré</a>
+		<a class="btn btn-warning p-1 m-1" href="{{ path('app_transfert_delivery', {'id': transfert.id}) }}">transfert Livré</a>
 	</div> #}
 
 	{# {{ include('transfert/_delete_form.html.twig') }} #}

@@ -22,11 +22,13 @@ class TransfertType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('ville', Null, [
-            //     'label' => "Ville Bénéficiare",
-           
-            // ])
-            ->add('ville', EntityType::class, ['class' => \App\Entity\Ville::class, "required" => true,'label' => "Ville bénéficiaire"])
+
+            -> add('ville', Null, [
+                // 'class'=> Ville::class,
+                'label'=>'ville Bénéficiaire',
+               
+            ])
+
             ->add('nomBenef', TextType::class, [
                 'label' => "Nom et Prenom de votre Bénéficiaire:",
                 'attr' => [

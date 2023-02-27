@@ -8,15 +8,15 @@
 
     <h2 class="text-center m-4">Liste de toutes les villes</h2>
 
-		<div class="container">
-    <a class="btn btn-primary text-center mb-3" href="{{ path('app_ville_new') }}"><i class="fa fa-earth-africa"></i> Add Ville</a>
-
-			<table class="container-fluid w-50">
+		<div class="container d-flex flex-column">
+   			
+			 <a class="btn btn-primary mb-3 ml-5" style="width: 120px; margin-left: 160px" href="{{ path('app_ville_new') }}"><i class="fa fa-earth-africa"></i> Add Ville</a>
+			<table class="container-fluid w-25">
 				<thead>
 					<tr>
 						<th>Id</th>
-						<th>Name</th>
-						<th>actions</th>
+						<th>Nom</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -34,7 +34,7 @@
 						</tr>
 					{% else %}
 						<tr>
-							<td colspan="3">no records found</td>
+							<td colspan="3">aucun enregistrement trouvé.</td>
 						</tr>
 					{% endfor %}
 				</tbody>
